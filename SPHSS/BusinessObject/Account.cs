@@ -13,7 +13,7 @@ public partial class Account
 
     public string? AccEmail { get; set; }
 
-    public DateOnly? Dob { get; set; }
+    public DateTime? Dob { get; set; }
 
     public bool? Gender { get; set; }
 

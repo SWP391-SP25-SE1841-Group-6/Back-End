@@ -1,5 +1,7 @@
 using BusinessObject;
+using DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -13,7 +15,11 @@ builder.Services.AddControllers();
 IConfiguration configuration = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json", true, true).Build();
-builder.Services.AddDbContext<SphssContext>();
+builder.Services.AddDbContext<SphssContext>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+
+builder.Services.AddService(builder.Configuration.GetConnectionString("DefaultConnectionString"));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Add authentication JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
