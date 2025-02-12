@@ -54,7 +54,7 @@ namespace SPHSS_Controller.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, account.Data.AccEmail),
+                new Claim("Email", account.Data.AccEmail),
                 new Claim("Role", account.Data.RoleId.ToString()),
                 new Claim("UserId", account.Data.AccId.ToString()),
             };
