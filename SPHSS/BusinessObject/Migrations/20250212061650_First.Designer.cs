@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250208033901_First")]
+    [Migration("20250212061650_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -50,7 +50,7 @@ namespace BusinessObject.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime?>("Dob")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("datetime")
                         .HasColumnName("DOB");
 
                     b.Property<bool?>("Gender")
@@ -73,9 +73,9 @@ namespace BusinessObject.Migrations
                     b.HasKey("AccId")
                         .HasName("PK__Account__91CBC3989585B2E4");
 
-                    b.HasIndex("ParentId");
+                    b.HasIndex(new[] { "ParentId" }, "IX_Account_ParentID");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex(new[] { "RoleId" }, "IX_Account_RoleID");
 
                     b.ToTable("Account", (string)null);
                 });
@@ -115,9 +115,9 @@ namespace BusinessObject.Migrations
                     b.HasKey("AppointmentId")
                         .HasName("PK__Appointm__8ECDFCA2A827AF28");
 
-                    b.HasIndex("PsychologistId");
+                    b.HasIndex(new[] { "PsychologistId" }, "IX_Appointment_PsychologistID");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex(new[] { "StudentId" }, "IX_Appointment_StudentID");
 
                     b.ToTable("Appointment", (string)null);
                 });
@@ -151,7 +151,7 @@ namespace BusinessObject.Migrations
                     b.HasKey("BlogId")
                         .HasName("PK_Blog_1");
 
-                    b.HasIndex("CreatorId");
+                    b.HasIndex(new[] { "CreatorId" }, "IX_Blog_CreatorID");
 
                     b.ToTable("Blog", (string)null);
                 });
@@ -205,7 +205,7 @@ namespace BusinessObject.Migrations
                     b.HasKey("StudentId")
                         .HasName("PK__ProgramS__32C52A793A2B692B");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex(new[] { "ProgramId" }, "IX_ProgramSignup_ProgramID");
 
                     b.ToTable("ProgramSignup", (string)null);
                 });
@@ -234,7 +234,7 @@ namespace BusinessObject.Migrations
                     b.HasKey("QuestionId")
                         .HasName("PK__Question__0DC06F8CBCB2CC60");
 
-                    b.HasIndex("QtypeId");
+                    b.HasIndex(new[] { "QtypeId" }, "IX_Questions_QTypeID");
 
                     b.ToTable("Questions");
                 });
@@ -325,9 +325,9 @@ namespace BusinessObject.Migrations
                     b.HasKey("SlotId")
                         .HasName("PK__Slots__0A124A4F583FCF37");
 
-                    b.HasIndex("AppointmentId");
+                    b.HasIndex(new[] { "AppointmentId" }, "IX_Slots_AppointmentID");
 
-                    b.HasIndex("ProgramId");
+                    b.HasIndex(new[] { "ProgramId" }, "IX_Slots_ProgramID");
 
                     b.ToTable("Slots");
                 });
@@ -389,9 +389,9 @@ namespace BusinessObject.Migrations
                     b.HasKey("TestResultId")
                         .HasName("PK__TestResu__E2463A673A2B3161");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex(new[] { "StudentId" }, "IX_TestResult_StudentID");
 
-                    b.HasIndex("TestId");
+                    b.HasIndex(new[] { "TestId" }, "IX_TestResult_TestID");
 
                     b.ToTable("TestResult", (string)null);
                 });
@@ -416,7 +416,7 @@ namespace BusinessObject.Migrations
                     b.HasKey("TestResultId", "QuestionId")
                         .HasName("PK__TestResu__329A3C9F15032BFD");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex(new[] { "QuestionId" }, "IX_TestResultAnswer_QuestionID");
 
                     b.ToTable("TestResultAnswer", (string)null);
                 });
@@ -434,7 +434,7 @@ namespace BusinessObject.Migrations
                     b.HasKey("TestId", "QuestionId")
                         .HasName("PK__TestQues__5C1F37F8F0E96F86");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
 
                     b.ToTable("TestQuestion", (string)null);
                 });

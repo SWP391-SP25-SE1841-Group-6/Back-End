@@ -51,7 +51,6 @@ public partial class SphssContext : DbContext
         return configuration["ConnectionStrings:DefaultConnectionString"];
     }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
@@ -59,6 +58,10 @@ public partial class SphssContext : DbContext
             entity.HasKey(e => e.AccId).HasName("PK__Account__91CBC3989585B2E4");
 
             entity.ToTable("Account");
+
+            entity.HasIndex(e => e.ParentId, "IX_Account_ParentID");
+
+            entity.HasIndex(e => e.RoleId, "IX_Account_RoleID");
 
             entity.Property(e => e.AccId).HasColumnName("AccID");
             entity.Property(e => e.AccEmail)
@@ -70,7 +73,9 @@ public partial class SphssContext : DbContext
             entity.Property(e => e.AccPass)
                 .HasMaxLength(255)
                 .IsUnicode(false);
-            entity.Property(e => e.Dob).HasColumnName("DOB");
+            entity.Property(e => e.Dob)
+                .HasColumnType("datetime")
+                .HasColumnName("DOB");
             entity.Property(e => e.ParentId).HasColumnName("ParentID");
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
@@ -89,6 +94,10 @@ public partial class SphssContext : DbContext
             entity.HasKey(e => e.AppointmentId).HasName("PK__Appointm__8ECDFCA2A827AF28");
 
             entity.ToTable("Appointment");
+
+            entity.HasIndex(e => e.PsychologistId, "IX_Appointment_PsychologistID");
+
+            entity.HasIndex(e => e.StudentId, "IX_Appointment_StudentID");
 
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
             entity.Property(e => e.IsDeleted)
@@ -113,6 +122,8 @@ public partial class SphssContext : DbContext
             entity.HasKey(e => e.BlogId).HasName("PK_Blog_1");
 
             entity.ToTable("Blog");
+
+            entity.HasIndex(e => e.CreatorId, "IX_Blog_CreatorID");
 
             entity.Property(e => e.BlogId).HasColumnName("BlogID");
             entity.Property(e => e.BlogName).HasMaxLength(100);
@@ -144,6 +155,8 @@ public partial class SphssContext : DbContext
 
             entity.ToTable("ProgramSignup");
 
+            entity.HasIndex(e => e.ProgramId, "IX_ProgramSignup_ProgramID");
+
             entity.Property(e => e.StudentId)
                 .ValueGeneratedNever()
                 .HasColumnName("StudentID");
@@ -163,6 +176,8 @@ public partial class SphssContext : DbContext
         modelBuilder.Entity<Question>(entity =>
         {
             entity.HasKey(e => e.QuestionId).HasName("PK__Question__0DC06F8CBCB2CC60");
+
+            entity.HasIndex(e => e.QtypeId, "IX_Questions_QTypeID");
 
             entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
@@ -206,6 +221,10 @@ public partial class SphssContext : DbContext
         modelBuilder.Entity<Slot>(entity =>
         {
             entity.HasKey(e => e.SlotId).HasName("PK__Slots__0A124A4F583FCF37");
+
+            entity.HasIndex(e => e.AppointmentId, "IX_Slots_AppointmentID");
+
+            entity.HasIndex(e => e.ProgramId, "IX_Slots_ProgramID");
 
             entity.Property(e => e.SlotId).HasColumnName("SlotID");
             entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
@@ -253,6 +272,7 @@ public partial class SphssContext : DbContext
                     {
                         j.HasKey("TestId", "QuestionId").HasName("PK__TestQues__5C1F37F8F0E96F86");
                         j.ToTable("TestQuestion");
+                        j.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
                         j.IndexerProperty<int>("TestId").HasColumnName("TestID");
                         j.IndexerProperty<int>("QuestionId").HasColumnName("QuestionID");
                     });
@@ -263,6 +283,10 @@ public partial class SphssContext : DbContext
             entity.HasKey(e => e.TestResultId).HasName("PK__TestResu__E2463A673A2B3161");
 
             entity.ToTable("TestResult");
+
+            entity.HasIndex(e => e.StudentId, "IX_TestResult_StudentID");
+
+            entity.HasIndex(e => e.TestId, "IX_TestResult_TestID");
 
             entity.Property(e => e.TestResultId).HasColumnName("TestResultID");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
@@ -284,6 +308,8 @@ public partial class SphssContext : DbContext
             entity.HasKey(e => new { e.TestResultId, e.QuestionId }).HasName("PK__TestResu__329A3C9F15032BFD");
 
             entity.ToTable("TestResultAnswer");
+
+            entity.HasIndex(e => e.QuestionId, "IX_TestResultAnswer_QuestionID");
 
             entity.Property(e => e.TestResultId).HasColumnName("TestResultID");
             entity.Property(e => e.QuestionId).HasColumnName("QuestionID");

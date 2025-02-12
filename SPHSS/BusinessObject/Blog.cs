@@ -5,6 +5,8 @@ namespace BusinessObject;
 
 public partial class Blog
 {
+    public int BlogId { get; set; }
+
     public string? BlogName { get; set; }
 
     public int? CreatorId { get; set; }
@@ -14,8 +16,6 @@ public partial class Blog
     public DateOnly? DateCreated { get; set; }
 
     public bool? IsDeleted { get; set; }
-
-    public int BlogId { get; set; }
 
     public virtual Account? Creator { get; set; }
 }
