@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,9 +18,9 @@ namespace BusinessObject.Migrations
                     Program_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Program_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    DateCreated = table.Column<DateOnly>(type: "date", nullable: false),
-                    DateStart = table.Column<DateOnly>(type: "date", nullable: false),
-                    DateEnd = table.Column<DateOnly>(type: "date", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
                 },
                 constraints: table =>
@@ -152,9 +152,9 @@ namespace BusinessObject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentID = table.Column<int>(type: "int", nullable: false),
                     PsychologistID = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateOnly>(type: "date", nullable: false),
-                    DateStart = table.Column<DateOnly>(type: "date", nullable: false),
-                    DateEnd = table.Column<DateOnly>(type: "date", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
                 },
                 constraints: table =>
@@ -181,7 +181,7 @@ namespace BusinessObject.Migrations
                     BlogName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     CreatorID = table.Column<int>(type: "int", nullable: true),
                     ContentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateCreated = table.Column<DateOnly>(type: "date", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
