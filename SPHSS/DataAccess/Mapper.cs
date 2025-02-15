@@ -24,7 +24,9 @@ namespace DataAccess
 
             #region QuestionType
             CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
-            CreateMap<QuestionType, ResQuestionTypeDTO>().ReverseMap();
+            CreateMap<QuestionType, ResQuestionTypeDTO>()
+                .ForMember(x=>x.ListQuestions, o=>o.MapFrom(q=>q.Questions))
+                .ReverseMap();
             #endregion
             #region Question
             CreateMap<Question, ResQuestionDTO>().ReverseMap();

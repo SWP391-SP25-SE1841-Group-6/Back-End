@@ -14,6 +14,6 @@ namespace DataAccess.DTO.Res
 
         public bool? IsDeleted { get; set; }
 
-        public ResQuestionDTO ListQuestions { get; set; }
+        public IEnumerable<ResQuestionDTO> ListQuestions { get; set; }
     }
 }
