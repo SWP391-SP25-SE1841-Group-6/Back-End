@@ -22,6 +22,11 @@ namespace DataAccess
             CreateMap<Account, AccountUpdateDTO>().ReverseMap();
             #endregion
 
+            #region QuestionType
+            CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
+            CreateMap<QuestionType, ResQuestionTypeDTO>().ReverseMap();
+            #endregion
+
         }
     }
 }
