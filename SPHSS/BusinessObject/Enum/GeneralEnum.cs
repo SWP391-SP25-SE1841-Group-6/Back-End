@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Enum
+namespace BusinessObject.Enum
 {
     public enum RoleEnum
     {
-        Admin, 
-        Manager,
         Psychologist,
         Parent,
         Student
     }
+/*    public enum RoleRegisterEnum
+    {
+        Parent,
+        Student
+    }*/
 }

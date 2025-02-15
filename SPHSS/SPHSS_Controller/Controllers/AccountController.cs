@@ -1,4 +1,5 @@
-﻿using DataAccess.DTO.Req;
+﻿using BusinessObject.Enum;
+using DataAccess.DTO.Req;
 using DataAccess.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -55,7 +56,7 @@ namespace SPHSS_Controller.Controllers
             var claims = new List<Claim>
             {
                 new Claim("Email", account.Data.AccEmail),
-                new Claim("Role", account.Data.RoleId.ToString()),
+                new Claim("Role", account.Data.Role.ToString()),
                 new Claim("UserId", account.Data.AccId.ToString()),
                 new Claim("AccName", account.Data.AccName.ToString()),
             };
@@ -71,7 +72,7 @@ namespace SPHSS_Controller.Controllers
                 signingCredentials: creds);
 
             var token = new JwtSecurityTokenHandler().WriteToken(preparedToken);
-            var roleId = account.Data.RoleId.ToString();
+            var roleId = account.Data.Role.ToString();
             var userId = account.Data.AccId.ToString();
             return Ok(new
             {
