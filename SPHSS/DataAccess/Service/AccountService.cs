@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObject;
+using BusinessObject.Enum;
 using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
 using DataAccess.Repo;
@@ -188,7 +189,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
-                    mapp.RoleId = 1;
+                    /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
                     mapp.IsApproved = false;
                     await _accountRepo.AddAsync(mapp);

@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using BusinessObject.Enum;
 using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
 using DataAccess.Repo.IRepo;

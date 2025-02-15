@@ -30,8 +30,6 @@ public partial class SphssContext : DbContext
 
     public virtual DbSet<QuestionType> QuestionTypes { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
-
     public virtual DbSet<Slot> Slots { get; set; }
 
     public virtual DbSet<Test> Tests { get; set; }
@@ -61,8 +59,6 @@ public partial class SphssContext : DbContext
 
             entity.HasIndex(e => e.ParentId, "IX_Account_ParentID");
 
-            entity.HasIndex(e => e.RoleId, "IX_Account_RoleID");
-
             entity.Property(e => e.AccId).HasColumnName("AccID");
             entity.Property(e => e.AccEmail)
                 .HasMaxLength(255)
@@ -77,16 +73,10 @@ public partial class SphssContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("DOB");
             entity.Property(e => e.ParentId).HasColumnName("ParentID");
-            entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
             entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent)
                 .HasForeignKey(d => d.ParentId)
                 .HasConstraintName("FK__Account__ParentI__267ABA7A");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Accounts)
-                .HasForeignKey(d => d.RoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Account__RoleID__276EDEB3");
         });
 
         modelBuilder.Entity<Appointment>(entity =>
@@ -203,19 +193,6 @@ public partial class SphssContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("QType");
-        });
-
-        modelBuilder.Entity<Role>(entity =>
-        {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE3A856FF23A");
-
-            entity.ToTable("Role");
-
-            entity.Property(e => e.RoleId).HasColumnName("RoleID");
-            entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
-            entity.Property(e => e.RoleName)
-                .HasMaxLength(255)
-                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Slot>(entity =>
