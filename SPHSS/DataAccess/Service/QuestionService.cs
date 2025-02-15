@@ -62,5 +62,90 @@ namespace DataAccess.Service
                 return res;
             }
         }
+
+        public async Task<ResFormat<bool>> Delete(int id)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                var list = await _questionRepo.GetAllAsync();
+                if (list.Any(q => q.QuestionId == id))
+                {
+                    var question = list.FirstOrDefault(q => q.QuestionId == id);
+                    question.IsDeleted = true;
+                    _questionRepo.Update(question);
+                    res.Success = true;
+                    res.Data = true;
+                    res.Message = "Success";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No question with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
+        }
+
+        public Task<ResFormat<IEnumerable<ResQuestionDTO>>> GetAllQuestions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ResFormat<ResQuestionDTO>> GetQuestionById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ResFormat<ResQuestionDTO>> Update(QuestionCreateDTO question, int id)
+        {
+            var res = new ResFormat<ResQuestionDTO>();
+            try
+            {
+
+                var list = await _questionRepo.GetAllAsync();
+                if (list.Any(a => a.QuestionId == id && a.IsDeleted == false))
+                {
+                    var q = list.FirstOrDefault(a => a.QuestionId == id);
+                    if (list.Any(b => b.Question1 == question.Question1))
+                    {
+
+                        res.Success = false;
+                        res.Message = "Duplicate Question";
+                        return res;
+                    }
+                    else
+                    {
+                        q.Question1 = question.Question1;
+                        _questionRepo.Update(q);
+                        var q2 = _mapper.Map<ResQuestionDTO>(q);
+                        res.Success = true;
+                        res.Data = q2;
+                        res.Message = "Success";
+                        return res;
+                    }
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No question with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
+        }
     }
+    
 }

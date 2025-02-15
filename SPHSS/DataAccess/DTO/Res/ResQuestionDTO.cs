@@ -15,5 +15,6 @@ namespace DataAccess.DTO.Res
         public string? Question1 { get; set; }
 
         public bool? IsDeleted { get; set; }
+        
     }
 }

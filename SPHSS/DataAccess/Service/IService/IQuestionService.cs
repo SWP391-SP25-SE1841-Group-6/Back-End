@@ -11,5 +11,9 @@ namespace DataAccess.Service.IService
     public interface IQuestionService
     {
         Task<ResFormat<ResQuestionDTO>> Create(QuestionCreateDTO question);
+        Task<ResFormat<IEnumerable<ResQuestionDTO>>> GetAllQuestions();
+        Task<ResFormat<ResQuestionDTO>> GetQuestionById(int id);
+        Task<ResFormat<bool>> Delete(int id);
+        Task<ResFormat<ResQuestionDTO>> Update(QuestionCreateDTO question, int id);
     }
 }
