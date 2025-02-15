@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DTO.Req
 {
-    internal class QuestionCreateDTO
+    public class QuestionCreateDTO
     {
+        public int QtypeId { get; set; }
+
+        public string? Question1 { get; set; }
+
     }
 }
