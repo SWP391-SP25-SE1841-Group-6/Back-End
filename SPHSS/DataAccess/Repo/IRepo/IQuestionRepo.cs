@@ -9,6 +9,6 @@ namespace DataAccess.Repo.IRepo
 {
     public interface IQuestionRepo:IBaseRepo<Question>
     {
-        Task<Question> GetQuestionByType(string type);
+        Task<IEnumerable<Question>> GetAllQuestionsWithType();
     }
 }

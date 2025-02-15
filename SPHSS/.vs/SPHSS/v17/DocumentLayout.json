@@ -3,36 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\iservice\\iquestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iquestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\dto\\res\\resquestiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\dto\\res\\resquestiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\businessobject\\questiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\questiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\businessobject\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\questiontypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\questiontypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\iservice\\iquestiontypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iquestiontypeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\repo\\irepo\\iquestiontyperepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repo\\irepo\\iquestiontyperepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\repo\\questiontyperepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repo\\questiontyperepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\questionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\repo\\questionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repo\\questionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\repo\\irepo\\iquestionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repo\\irepo\\iquestionrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\repo\\baserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repo\\baserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\iservice\\iquestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iquestionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\dto\\res\\resquestiontypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\dto\\res\\resquestiontypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,61 +65,9 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 335,
-          "SelectedChildIndex": 8,
+          "DockedWidth": 309,
+          "SelectedChildIndex": 9,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DI.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
-              "RelativeDocumentMoniker": "DataAccess\\DI.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
-              "RelativeToolTip": "DataAccess\\DI.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T07:09:30.898Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Mapper.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Mapper.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
-              "RelativeToolTip": "DataAccess\\Mapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T07:09:26.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "QuestionController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionController.cs",
-              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\QuestionController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionController.cs",
-              "RelativeToolTip": "SPHSS_Controller\\Controllers\\QuestionController.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA8wCcAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T07:07:39.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ResQuestionDTO.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DTO\\Res\\ResQuestionDTO.cs",
-              "RelativeDocumentMoniker": "DataAccess\\DTO\\Res\\ResQuestionDTO.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DTO\\Res\\ResQuestionDTO.cs",
-              "RelativeToolTip": "DataAccess\\DTO\\Res\\ResQuestionDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T07:06:05.046Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -114,26 +86,104 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IQuestionRepo.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\IRepo\\IQuestionRepo.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repo\\IRepo\\IQuestionRepo.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\IRepo\\IQuestionRepo.cs",
+              "RelativeToolTip": "DataAccess\\Repo\\IRepo\\IQuestionRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:28:23.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "QuestionRepo.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\QuestionRepo.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repo\\QuestionRepo.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\QuestionRepo.cs",
+              "RelativeToolTip": "DataAccess\\Repo\\QuestionRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:27:52.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BaseRepo.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\BaseRepo.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repo\\BaseRepo.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\BaseRepo.cs",
+              "RelativeToolTip": "DataAccess\\Repo\\BaseRepo.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwCQAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:27:49.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ResQuestionTypeDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DTO\\Res\\ResQuestionTypeDTO.cs",
+              "RelativeDocumentMoniker": "DataAccess\\DTO\\Res\\ResQuestionTypeDTO.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DTO\\Res\\ResQuestionTypeDTO.cs",
+              "RelativeToolTip": "DataAccess\\DTO\\Res\\ResQuestionTypeDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:22:09.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Mapper.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Mapper.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
+              "RelativeToolTip": "DataAccess\\Mapper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:09:26.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "SPHSS_Controller\\Controllers\\QuestionController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAcwDsAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:07:39.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "QuestionService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\QuestionService.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionService.cs",
               "RelativeToolTip": "DataAccess\\Service\\QuestionService.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAYwGoAAABNAAAA",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAUwGIAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T05:06:17.792Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "IQuestionService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IQuestionService.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionService.cs",
               "RelativeToolTip": "DataAccess\\Service\\IService\\IQuestionService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAuAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T05:05:45.493Z",
               "EditorCaption": ""
@@ -141,41 +191,22 @@
           ]
         },
         {
-          "DockedWidth": 309,
+          "DockedWidth": 335,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "QuestionTypeService.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionTypeService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\QuestionTypeService.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionTypeService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\QuestionTypeService.cs",
-              "ViewState": "AQIAAKoAAAAAAAAAAADwv78AAAA0AAAA",
+              "DocumentIndex": 1,
+              "Title": "QuestionType.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\QuestionType.cs",
+              "RelativeDocumentMoniker": "BusinessObject\\QuestionType.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\QuestionType.cs",
+              "RelativeToolTip": "BusinessObject\\QuestionType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA0AAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T06:52:55.103Z",
+              "WhenOpened": "2025-02-15T07:33:43.001Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IQuestionTypeService.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionTypeService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IQuestionTypeService.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionTypeService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\IService\\IQuestionTypeService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T07:03:53.694Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 322,
-          "SelectedChildIndex": -1,
-          "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -203,6 +234,71 @@
             {
               "$type": "Bookmark",
               "Name": "ST:16:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\Question.cs",
+              "RelativeDocumentMoniker": "BusinessObject\\Question.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\Question.cs",
+              "RelativeToolTip": "BusinessObject\\Question.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:33:52.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuestionTypeService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionTypeService.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Service\\QuestionTypeService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\QuestionTypeService.cs",
+              "RelativeToolTip": "DataAccess\\Service\\QuestionTypeService.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAASwHcAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T06:52:55.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IQuestionTypeRepo.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\IRepo\\IQuestionTypeRepo.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repo\\IRepo\\IQuestionTypeRepo.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\IRepo\\IQuestionTypeRepo.cs",
+              "RelativeToolTip": "DataAccess\\Repo\\IRepo\\IQuestionTypeRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:28:24.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "QuestionTypeRepo.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\QuestionTypeRepo.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repo\\QuestionTypeRepo.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Repo\\QuestionTypeRepo.cs",
+              "RelativeToolTip": "DataAccess\\Repo\\QuestionTypeRepo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:27:54.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IQuestionTypeService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionTypeService.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IQuestionTypeService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IQuestionTypeService.cs",
+              "RelativeToolTip": "DataAccess\\Service\\IService\\IQuestionTypeService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:03:53.694Z",
+              "EditorCaption": ""
             }
           ]
         }

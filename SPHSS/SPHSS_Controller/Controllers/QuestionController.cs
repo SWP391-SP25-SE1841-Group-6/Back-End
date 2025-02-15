@@ -46,5 +46,25 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _questionService.GetAllQuestions();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpGet("id")]
+        public async Task<IActionResult> GetQuestionById(int id)
+        {
+            var result = await _questionService.GetQuestionById(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
     }
 }

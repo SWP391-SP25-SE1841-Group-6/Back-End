@@ -116,8 +116,8 @@ namespace DataAccess.Service
                 var list = await _questionTypeRepo.GetAllAsync();
                 if (list.Any(a => a.QtypeId == id && a.IsDeleted == false))
                 {
-                    var login = list.FirstOrDefault(a => a.QtypeId == id);
-                    var resList = _mapper.Map<ResQuestionTypeDTO>(login);
+                    var questionType = list.FirstOrDefault(a => a.QtypeId == id);
+                    var resList = _mapper.Map<ResQuestionTypeDTO>(questionType);
                     res.Success = true;
                     res.Data = resList;
                     res.Message = "Retrieved successfully";
