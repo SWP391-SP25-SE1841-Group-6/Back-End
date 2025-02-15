@@ -26,5 +26,25 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _questionService.Delete(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update(QuestionCreateDTO question, int id)
+        {
+            var result = await _questionService.Update(question, id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
     }
 }
