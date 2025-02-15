@@ -13,8 +13,14 @@ public static class DI
 
         services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
         services.AddScoped<IAccountService, AccountService>();
+
+
+        #region Question/QuestionType
         services.AddScoped<IQuestionTypeService, QuestionTypeService>();
         services.AddScoped<IQuestionTypeRepo, QuestionTypeRepo>();
+        services.AddScoped<IQuestionRepo, QuestionRepo>();
+        services.AddScoped<IQuestionService, QuestionService>();
+        #endregion
 
         return services;
     }
