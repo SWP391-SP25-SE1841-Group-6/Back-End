@@ -15,5 +15,6 @@ namespace DataAccess.Service.IService
         Task<ResFormat<bool>> DeleteQuestionType(int id);
         Task<ResFormat<ResQuestionTypeDTO>> UpdateQuestionType(QuestionTypeCreateDTO questionType, int id);
         Task<ResFormat<ResQuestionTypeDTO>> CreateQuestionType(QuestionTypeCreateDTO questionType);
+        Task<ResFormat<ResQuestionTypeDTO>> GetQuestionTypeByType(string type);
     }
 }

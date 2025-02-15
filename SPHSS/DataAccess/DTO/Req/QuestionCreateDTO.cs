@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Repo
+namespace DataAccess.DTO.Req
 {
-    internal class Class1
+    internal class QuestionCreateDTO
     {
     }
 }

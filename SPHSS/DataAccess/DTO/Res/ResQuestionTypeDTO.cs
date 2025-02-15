@@ -13,5 +13,7 @@ namespace DataAccess.DTO.Res
         public string? Qtype { get; set; }
 
         public bool? IsDeleted { get; set; }
+
+        public ResQuestionDTO ListQuestions { get; set; }
     }
 }

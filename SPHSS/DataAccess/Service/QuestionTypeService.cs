@@ -14,10 +14,10 @@ namespace DataAccess.Service
 {
     public class QuestionTypeService : IQuestionTypeService
     {
-        private readonly IBaseRepo<QuestionType> _questionTypeRepo;
+        private readonly IQuestionTypeRepo _questionTypeRepo;
         private readonly IMapper _mapper;
 
-        public QuestionTypeService(IBaseRepo<QuestionType> questionTypeRepo, IMapper mapper)
+        public QuestionTypeService(IQuestionTypeRepo questionTypeRepo, IMapper mapper)
         {
             _questionTypeRepo = questionTypeRepo;
             _mapper = mapper;
@@ -118,6 +118,37 @@ namespace DataAccess.Service
                 {
                     var login = list.FirstOrDefault(a => a.QtypeId == id);
                     var resList = _mapper.Map<ResQuestionTypeDTO>(login);
+                    res.Success = true;
+                    res.Data = resList;
+                    res.Message = "Retrieved successfully";
+                    res.Message = "Success";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No questionType with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<ResQuestionTypeDTO>> GetQuestionTypeByType(string type)
+        {
+            var res = new ResFormat<ResQuestionTypeDTO>();
+            try
+            {
+
+                var list = await _questionTypeRepo.GetQuestionTypeAndQuestionsByType(type);
+                if (list!=null)
+                {
+                    var resList = _mapper.Map<ResQuestionTypeDTO>(list);
                     res.Success = true;
                     res.Data = resList;
                     res.Message = "Retrieved successfully";
