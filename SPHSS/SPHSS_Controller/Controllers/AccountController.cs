@@ -57,6 +57,7 @@ namespace SPHSS_Controller.Controllers
                 new Claim("Email", account.Data.AccEmail),
                 new Claim("Role", account.Data.RoleId.ToString()),
                 new Claim("UserId", account.Data.AccId.ToString()),
+                new Claim("AccName", account.Data.AccName.ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]));
@@ -81,6 +82,7 @@ namespace SPHSS_Controller.Controllers
                     id = account.Data.AccId,
                     email = account.Data.AccEmail,
                     role=roleId,
+                    name=account.Data.AccName,
                 }
             });
         }

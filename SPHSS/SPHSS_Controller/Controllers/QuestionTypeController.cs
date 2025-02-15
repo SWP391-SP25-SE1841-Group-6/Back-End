@@ -47,7 +47,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
         [HttpGet("id")]
-        public async Task<IActionResult> GetAccountById(int id)
+        public async Task<IActionResult> GetQuestionTypeById(int id)
         {
             var result = await _questionTypeService.GetQuestionTypeById(id);
             if (result == null)
@@ -60,6 +60,16 @@ namespace SPHSS_Controller.Controllers
         public async Task<IActionResult> Update(QuestionTypeCreateDTO questionType, int id)
         {
             var result = await _questionTypeService.UpdateQuestionType(questionType, id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpGet("type")]
+        public async Task<IActionResult> GetQuestionTypeByType(string type)
+        {
+            var result = await _questionTypeService.GetQuestionTypeByType(type);
             if (result == null)
             {
                 return NotFound();
