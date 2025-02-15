@@ -94,14 +94,56 @@ namespace DataAccess.Service
             }
         }
 
-        public Task<ResFormat<IEnumerable<ResQuestionDTO>>> GetAllQuestions()
+        public async Task<ResFormat<IEnumerable<ResQuestionDTO>>> GetAllQuestions()
         {
-            throw new NotImplementedException();
+            var res = new ResFormat<IEnumerable<ResQuestionDTO>>();
+            try
+            {
+                var list = await _questionRepo.GetAllAsync();
+                var resList = _mapper.Map<IEnumerable<ResQuestionDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
         }
 
-        public Task<ResFormat<ResQuestionDTO>> GetQuestionById(int id)
+        public async Task<ResFormat<ResQuestionDTO>> GetQuestionById(int id)
         {
-            throw new NotImplementedException();
+            var res = new ResFormat<ResQuestionDTO>();
+            try
+            {
+
+                var list = await _questionRepo.GetAllAsync();
+                if (list.Any(a => a.QuestionId == id && a.IsDeleted == false))
+                {
+                    var question = list.FirstOrDefault(a => a.QuestionId == id);
+                    var resList = _mapper.Map<ResQuestionDTO>(question);
+                    res.Success = true;
+                    res.Data = resList;
+                    res.Message = "Retrieved successfully";
+                    res.Message = "Success";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No question with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
         }
 
         public async Task<ResFormat<ResQuestionDTO>> Update(QuestionCreateDTO question, int id)

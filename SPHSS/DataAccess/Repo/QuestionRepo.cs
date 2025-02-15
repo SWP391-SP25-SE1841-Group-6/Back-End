@@ -11,13 +11,14 @@ namespace DataAccess.Repo
 {
     public class QuestionRepo : BaseRepo<Question>, IQuestionRepo
     {
-        protected readonly SphssContext _context;
+        private readonly SphssContext _context;
         public QuestionRepo(SphssContext context) : base(context)
         {
             _context = context;
         }
-        public async Task<Question> GetQuestionByType(string type)
+        public async Task<IEnumerable<Question>> GetAllQuestionsWithType()
         {
+            /*return await _context.Questions.Include(qt => qt.Qtype).;*/
             return null;
         }
     }
