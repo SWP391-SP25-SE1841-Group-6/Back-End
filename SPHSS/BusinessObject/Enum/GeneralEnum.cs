@@ -8,6 +8,7 @@ namespace BusinessObject.Enum
 {
     public enum RoleEnum
     {
+        Manager,
         Psychologist,
         Parent,
         Student
