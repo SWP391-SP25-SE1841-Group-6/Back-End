@@ -22,6 +22,11 @@ namespace DataAccess
             CreateMap<Account, AccountUpdateDTO>().ReverseMap();
             #endregion
 
+            #region Blog
+            CreateMap<Blog, BlogCreateDTO>().ReverseMap();
+            CreateMap<Blog, ResBlogCreateDTO>().ReverseMap();
+            //<Blog, BlogUpdateDTO>().ReverseMap();
+            #endregion
         }
     }
 }
