@@ -127,5 +127,16 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpPut("Approve")]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var result = await _accountService.ApproveAccount(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
     }
 }
