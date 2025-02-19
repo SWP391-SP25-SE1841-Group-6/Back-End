@@ -244,7 +244,6 @@ namespace DataAccess.Service
             var res = new ResFormat<ResAccountCreateDTO>();
             try
             {
-
                 var list = await _accountRepo.GetAllAsync();
                 if (list.Any(a => a.AccId == id && a.IsActivated == true && a.IsApproved == true))
                 {
@@ -268,8 +267,7 @@ namespace DataAccess.Service
                         res.Data = accLogin;
                         res.Message = "Success";
                         return res;
-                    }
-                        
+                    }                       
                 }
                 else
                 {
