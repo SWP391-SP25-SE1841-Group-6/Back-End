@@ -22,13 +22,13 @@ namespace DataAccess
             CreateMap<Account, AccountUpdateDTO>().ReverseMap();
             #endregion
 
-<<<<<<< HEAD
+
             #region Blog
             CreateMap<Blog, BlogCreateDTO>().ReverseMap();
             CreateMap<Blog, ResBlogCreateDTO>().ReverseMap();
             //<Blog, BlogUpdateDTO>().ReverseMap();
             #endregion
-=======
+
             #region QuestionType
             CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
             CreateMap<QuestionType, ResQuestionTypeDTO>()
@@ -50,7 +50,7 @@ namespace DataAccess
             CreateMap<Test, TestUpdateDTO>().ReverseMap();
             #endregion
 
->>>>>>> main
+
         }
     }
 }
