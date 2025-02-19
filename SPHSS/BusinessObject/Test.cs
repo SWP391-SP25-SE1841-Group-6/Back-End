@@ -6,6 +6,7 @@ namespace BusinessObject;
 public partial class Test
 {
     public int TestId { get; set; }
+    public string TestName { get; set; }
 
     public DateTime? DateCreated { get; set; }
 

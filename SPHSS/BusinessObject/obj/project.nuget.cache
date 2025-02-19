@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SlMc9a/o1Jc=",
+  "dgSpecHash": "EdWXGjma4JM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\BusinessObject.csproj",
+  "projectFilePath": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\Backup\\Back-End\\SPHSS\\BusinessObject\\BusinessObject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

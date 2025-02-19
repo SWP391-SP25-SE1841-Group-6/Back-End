@@ -28,11 +28,16 @@ namespace DataAccess
                 .ForMember(x=>x.ListQuestions, o=>o.MapFrom(q=>q.Questions))
                 .ReverseMap();
             #endregion
+
             #region Question
             CreateMap<Question, ResQuestionDTO>().ReverseMap();
             CreateMap<Question, QuestionCreateDTO>().ReverseMap();
             #endregion
 
+            #region Test
+            CreateMap<Test, ResTestDTO>().ReverseMap();
+            CreateMap<Test, TestCreateDTO>().ReverseMap();
+            #endregion
         }
     }
 }
