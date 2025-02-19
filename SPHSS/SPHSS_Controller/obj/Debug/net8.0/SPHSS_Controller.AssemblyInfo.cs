@@ -15,10 +15,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4aa4eb83d769c532798a240adc70d9152a45d03")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d90c64a65d85de8d266d093a21dd93a1c8df911a")]
 >>>>>>> 06fb49e5a20bf27d5d4266642ccd64706e783f60
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06fb49e5a20bf27d5d4266642ccd64706e783f60")]
+>>>>>>> main
 [assembly: System.Reflection.AssemblyProductAttribute("SPHSS_Controller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SPHSS_Controller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

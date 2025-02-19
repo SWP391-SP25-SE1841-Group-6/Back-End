@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250215082132_RemoveRole")]
-    partial class RemoveRole
+    [Migration("20250219072547_addTestName")]
+    partial class addTestName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -325,6 +325,10 @@ namespace BusinessObject.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
+
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TestId")
                         .HasName("PK__Test__8CC331007EAF2967");
