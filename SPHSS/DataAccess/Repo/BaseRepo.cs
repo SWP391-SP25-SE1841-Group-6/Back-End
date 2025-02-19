@@ -75,5 +75,13 @@ namespace DataAccess.Repo
             _dbSet.RemoveRange(entities);
             _context.SaveChanges();
         }
+
+        public async Task RemoveAsync(TEntity entity)
+        {
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }

@@ -19,5 +19,6 @@ namespace DataAccess.Repo.IRepo
         void Update(TEntity entity);                      // Update an entity
         void Remove(TEntity entity);                      // Delete an entity
         void RemoveRange(IEnumerable<TEntity> entities);  // Delete multiple entities
+        Task RemoveAsync(TEntity entity);
     }
 }
