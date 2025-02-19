@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessObject;
@@ -19,7 +20,7 @@ public partial class Account
 
     public int? ParentId { get; set; }
 
-    public int RoleId { get; set; }
+    public RoleEnum Role { get; set; }
 
     public bool? IsActivated { get; set; }
 
@@ -36,8 +37,6 @@ public partial class Account
     public virtual Account? Parent { get; set; }
 
     public virtual ProgramSignup? ProgramSignup { get; set; }
-
-    public virtual Role Role { get; set; } = null!;
 
     public virtual ICollection<TestResult> TestResults { get; set; } = new List<TestResult>();
 }

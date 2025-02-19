@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250212093220_first")]
-    partial class first
+    [Migration("20250219072547_addTestName")]
+    partial class addTestName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,16 +66,13 @@ namespace BusinessObject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ParentID");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int")
-                        .HasColumnName("RoleID");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("AccId")
                         .HasName("PK__Account__91CBC3989585B2E4");
 
                     b.HasIndex(new[] { "ParentId" }, "IX_Account_ParentID");
-
-                    b.HasIndex(new[] { "RoleId" }, "IX_Account_RoleID");
 
                     b.ToTable("Account", (string)null);
                 });
@@ -264,30 +261,6 @@ namespace BusinessObject.Migrations
                     b.ToTable("QuestionType", (string)null);
                 });
 
-            modelBuilder.Entity("BusinessObject.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("RoleID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasColumnName("isDeleted");
-
-                    b.Property<string>("RoleName")
-                        .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("RoleId")
-                        .HasName("PK__Role__8AFACE3A856FF23A");
-
-                    b.ToTable("Role", (string)null);
-                });
-
             modelBuilder.Entity("BusinessObject.Slot", b =>
                 {
                     b.Property<int>("SlotId")
@@ -352,6 +325,10 @@ namespace BusinessObject.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
+
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TestId")
                         .HasName("PK__Test__8CC331007EAF2967");
@@ -446,15 +423,7 @@ namespace BusinessObject.Migrations
                         .HasForeignKey("ParentId")
                         .HasConstraintName("FK__Account__ParentI__267ABA7A");
 
-                    b.HasOne("BusinessObject.Role", "Role")
-                        .WithMany("Accounts")
-                        .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Account__RoleID__276EDEB3");
-
                     b.Navigation("Parent");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("BusinessObject.Appointment", b =>
@@ -619,11 +588,6 @@ namespace BusinessObject.Migrations
             modelBuilder.Entity("BusinessObject.QuestionType", b =>
                 {
                     b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("BusinessObject.Role", b =>
-                {
-                    b.Navigation("Accounts");
                 });
 
             modelBuilder.Entity("BusinessObject.Test", b =>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObject;
+using BusinessObject.Enum;
 using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
 using DataAccess.Repo;
@@ -22,6 +23,38 @@ namespace DataAccess.Service
         {
             _accountRepo = accountRepo;
             _mapper = mapper;
+        }
+
+        public async Task<ResFormat<bool>> ApproveAccount(int id)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(a => a.AccId == id && a.IsActivated == true && a.IsApproved == false))
+                {
+                    var login = list.FirstOrDefault(a => a.AccId == id);
+                    login.IsApproved = true;
+                    _accountRepo.Update(login);
+                    res.Success = true;
+                    res.Data = true;
+                    res.Message = "Success";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No account with this Id or already Approved";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
         }
 
         public async Task<ResFormat<ResAccountCreateDTO>> Create(AccountCreateDTO account)
@@ -188,7 +221,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
-                    mapp.RoleId = 1;
+                    /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
                     mapp.IsApproved = false;
                     await _accountRepo.AddAsync(mapp);

@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using BusinessObject.Enum;
 using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
 using DataAccess.Repo.IRepo;
@@ -19,6 +20,7 @@ namespace DataAccess.Service.IService
         Task<ResFormat<bool>> DeactivateAccount(int id);
         Task<ResFormat<ResAccountCreateDTO>> Update(AccountUpdateDTO account, int id);
         Task<ResFormat<ResAccountCreateDTO>> Create(AccountCreateDTO account);
+        Task<ResFormat<bool>> ApproveAccount(int id);
 
 
     }

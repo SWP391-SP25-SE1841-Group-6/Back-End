@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Repo
+namespace DataAccess.DTO.Req
 {
-    internal class Class1
+    public class TestUpdateDTO
     {
+        public string TestName { get; set; }
+
     }
 }

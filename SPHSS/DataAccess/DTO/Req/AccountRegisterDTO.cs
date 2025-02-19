@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,7 @@ namespace DataAccess.DTO.Req
         public DateTime? Dob { get; set; }
 
         public bool? Gender { get; set; }
+        public RoleEnum Role { get; set; }
+
     }
 }

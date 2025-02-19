@@ -16,6 +16,18 @@ public static class DI
         services.AddScoped<IBlogService, BlogService>();
         
 
+
+        #region Question/QuestionType
+        services.AddScoped<IQuestionTypeService, QuestionTypeService>();
+        services.AddScoped<IQuestionTypeRepo, QuestionTypeRepo>();
+        services.AddScoped<IQuestionRepo, QuestionRepo>();
+        services.AddScoped<IQuestionService, QuestionService>();
+        #endregion
+
+        #region Test
+        services.AddScoped<ITestService, TestService>();
+        #endregion
+
         return services;
     }
 }

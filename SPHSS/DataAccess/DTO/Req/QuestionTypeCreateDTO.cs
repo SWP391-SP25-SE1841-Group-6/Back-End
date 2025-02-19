@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Service
+namespace DataAccess.DTO.Req
 {
-    internal class Class1
+    public class QuestionTypeCreateDTO
     {
+        public string? Qtype { get; set; }
     }
 }

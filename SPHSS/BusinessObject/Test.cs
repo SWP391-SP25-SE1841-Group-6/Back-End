@@ -7,6 +7,8 @@ public partial class Test
 {
     public int TestId { get; set; }
 
+    public string TestName { get; set; }
+
     public DateTime? DateCreated { get; set; }
 
     public DateTime? DateUpdated { get; set; }
