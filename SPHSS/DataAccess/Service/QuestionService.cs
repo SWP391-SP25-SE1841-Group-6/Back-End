@@ -68,12 +68,12 @@ namespace DataAccess.Service
             var res = new ResFormat<bool>();
             try
             {
-                var list = await _questionRepo.GetAllAsync();
-                if (list.Any(q => q.QuestionId == id))
+                var existingQuestion = await _questionRepo.GetQuestionByIdWithType(id);
+                if (existingQuestion != null)
                 {
-                    var question = list.FirstOrDefault(q => q.QuestionId == id);
-                    question.IsDeleted = true;
-                    _questionRepo.Update(question);
+                    /*var question = list.FirstOrDefault(q => q.QuestionId == id);*/
+                    existingQuestion.IsDeleted = true;
+                    _questionRepo.Update(existingQuestion);
                     res.Success = true;
                     res.Data = true;
                     res.Message = "Success";
@@ -99,7 +99,7 @@ namespace DataAccess.Service
             var res = new ResFormat<IEnumerable<ResQuestionDTO>>();
             try
             {
-                var list = await _questionRepo.GetAllAsync();
+                var list = await _questionRepo.GetAllQuestionsWithType();
                 var resList = _mapper.Map<IEnumerable<ResQuestionDTO>>(list);
                 res.Success = true;
                 res.Data = resList;
@@ -120,11 +120,11 @@ namespace DataAccess.Service
             try
             {
 
-                var list = await _questionRepo.GetAllAsync();
-                if (list.Any(a => a.QuestionId == id && a.IsDeleted == false))
+                var existingQuestion = await _questionRepo.GetQuestionByIdWithType(id);
+                if (existingQuestion != null)
                 {
-                    var question = list.FirstOrDefault(a => a.QuestionId == id);
-                    var resList = _mapper.Map<ResQuestionDTO>(question);
+                    /*var question = list.FirstOrDefault(a => a.QuestionId == id);*/
+                    var resList = _mapper.Map<ResQuestionDTO>(existingQuestion);
                     res.Success = true;
                     res.Data = resList;
                     res.Message = "Retrieved successfully";
@@ -152,11 +152,11 @@ namespace DataAccess.Service
             try
             {
 
-                var list = await _questionRepo.GetAllAsync();
-                if (list.Any(a => a.QuestionId == id && a.IsDeleted == false))
+                var existingQuestion = await _questionRepo.GetQuestionByIdWithType(id);
+                if (existingQuestion != null)
                 {
-                    var q = list.FirstOrDefault(a => a.QuestionId == id);
-                    if (list.Any(b => b.Question1 == question.Question1))
+                    
+                    if (existingQuestion.Question1 == question.Question1)
                     {
 
                         res.Success = false;
@@ -165,9 +165,9 @@ namespace DataAccess.Service
                     }
                     else
                     {
-                        q.Question1 = question.Question1;
-                        _questionRepo.Update(q);
-                        var q2 = _mapper.Map<ResQuestionDTO>(q);
+                        existingQuestion.Question1 = question.Question1;
+                        _questionRepo.Update(existingQuestion);
+                        var q2 = _mapper.Map<ResQuestionDTO>(existingQuestion);
                         res.Success = true;
                         res.Data = q2;
                         res.Message = "Success";

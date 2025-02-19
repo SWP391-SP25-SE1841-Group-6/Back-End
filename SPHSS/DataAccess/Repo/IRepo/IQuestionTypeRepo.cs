@@ -10,5 +10,6 @@ namespace DataAccess.Repo.IRepo
     public interface IQuestionTypeRepo:IBaseRepo<QuestionType>
     {
         Task<QuestionType> GetQuestionTypeAndQuestionsByType(string type);
+        Task<QuestionType> GetQuestionTypeAndQuestionsById(int id);
     }
 }
