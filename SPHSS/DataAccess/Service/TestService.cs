@@ -57,19 +57,95 @@ namespace DataAccess.Service
             }
         }
 
-        public Task<ResFormat<bool>> DeleteTest(int id)
+        public async Task<ResFormat<bool>> DeleteTest(int id)
         {
-            throw new NotImplementedException();
+            var res = new ResFormat<bool>();
+            try
+            {
+                var existingTest = await _testRepo.GetByIdAsync(id);
+                if (existingTest != null)
+                {
+                    existingTest.IsDeleted = true;
+                    _testRepo.Update(existingTest);
+                    res.Success = true;
+                    res.Data = true;
+                    res.Message = "Success";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No Test with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
         }
 
-        public Task<ResFormat<IEnumerable<ResTestDTO>>> GetAllTest()
+        public async Task<ResFormat<IEnumerable<ResTestDTO>>> GetAllTest()
         {
-            throw new NotImplementedException();
+            var res = new ResFormat<IEnumerable<ResTestDTO>>();
+            try
+            {
+                var list = await _testRepo.GetAllAsync();
+                var resList = _mapper.Map<IEnumerable<ResTestDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
         }
 
-        public Task<ResFormat<ResTestDTO>> GetTestById(int id)
+        public async Task<ResFormat<ResTestDTO>> GetTestById(int id)
         {
-            throw new NotImplementedException();
+            var res = new ResFormat<ResTestDTO>();
+            try
+            {
+
+                var existingTest = await _testRepo.GetByIdAsync(id);
+                if (existingTest != null )
+                {
+                    if (existingTest.IsDeleted == true)
+                    {
+                        res.Success = false;
+                        res.Message = "Test Deleted";
+                        return res;
+                    }
+                    else 
+                    {
+                        var resList = _mapper.Map<ResTestDTO>(existingTest);
+                        res.Success = true;
+                        res.Data = resList;
+                        res.Message = "Retrieved successfully";
+                        res.Message = "Success";
+                        return res;
+                    }
+                    
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "No Test with this Id";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed :{ex.Message}";
+                return res;
+            }
         }
 
         public async Task<ResFormat<ResTestDTO>> UpdateTest(TestUpdateDTO test, int id)
