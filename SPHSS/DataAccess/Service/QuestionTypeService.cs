@@ -60,12 +60,11 @@ namespace DataAccess.Service
             var res = new ResFormat<bool>();
             try
             {
-                var list = await _questionTypeRepo.GetAllAsync();
-                if (list.Any(q => q.QtypeId == id))
+                var existingType = await _questionTypeRepo.GetByIdAsync(id);
+                if (existingType != null)
                 {
-                    var qtype = list.FirstOrDefault(q => q.QtypeId == id);
-                    qtype.IsDeleted = true;
-                    _questionTypeRepo.Update(qtype);
+                    existingType.IsDeleted = true;
+                    _questionTypeRepo.Update(existingType);
                     res.Success = true;
                     res.Data = true;
                     res.Message = "Success";
@@ -113,11 +112,10 @@ namespace DataAccess.Service
             try
             {
 
-                var list = await _questionTypeRepo.GetAllAsync();
-                if (list.Any(a => a.QtypeId == id && a.IsDeleted == false))
+                var existingType = await _questionTypeRepo.GetQuestionTypeAndQuestionsById(id);
+                if (existingType != null)
                 {
-                    var questionType = list.FirstOrDefault(a => a.QtypeId == id);
-                    var resList = _mapper.Map<ResQuestionTypeDTO>(questionType);
+                    var resList = _mapper.Map<ResQuestionTypeDTO>(existingType);
                     res.Success = true;
                     res.Data = resList;
                     res.Message = "Retrieved successfully";

@@ -29,7 +29,10 @@ namespace DataAccess
                 .ReverseMap();
             #endregion
             #region Question
-            CreateMap<Question, ResQuestionDTO>().ReverseMap();
+            CreateMap<Question, ResQuestionDTO>()
+                .ForMember(x => x.Qtype, o => o.MapFrom(q => q.Qtype.Qtype))
+                .ReverseMap();
+            
             CreateMap<Question, QuestionCreateDTO>().ReverseMap();
             #endregion
 
