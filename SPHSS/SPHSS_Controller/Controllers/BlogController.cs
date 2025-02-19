@@ -60,6 +60,17 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Update(BlogUpdateDTO blog, int id)
+        {
+            var result = await _blogService.Update(blog, id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
         //[Authorize]
         //[HttpPost]
         //public async Task<IActionResult> CreateBlog([FromBody] BlogCreateDTO dto)

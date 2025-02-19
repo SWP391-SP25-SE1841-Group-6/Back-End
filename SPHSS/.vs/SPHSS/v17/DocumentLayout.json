@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|d:\\desktop\\swp391\\back-end\\sphss\\sphss_controller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|d:\\desktop\\swp391\\back-end\\sphss\\sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\iservice\\iblogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iblogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|d:\\desktop\\swp391\\back-end\\sphss\\sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 322,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,81 +58,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Blog.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Blog.cs",
-              "RelativeDocumentMoniker": "BusinessObject\\Blog.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Blog.cs",
-              "RelativeToolTip": "BusinessObject\\Blog.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:48:45.584Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Account.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Account.cs",
-              "RelativeDocumentMoniker": "BusinessObject\\Account.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Account.cs",
-              "RelativeToolTip": "BusinessObject\\Account.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA9wBkAAAApAAAAAAAAAA==",
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\AccountService.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Service\\AccountService.cs",
+              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\AccountService.cs",
+              "RelativeToolTip": "DataAccess\\Service\\AccountService.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowDsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:48:37.658Z",
+              "WhenOpened": "2025-02-19T09:39:02.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Program.cs",
-              "RelativeDocumentMoniker": "SPHSS_Controller\\Program.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Program.cs",
-              "RelativeToolTip": "SPHSS_Controller\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADQAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:33:10.837Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BlogController.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\BlogController.cs",
-              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\BlogController.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\BlogController.cs",
-              "RelativeToolTip": "SPHSS_Controller\\Controllers\\BlogController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwDEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:27:58.222Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "BlogService.cs",
               "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\BlogService.cs",
               "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
               "RelativeToolTip": "DataAccess\\Service\\BlogService.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAIwHkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAqwLYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:27:33.972Z",
+              "WhenOpened": "2025-02-19T09:26:52.277Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IBlogService.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IBlogService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IBlogService.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IBlogService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\IService\\IBlogService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "BlogController.cs",
+              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\BlogController.cs",
+              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\BlogController.cs",
+              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\BlogController.cs",
+              "RelativeToolTip": "SPHSS_Controller\\Controllers\\BlogController.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAcwEEAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T09:27:23.699Z",
+              "WhenOpened": "2025-02-19T06:29:39.591Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "SPHSS_Controller\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAmwHQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T06:29:38.593Z"
             }
           ]
         },

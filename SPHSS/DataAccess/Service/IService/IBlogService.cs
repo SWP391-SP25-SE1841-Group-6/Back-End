@@ -16,5 +16,6 @@ namespace DataAccess.Service.IService
         Task<ResFormat<ResBlogCreateDTO>> CreateBlog(BlogCreateDTO dto);
         //Task<ResFormat<ResBlogCreateDTO>> CreateBlog(BlogCreateDTO dto, int creatorId);
         //Task<ResFormat<ResBlogCreateDTO>> UpdateBlog(int id);
+        Task<ResFormat<ResBlogCreateDTO>> Update(BlogUpdateDTO blog, int id);
     }
 }
