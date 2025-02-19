@@ -6,11 +6,37 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class addTestName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Account",
+                columns: table => new
+                {
+                    AccID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccName = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    AccPass = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    AccEmail = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    DOB = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Gender = table.Column<bool>(type: "bit", nullable: true),
+                    ParentID = table.Column<int>(type: "int", nullable: true),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    IsActivated = table.Column<bool>(type: "bit", nullable: true),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__Account__91CBC3989585B2E4", x => x.AccID);
+                    table.ForeignKey(
+                        name: "FK__Account__ParentI__267ABA7A",
+                        column: x => x.ParentID,
+                        principalTable: "Account",
+                        principalColumn: "AccID");
+                });
+
             migrationBuilder.CreateTable(
                 name: "Program",
                 columns: table => new
@@ -43,25 +69,12 @@ namespace BusinessObject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
-                columns: table => new
-                {
-                    RoleID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Role__8AFACE3A856FF23A", x => x.RoleID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Test",
                 columns: table => new
                 {
                     TestID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     DateUpdated = table.Column<DateTime>(type: "datetime", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
@@ -69,79 +82,6 @@ namespace BusinessObject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Test__8CC331007EAF2967", x => x.TestID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Questions",
-                columns: table => new
-                {
-                    QuestionID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QTypeID = table.Column<int>(type: "int", nullable: true),
-                    Question = table.Column<string>(type: "text", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Question__0DC06F8CBCB2CC60", x => x.QuestionID);
-                    table.ForeignKey(
-                        name: "FK__Questions__QType__45F365D3",
-                        column: x => x.QTypeID,
-                        principalTable: "QuestionType",
-                        principalColumn: "QTypeID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Account",
-                columns: table => new
-                {
-                    AccID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccName = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    AccPass = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    AccEmail = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    DOB = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Gender = table.Column<bool>(type: "bit", nullable: true),
-                    ParentID = table.Column<int>(type: "int", nullable: true),
-                    RoleID = table.Column<int>(type: "int", nullable: false),
-                    IsActivated = table.Column<bool>(type: "bit", nullable: true),
-                    IsApproved = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Account__91CBC3989585B2E4", x => x.AccID);
-                    table.ForeignKey(
-                        name: "FK__Account__ParentI__267ABA7A",
-                        column: x => x.ParentID,
-                        principalTable: "Account",
-                        principalColumn: "AccID");
-                    table.ForeignKey(
-                        name: "FK__Account__RoleID__276EDEB3",
-                        column: x => x.RoleID,
-                        principalTable: "Role",
-                        principalColumn: "RoleID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TestQuestion",
-                columns: table => new
-                {
-                    TestID = table.Column<int>(type: "int", nullable: false),
-                    QuestionID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__TestQues__5C1F37F8F0E96F86", x => new { x.TestID, x.QuestionID });
-                    table.ForeignKey(
-                        name: "FK__TestQuest__Quest__48CFD27E",
-                        column: x => x.QuestionID,
-                        principalTable: "Questions",
-                        principalColumn: "QuestionID");
-                    table.ForeignKey(
-                        name: "FK__TestQuest__TestI__49C3F6B7",
-                        column: x => x.TestID,
-                        principalTable: "Test",
-                        principalColumn: "TestID");
                 });
 
             migrationBuilder.CreateTable(
@@ -217,6 +157,26 @@ namespace BusinessObject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
+                {
+                    QuestionID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QTypeID = table.Column<int>(type: "int", nullable: true),
+                    Question = table.Column<string>(type: "text", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__Question__0DC06F8CBCB2CC60", x => x.QuestionID);
+                    table.ForeignKey(
+                        name: "FK__Questions__QType__45F365D3",
+                        column: x => x.QTypeID,
+                        principalTable: "QuestionType",
+                        principalColumn: "QTypeID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TestResult",
                 columns: table => new
                 {
@@ -272,6 +232,28 @@ namespace BusinessObject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TestQuestion",
+                columns: table => new
+                {
+                    TestID = table.Column<int>(type: "int", nullable: false),
+                    QuestionID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__TestQues__5C1F37F8F0E96F86", x => new { x.TestID, x.QuestionID });
+                    table.ForeignKey(
+                        name: "FK__TestQuest__Quest__48CFD27E",
+                        column: x => x.QuestionID,
+                        principalTable: "Questions",
+                        principalColumn: "QuestionID");
+                    table.ForeignKey(
+                        name: "FK__TestQuest__TestI__49C3F6B7",
+                        column: x => x.TestID,
+                        principalTable: "Test",
+                        principalColumn: "TestID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TestResultAnswer",
                 columns: table => new
                 {
@@ -299,11 +281,6 @@ namespace BusinessObject.Migrations
                 name: "IX_Account_ParentID",
                 table: "Account",
                 column: "ParentID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Account_RoleID",
-                table: "Account",
-                column: "RoleID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointment_PsychologistID",
@@ -399,9 +376,6 @@ namespace BusinessObject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Test");
-
-            migrationBuilder.DropTable(
-                name: "Role");
         }
     }
 }

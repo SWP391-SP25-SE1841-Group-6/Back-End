@@ -323,6 +323,10 @@ namespace BusinessObject.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
 
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TestId")
                         .HasName("PK__Test__8CC331007EAF2967");
 
