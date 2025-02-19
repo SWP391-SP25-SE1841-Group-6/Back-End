@@ -22,11 +22,28 @@ namespace DataAccess
             CreateMap<Account, AccountUpdateDTO>().ReverseMap();
             #endregion
 
+<<<<<<< HEAD
             #region Blog
             CreateMap<Blog, BlogCreateDTO>().ReverseMap();
             CreateMap<Blog, ResBlogCreateDTO>().ReverseMap();
             //<Blog, BlogUpdateDTO>().ReverseMap();
             #endregion
+=======
+            #region QuestionType
+            CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
+            CreateMap<QuestionType, ResQuestionTypeDTO>()
+                .ForMember(x=>x.ListQuestions, o=>o.MapFrom(q=>q.Questions))
+                .ReverseMap();
+            #endregion
+            #region Question
+            CreateMap<Question, ResQuestionDTO>()
+                .ForMember(x => x.Qtype, o => o.MapFrom(q => q.Qtype.Qtype))
+                .ReverseMap();
+            
+            CreateMap<Question, QuestionCreateDTO>().ReverseMap();
+            #endregion
+
+>>>>>>> 06fb49e5a20bf27d5d4266642ccd64706e783f60
         }
     }
 }

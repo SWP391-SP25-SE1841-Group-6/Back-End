@@ -1,4 +1,5 @@
-﻿using DataAccess.DTO.Req;
+﻿using BusinessObject.Enum;
+using DataAccess.DTO.Req;
 using DataAccess.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -55,8 +56,9 @@ namespace SPHSS_Controller.Controllers
             var claims = new List<Claim>
             {
                 new Claim("Email", account.Data.AccEmail),
-                new Claim("Role", account.Data.RoleId.ToString()),
+                new Claim("Role", account.Data.Role.ToString()),
                 new Claim("UserId", account.Data.AccId.ToString()),
+                new Claim("AccName", account.Data.AccName.ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"]));
@@ -70,7 +72,7 @@ namespace SPHSS_Controller.Controllers
                 signingCredentials: creds);
 
             var token = new JwtSecurityTokenHandler().WriteToken(preparedToken);
-            var roleId = account.Data.RoleId.ToString();
+            var roleId = account.Data.Role.ToString();
             var userId = account.Data.AccId.ToString();
             return Ok(new
             {
@@ -81,6 +83,7 @@ namespace SPHSS_Controller.Controllers
                     id = account.Data.AccId,
                     email = account.Data.AccEmail,
                     role=roleId,
+                    name=account.Data.AccName,
                 }
             });
         }
@@ -124,5 +127,16 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpPut("Approve")]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var result = await _accountService.ApproveAccount(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
     }
 }

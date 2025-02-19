@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace DataAccess.DTO.Res
         public string? AccPass { get; set; }
 
         public string? AccEmail { get; set; }
-        public int RoleId { get; set; }
+        public RoleEnum Role { get; set; }
     }
 }
