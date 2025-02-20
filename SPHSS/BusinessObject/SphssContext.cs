@@ -141,7 +141,7 @@ public partial class SphssContext : DbContext
 
         modelBuilder.Entity<ProgramSignup>(entity =>
         {
-            entity.HasKey(e => e.StudentId).HasName("PK__ProgramS__32C52A793A2B692B");
+            entity.HasKey(e => new { e.ProgramId, e.StudentId}).HasName("PK__ProgramS__32C52A793A2B692B");
 
             entity.ToTable("ProgramSignup");
 
@@ -157,8 +157,8 @@ public partial class SphssContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__ProgramSi__Progr__440B1D61");
 
-            entity.HasOne(d => d.Student).WithOne(p => p.ProgramSignup)
-                .HasForeignKey<ProgramSignup>(d => d.StudentId)
+            entity.HasOne(d => d.Student).WithMany(p => p.ProgramSignups)
+                .HasForeignKey(d => d.StudentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__ProgramSi__Stude__44FF419A");
         });
@@ -220,7 +220,6 @@ public partial class SphssContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Slots__ProgramID__46E78A0C");
         });
-
         modelBuilder.Entity<Test>(entity =>
         {
             entity.HasKey(e => e.TestId).HasName("PK__Test__8CC331007EAF2967");

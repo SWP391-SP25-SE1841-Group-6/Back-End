@@ -1,5 +1,6 @@
 ﻿using BusinessObject.Enum;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BusinessObject;
@@ -36,7 +37,7 @@ public partial class Account
 
     public virtual Account? Parent { get; set; }
 
-    public virtual ProgramSignup? ProgramSignup { get; set; }
+    public virtual ICollection<ProgramSignup>  ProgramSignups { get; set; }
 
     public virtual ICollection<TestResult> TestResults { get; set; } = new List<TestResult>();
 }

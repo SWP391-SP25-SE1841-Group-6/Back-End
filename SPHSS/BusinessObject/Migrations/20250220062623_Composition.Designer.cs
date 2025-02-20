@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250219072547_addTestName")]
-    partial class addTestName
+    [Migration("20250220062623_Composition")]
+    partial class Composition
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,6 +142,9 @@ namespace BusinessObject.Migrations
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool?>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -191,16 +194,18 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.ProgramSignup", b =>
                 {
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int")
-                        .HasColumnName("StudentID");
-
                     b.Property<int>("ProgramId")
                         .HasColumnType("int")
                         .HasColumnName("ProgramID");
 
-                    b.HasKey("StudentId")
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int")
+                        .HasColumnName("StudentID");
+
+                    b.HasKey("ProgramId", "StudentId")
                         .HasName("PK__ProgramS__32C52A793A2B692B");
+
+                    b.HasIndex("StudentId");
 
                     b.HasIndex(new[] { "ProgramId" }, "IX_ProgramSignup_ProgramID");
 
@@ -464,8 +469,8 @@ namespace BusinessObject.Migrations
                         .HasConstraintName("FK__ProgramSi__Progr__440B1D61");
 
                     b.HasOne("BusinessObject.Account", "Student")
-                        .WithOne("ProgramSignup")
-                        .HasForeignKey("BusinessObject.ProgramSignup", "StudentId")
+                        .WithMany("ProgramSignups")
+                        .HasForeignKey("StudentId")
                         .IsRequired()
                         .HasConstraintName("FK__ProgramSi__Stude__44FF419A");
 
@@ -563,7 +568,7 @@ namespace BusinessObject.Migrations
 
                     b.Navigation("InverseParent");
 
-                    b.Navigation("ProgramSignup");
+                    b.Navigation("ProgramSignups");
 
                     b.Navigation("TestResults");
                 });

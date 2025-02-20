@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class addTestName : Migration
+    public partial class Composition : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -122,7 +122,8 @@ namespace BusinessObject.Migrations
                     CreatorID = table.Column<int>(type: "int", nullable: true),
                     ContentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -143,7 +144,7 @@ namespace BusinessObject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__ProgramS__32C52A793A2B692B", x => x.StudentID);
+                    table.PrimaryKey("PK__ProgramS__32C52A793A2B692B", x => new { x.ProgramID, x.StudentID });
                     table.ForeignKey(
                         name: "FK__ProgramSi__Progr__440B1D61",
                         column: x => x.ProgramID,
@@ -301,6 +302,11 @@ namespace BusinessObject.Migrations
                 name: "IX_ProgramSignup_ProgramID",
                 table: "ProgramSignup",
                 column: "ProgramID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProgramSignup_StudentID",
+                table: "ProgramSignup",
+                column: "StudentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Questions_QTypeID",
