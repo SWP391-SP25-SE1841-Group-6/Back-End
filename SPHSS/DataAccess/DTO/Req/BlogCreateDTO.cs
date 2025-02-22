@@ -10,6 +10,6 @@ namespace DataAccess.DTO.Req
     {
         public string? BlogName { get; set; }
         public string? ContentDescription { get; set; }
-        public DateTime? DateCreated { get; set; }
+        //public DateTime? DateCreated { get; set; }
     }
 }

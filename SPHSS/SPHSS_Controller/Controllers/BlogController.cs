@@ -71,6 +71,17 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
+        [HttpPut("Approve")]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var result = await _blogService.ApproveBlog(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
         //[Authorize]
         //[HttpPost]
         //public async Task<IActionResult> CreateBlog([FromBody] BlogCreateDTO dto)
