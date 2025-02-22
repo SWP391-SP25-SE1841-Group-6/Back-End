@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250220062623_Composition")]
-    partial class Composition
+    [Migration("20250222035514_UpdateTestQuestionAndProgramSignup")]
+    partial class UpdateTestQuestionAndProgramSignup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,12 +202,15 @@ namespace BusinessObject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("StudentID");
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime");
+
                     b.HasKey("ProgramId", "StudentId")
                         .HasName("PK__ProgramS__32C52A793A2B692B");
 
-                    b.HasIndex("StudentId");
-
                     b.HasIndex(new[] { "ProgramId" }, "IX_ProgramSignup_ProgramID");
+
+                    b.HasIndex(new[] { "StudentId" }, "IX_ProgramSignup_StudentID");
 
                     b.ToTable("ProgramSignup", (string)null);
                 });
@@ -341,6 +344,27 @@ namespace BusinessObject.Migrations
                     b.ToTable("Test", (string)null);
                 });
 
+            modelBuilder.Entity("BusinessObject.TestQuestion", b =>
+                {
+                    b.Property<int>("TestId")
+                        .HasColumnType("int")
+                        .HasColumnName("TestID");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuestionID");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("TestId", "QuestionId")
+                        .HasName("PK__TestQues__5C1F37F8F0E96F86");
+
+                    b.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
+
+                    b.ToTable("TestQuestion", (string)null);
+                });
+
             modelBuilder.Entity("BusinessObject.TestResult", b =>
                 {
                     b.Property<int>("TestResultId")
@@ -401,24 +425,6 @@ namespace BusinessObject.Migrations
                     b.HasIndex(new[] { "QuestionId" }, "IX_TestResultAnswer_QuestionID");
 
                     b.ToTable("TestResultAnswer", (string)null);
-                });
-
-            modelBuilder.Entity("TestQuestion", b =>
-                {
-                    b.Property<int>("TestId")
-                        .HasColumnType("int")
-                        .HasColumnName("TestID");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int")
-                        .HasColumnName("QuestionID");
-
-                    b.HasKey("TestId", "QuestionId")
-                        .HasName("PK__TestQues__5C1F37F8F0E96F86");
-
-                    b.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
-
-                    b.ToTable("TestQuestion", (string)null);
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>
@@ -507,6 +513,25 @@ namespace BusinessObject.Migrations
                     b.Navigation("Program");
                 });
 
+            modelBuilder.Entity("BusinessObject.TestQuestion", b =>
+                {
+                    b.HasOne("BusinessObject.Question", "Question")
+                        .WithMany("TestQuestions")
+                        .HasForeignKey("QuestionId")
+                        .IsRequired()
+                        .HasConstraintName("FK__TestQuest__Quest__48CFD27E");
+
+                    b.HasOne("BusinessObject.Test", "Test")
+                        .WithMany("TestQuestions")
+                        .HasForeignKey("TestId")
+                        .IsRequired()
+                        .HasConstraintName("FK__TestQuest__TestI__49C3F6B7");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("BusinessObject.TestResult", b =>
                 {
                     b.HasOne("BusinessObject.Account", "Student")
@@ -543,21 +568,6 @@ namespace BusinessObject.Migrations
                     b.Navigation("TestResult");
                 });
 
-            modelBuilder.Entity("TestQuestion", b =>
-                {
-                    b.HasOne("BusinessObject.Question", null)
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .IsRequired()
-                        .HasConstraintName("FK__TestQuest__Quest__48CFD27E");
-
-                    b.HasOne("BusinessObject.Test", null)
-                        .WithMany()
-                        .HasForeignKey("TestId")
-                        .IsRequired()
-                        .HasConstraintName("FK__TestQuest__TestI__49C3F6B7");
-                });
-
             modelBuilder.Entity("BusinessObject.Account", b =>
                 {
                     b.Navigation("AppointmentPsychologists");
@@ -587,6 +597,8 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.Question", b =>
                 {
+                    b.Navigation("TestQuestions");
+
                     b.Navigation("TestResultAnswers");
                 });
 
@@ -597,6 +609,8 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.Test", b =>
                 {
+                    b.Navigation("TestQuestions");
+
                     b.Navigation("TestResults");
                 });
 

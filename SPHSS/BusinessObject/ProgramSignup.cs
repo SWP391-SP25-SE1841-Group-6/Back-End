@@ -9,6 +9,8 @@ public partial class ProgramSignup
 
     public int ProgramId { get; set; }
 
+    public DateTime DateAdded { get; set; }
+
     public virtual Program Program { get; set; } = null!;
 
     public virtual Account Student { get; set; } = null!;

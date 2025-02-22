@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class Composition : Migration
+    public partial class UpdateTestQuestionAndProgramSignup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -140,7 +140,8 @@ namespace BusinessObject.Migrations
                 columns: table => new
                 {
                     StudentID = table.Column<int>(type: "int", nullable: false),
-                    ProgramID = table.Column<int>(type: "int", nullable: false)
+                    ProgramID = table.Column<int>(type: "int", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -237,7 +238,8 @@ namespace BusinessObject.Migrations
                 columns: table => new
                 {
                     TestID = table.Column<int>(type: "int", nullable: false),
-                    QuestionID = table.Column<int>(type: "int", nullable: false)
+                    QuestionID = table.Column<int>(type: "int", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {

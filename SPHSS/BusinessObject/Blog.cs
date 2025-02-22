@@ -16,6 +16,7 @@ public partial class Blog
     public DateTime? DateCreated { get; set; }
 
     public bool? IsDeleted { get; set; }
+
     public bool? IsApproved { get; set; }
 
     public virtual Account? Creator { get; set; }

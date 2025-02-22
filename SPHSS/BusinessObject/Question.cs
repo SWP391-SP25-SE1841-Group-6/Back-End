@@ -15,7 +15,7 @@ public partial class Question
 
     public virtual QuestionType? Qtype { get; set; }
 
-    public virtual ICollection<TestResultAnswer> TestResultAnswers { get; set; } = new List<TestResultAnswer>();
+    public virtual ICollection<TestQuestion> TestQuestions { get; set; } = new List<TestQuestion>();
 
-    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
+    public virtual ICollection<TestResultAnswer> TestResultAnswers { get; set; } = new List<TestResultAnswer>();
 }
