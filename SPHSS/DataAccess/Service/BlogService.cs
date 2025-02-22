@@ -107,6 +107,7 @@ namespace DataAccess.Service
                 var blog = _mapper.Map<Blog>(dto);
                 blog.IsApproved = false; //Đảm bảo chưa được approved
                 blog.IsDeleted = false; // Đảm bảo blog mới không bị ẩn
+                blog.DateCreated = DateTime.Now;
 
                 await _blogRepo.AddAsync(blog);
                 var createdBlog = _mapper.Map<ResBlogCreateDTO>(blog);
@@ -168,7 +169,7 @@ namespace DataAccess.Service
                 if (list.Any(a => a.BlogId == id && a.IsDeleted == false && a.IsApproved == false))
                 {
                     var blog = list.FirstOrDefault(a => a.BlogId == id);
-                    blog.IsApproved = false;
+                    blog.IsApproved = true;
                     _blogRepo.Update(blog);
                     res.Success = true;
                     res.Data = true;
@@ -178,7 +179,7 @@ namespace DataAccess.Service
                 else
                 {
                     res.Success = false;
-                    res.Message = "No account with this Id";
+                    res.Message = "No blog with this Id";
                     return res;
                 }
             }
