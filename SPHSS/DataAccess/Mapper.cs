@@ -36,6 +36,10 @@ namespace DataAccess
                 .ReverseMap();
             #endregion
 
+            #region TestQuestion
+            CreateMap<TestQuestion, TestQuestionAddDTO>().ReverseMap();
+            #endregion
+
             #region Question
             CreateMap<Question, ResQuestionDTO>()
                 .ForMember(x => x.Qtype, o => o.MapFrom(q => q.Qtype.Qtype))
@@ -45,10 +49,14 @@ namespace DataAccess
             #endregion
 
             #region Test
-            CreateMap<Test, ResTestDTO>().ReverseMap();
+            CreateMap<Test, ResTestDTO>()
+    .ForMember(dest => dest.ListQuestions,
+               opt => opt.MapFrom(src => src.TestQuestions.Select(tq => tq.Question)))
+    .ReverseMap();
             CreateMap<Test, TestCreateDTO>().ReverseMap();
             CreateMap<Test, TestUpdateDTO>().ReverseMap();
             #endregion
+            
 
 
         }

@@ -10,7 +10,7 @@ namespace DataAccess.Service.IService
 {
     public interface ITestQuestionService
     {
-        Task<ResFormat<bool>> RemoveTestQuestion(int id);
-        Task<ResFormat<bool>> AddTestQuestion(QuestionTypeCreateDTO questionType);
+        Task<ResFormat<bool>> RemoveTestQuestion(TestQuestionAddDTO testQuestion);
+        Task<ResFormat<bool>> AddTestQuestion(TestQuestionAddDTO testQuestion);
     }
 }

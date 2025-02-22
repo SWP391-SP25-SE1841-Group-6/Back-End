@@ -26,6 +26,11 @@ public static class DI
 
         #region Test
         services.AddScoped<ITestService, TestService>();
+        services.AddScoped<ITestRepo, TestRepo>();
+        #endregion
+
+        #region TestQuestion
+        services.AddScoped<ITestQuestionService, TestQuestionService>();
         #endregion
 
         return services;
