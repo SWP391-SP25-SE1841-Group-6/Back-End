@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250222035514_UpdateTestQuestionAndProgramSignup")]
-    partial class UpdateTestQuestionAndProgramSignup
+    [Migration("20250222054847_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
