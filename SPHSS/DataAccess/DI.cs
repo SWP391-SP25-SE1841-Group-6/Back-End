@@ -28,6 +28,10 @@ public static class DI
         services.AddScoped<ITestService, TestService>();
         #endregion
 
+        #region TestQuestion
+        services.AddScoped<ITestQuestionService, TestQuestionService>();
+        #endregion
+
         return services;
     }
 }

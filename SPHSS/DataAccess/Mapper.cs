@@ -49,6 +49,9 @@ namespace DataAccess
             CreateMap<Test, TestCreateDTO>().ReverseMap();
             CreateMap<Test, TestUpdateDTO>().ReverseMap();
             #endregion
+            #region TestQuestion
+            CreateMap<TestQuestion, TestQuestionAddDTO>().ReverseMap();
+            #endregion
 
 
         }
