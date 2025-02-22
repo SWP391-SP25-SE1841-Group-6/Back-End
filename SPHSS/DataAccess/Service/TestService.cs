@@ -15,10 +15,10 @@ namespace DataAccess.Service
 {
     public class TestService : ITestService
     {
-        private readonly IBaseRepo<Test> _testRepo;
+        private readonly ITestRepo _testRepo;
         private readonly IMapper _mapper;
 
-        public TestService(IBaseRepo<Test> testRepo, IMapper mapper)
+        public TestService(ITestRepo testRepo, IMapper mapper)
         {
             _testRepo = testRepo;
             _mapper = mapper;
@@ -113,7 +113,7 @@ namespace DataAccess.Service
             try
             {
 
-                var existingTest = await _testRepo.GetByIdAsync(id);
+                var existingTest = await _testRepo.GetTestAndTestQuestionsById(id);
                 if (existingTest != null )
                 {
                     if (existingTest.IsDeleted == true)
