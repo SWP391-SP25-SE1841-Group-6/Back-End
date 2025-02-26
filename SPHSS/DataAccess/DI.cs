@@ -30,6 +30,7 @@ public static class DI
         #endregion
 
         #region TestQuestion
+        services.AddScoped<ITestQuestionRepo, TestQuestionRepo>();
         services.AddScoped<ITestQuestionService, TestQuestionService>();
         #endregion
 
