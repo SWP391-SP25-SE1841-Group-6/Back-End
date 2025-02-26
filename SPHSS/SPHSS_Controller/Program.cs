@@ -76,6 +76,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowSpecificOrigin",
+        builder =>
+            builder
+                .WithOrigins("http://localhost:5173") // Add your React app's URL
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -87,6 +100,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication(); //
 app.UseAuthorization();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 
