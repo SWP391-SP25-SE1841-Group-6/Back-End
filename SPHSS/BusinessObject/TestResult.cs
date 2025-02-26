@@ -22,4 +22,6 @@ public partial class TestResult
     public virtual Test? Test { get; set; }
 
     public virtual ICollection<TestResultAnswer> TestResultAnswers { get; set; } = new List<TestResultAnswer>();
+
+    public virtual ICollection<TestResultDetail> TestResultDetails { get; set; } = new List<TestResultDetail>();
 }

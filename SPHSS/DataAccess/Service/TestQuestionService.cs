@@ -88,11 +88,11 @@ namespace DataAccess.Service
                 var existingQuestions = (await _testQuestionRepo.GetQuestions())
                                         .Where(tq => tq.TestId == testQuestion.TestId).ToList();
 
-                // Check if the test already has 4 questions
-                if (existingQuestions.Count >= 4)
+                // Check if the test already has 8 questions
+                if (existingQuestions.Count >= 8)
                 {
                     res.Success = false;
-                    res.Message = "Test already has the maximum number of 4 questions";
+                    res.Message = "Test already has the maximum number of 8 questions";
                     return res;
                 }
 
@@ -105,23 +105,46 @@ namespace DataAccess.Service
                 }
 
                 // Check if a question of the same type already exists in the test
-                var existingQuestionTypes = existingQuestions
-                /*.Where(tq => tq.Question != null)*/
-                .Select(tq => tq.Question.QtypeId)
-                .ToList();
-                var types = await _questionTypeRepo.GetAllAsync(); 
-                
-                    if (existingQuestionTypes.Contains((int)question.QtypeId)|| types.Any(c => c.QtypeId != question.QtypeId))
-                    {
-                        res.Success = false;
-                        res.Message = "A question of this type already exists in the test";
-                        return res;
-                    }
-                    else
-                    {
-                        var mapp = _mapper.Map<TestQuestion>(testQuestion);
-                        mapp.DateAdded = DateTime.Now;
-                        await _testQuestionRepo.AddAsync(mapp);
+                /* var existingQuestionTypes = existingQuestions
+                 *//*.Where(tq => tq.Question != null)*//*
+                 .Select(tq => tq.Question.QtypeId)
+                 .ToList();
+                 var types = await _questionTypeRepo.GetAllAsync(); 
+
+                     if (existingQuestionTypes.Contains((int)question.QtypeId)|| types.Any(c => c.QtypeId != question.QtypeId))
+                     {
+                         res.Success = false;
+                         res.Message = "A question of this type already exists in the test";
+                         return res;
+                     }
+                     else
+                     {
+                         var mapp = _mapper.Map<TestQuestion>(testQuestion);
+                         mapp.DateAdded = DateTime.Now;
+                         await _testQuestionRepo.AddAsync(mapp);
+                     res.Success = true;
+                     res.Data = true;
+                     res.Message = "Success";
+                     return res;
+                 }*/
+                var existingQuestionCounts = existingQuestions
+                .GroupBy(tq => tq.Question.QtypeId)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+                var types = await _questionTypeRepo.GetAllAsync();
+
+                // Check if the question type already has 2 questions
+                if (existingQuestionCounts.TryGetValue((int)question.QtypeId, out int count) && count >= 2)
+                {
+                    res.Success = false;
+                    res.Message = "Each question type can only have 2 questions in the test";
+                    return res;
+                }
+                else
+                {
+                    var mapp = _mapper.Map<TestQuestion>(testQuestion);
+                    mapp.DateAdded = DateTime.Now;
+                    await _testQuestionRepo.AddAsync(mapp);
                     res.Success = true;
                     res.Data = true;
                     res.Message = "Success";
