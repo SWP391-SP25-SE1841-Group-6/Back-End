@@ -10,6 +10,7 @@ public partial class TestResultAnswer
     public int QuestionId { get; set; }
 
     public int? Answer { get; set; }
+    public string? Qtype { get; set; }
 
     public bool? IsDeleted { get; set; }
 

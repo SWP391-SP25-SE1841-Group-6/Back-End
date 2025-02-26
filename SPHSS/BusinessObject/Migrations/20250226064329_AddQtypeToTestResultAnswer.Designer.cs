@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250222054847_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250226064329_AddQtypeToTestResultAnswer")]
+    partial class AddQtypeToTestResultAnswer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -418,6 +418,9 @@ namespace BusinessObject.Migrations
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
+
+                    b.Property<string>("Qtype")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TestResultId", "QuestionId")
                         .HasName("PK__TestResu__329A3C9F15032BFD");

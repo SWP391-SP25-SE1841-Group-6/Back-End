@@ -416,6 +416,9 @@ namespace BusinessObject.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
 
+                    b.Property<string>("Qtype")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TestResultId", "QuestionId")
                         .HasName("PK__TestResu__329A3C9F15032BFD");
 

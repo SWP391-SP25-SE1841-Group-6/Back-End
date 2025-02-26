@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddQtypeToTestResultAnswer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -263,6 +263,7 @@ namespace BusinessObject.Migrations
                     TestResultID = table.Column<int>(type: "int", nullable: false),
                     QuestionID = table.Column<int>(type: "int", nullable: false),
                     Answer = table.Column<int>(type: "int", nullable: true),
+                    Qtype = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
