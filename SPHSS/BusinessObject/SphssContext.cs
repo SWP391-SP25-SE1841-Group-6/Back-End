@@ -194,26 +194,26 @@ public partial class SphssContext : DbContext
         {
             entity.HasKey(e => e.SlotId).HasName("PK__Slots__0A124A4F583FCF37");
 
-            entity.HasIndex(e => e.AppointmentId, "IX_Slots_AppointmentID");
+            //entity.HasIndex(e => e.AppointmentId, "IX_Slots_AppointmentID");
 
-            entity.HasIndex(e => e.ProgramId, "IX_Slots_ProgramID");
+            //entity.HasIndex(e => e.ProgramId, "IX_Slots_ProgramID");
 
             entity.Property(e => e.SlotId).HasColumnName("SlotID");
-            entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
-            entity.Property(e => e.DayOfWeek).HasMaxLength(20);
+            //entity.Property(e => e.AppointmentId).HasColumnName("AppointmentID");
+            //entity.Property(e => e.DayOfWeek).HasMaxLength(20);
             entity.Property(e => e.IsDeleted)
                 .HasDefaultValue(false)
                 .HasColumnName("isDeleted");
-            entity.Property(e => e.ProgramId).HasColumnName("ProgramID");
+            //entity.Property(e => e.ProgramId).HasColumnName("ProgramID");
 
-            entity.HasOne(d => d.Appointment).WithMany(p => p.Slots)
-                .HasForeignKey(d => d.AppointmentId)
-                .HasConstraintName("FK_Slots_Appointment");
+            //entity.HasOne(d => d.Appointment).WithMany(p => p.Slots)
+            //    .HasForeignKey(d => d.AppointmentId)
+            //    .HasConstraintName("FK_Slots_Appointment");
 
-            entity.HasOne(d => d.Program).WithMany(p => p.Slots)
-                .HasForeignKey(d => d.ProgramId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Slots__ProgramID__46E78A0C");
+            //entity.HasOne(d => d.Program).WithMany(p => p.Slots)
+            //    .HasForeignKey(d => d.ProgramId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK__Slots__ProgramID__46E78A0C");
         });
 
         modelBuilder.Entity<Test>(entity =>

@@ -29,6 +29,11 @@ namespace DataAccess
             //<Blog, BlogUpdateDTO>().ReverseMap();
             #endregion
 
+            #region Appointment
+            CreateMap<Appointment, AppointmentCreateDTO>().ReverseMap();
+            //CreateMap<Appointment, ResAppointmentDTO>().ReverseMap();
+            #endregion
+
             #region QuestionType
             CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
             CreateMap<QuestionType, ResQuestionTypeDTO>()

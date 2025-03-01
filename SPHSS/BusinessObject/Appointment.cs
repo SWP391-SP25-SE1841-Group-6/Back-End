@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusinessObject;
 
 public partial class Appointment
 {
     public int AppointmentId { get; set; }
-
     public int StudentId { get; set; }
-
     public int PsychologistId { get; set; }
 
-    public DateTime DateCreated { get; set; }
+    [ForeignKey("Slot")]
+    public int SlotId { get; set; }
 
-    public DateTime DateStart { get; set; }
-
-    public DateTime? DateEnd { get; set; }
-
-    public bool? IsDeleted { get; set; }
+    public DateOnly Date { get; set; }
+    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+    public bool IsDeleted { get; set; } = false;
 
     public virtual Account Psychologist { get; set; } = null!;
-
-    public virtual ICollection<Slot> Slots { get; set; } = new List<Slot>();
-
     public virtual Account Student { get; set; } = null!;
+    public virtual Slot Slot { get; set; } = null!;
 }
