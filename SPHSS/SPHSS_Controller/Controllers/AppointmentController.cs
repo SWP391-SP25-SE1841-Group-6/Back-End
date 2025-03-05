@@ -31,7 +31,7 @@ namespace SPHSS_Controller.Controllers
             }
         }
 
-        [HttpGet("{appointmentId}")]
+        [HttpGet("GetAppointmentById")]
         public async Task<IActionResult> GetAppointmentById(int appointmentId)
         {
             try
@@ -51,7 +51,7 @@ namespace SPHSS_Controller.Controllers
             }
         }
 
-        [HttpPost("create")]
+        [HttpPost("CreateAppointment")]
         public async Task<IActionResult> CreateAppointment([FromBody] AppointmentCreateDTO dto)
         {
             try
@@ -78,7 +78,7 @@ namespace SPHSS_Controller.Controllers
             }
         }
 
-        [HttpDelete("{appointmentId}")]
+        [HttpDelete("DeleteAppointmentById")]
         public async Task<IActionResult> DeleteAppointment(int appointmentId)
         {
             var result = await _appointmentService.DeleteAppointment(appointmentId);
@@ -89,7 +89,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(new { message = "Appointment deleted successfully." });
         }
 
-        [HttpPut("{appointmentId}")]
+        [HttpPut("UpdateAppointmentById")]
         public async Task<IActionResult> UpdateAppointment(int appointmentId, [FromBody] AppointmentUpdateDTO dto)
         {
             try

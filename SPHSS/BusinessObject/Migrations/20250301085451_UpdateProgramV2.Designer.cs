@@ -4,6 +4,7 @@ using BusinessObject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    partial class SphssContextModelSnapshot : ModelSnapshot
+    [Migration("20250301085451_UpdateProgramV2")]
+    partial class UpdateProgramV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,10 +170,10 @@ namespace BusinessObject.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateOnly?>("DateEnd")
+                    b.Property<DateTime?>("DateEnd")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("DateStart")
+                    b.Property<DateTime>("DateStart")
                         .HasColumnType("date");
 
                     b.Property<bool?>("IsDeleted")

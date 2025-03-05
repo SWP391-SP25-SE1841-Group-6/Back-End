@@ -11,4 +11,5 @@ public partial class Slot
     public bool IsDeleted { get; set; } = false;
 
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+    public List<Program> Programs { get; set; } = new();
 }

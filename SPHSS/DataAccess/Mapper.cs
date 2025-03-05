@@ -34,6 +34,11 @@ namespace DataAccess
             //CreateMap<Appointment, ResAppointmentDTO>().ReverseMap();
             #endregion
 
+            #region Program
+            CreateMap<Program, ProgramCreateDTO>().ReverseMap();
+            CreateMap<Program, ResProgramCreateDTO>().ReverseMap();
+            #endregion
+
             #region QuestionType
             CreateMap<QuestionType, QuestionTypeCreateDTO>().ReverseMap();
             CreateMap<QuestionType, ResQuestionTypeDTO>()
