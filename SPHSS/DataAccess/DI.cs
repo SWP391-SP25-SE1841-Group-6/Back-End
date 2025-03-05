@@ -34,6 +34,21 @@ public static class DI
         services.AddScoped<ITestQuestionService, TestQuestionService>();
         #endregion
 
+        #region TestResult
+        services.AddScoped<ITestResultRepo, TestResultRepo>();
+        services.AddScoped<ITestResultService, TestResultService>();
+        #endregion
+
+        #region TestResultDetail
+        services.AddScoped<ITestResultDetailRepo, TestResultDetailRepo>();
+        services.AddScoped<ITestResultDetailService, TestResultDetailService>();
+        #endregion
+
+        #region TestResultAnswer
+        services.AddScoped<ITestResultAnswerRepo, TestResultAnswerRepo>();
+        services.AddScoped<ITestResultAnswerService, TestResultAnswerService>();
+        #endregion
+
         return services;
     }
 }

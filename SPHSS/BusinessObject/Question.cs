@@ -17,5 +17,5 @@ public partial class Question
 
     public virtual ICollection<TestQuestion> TestQuestions { get; set; } = new List<TestQuestion>();
 
-    public virtual ICollection<TestResultAnswer> TestResultAnswers { get; set; } = new List<TestResultAnswer>();
+    
 }

@@ -9,6 +9,7 @@ using DataAccess.Service.IService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -120,6 +121,28 @@ namespace DataAccess.Service
                 res.Message = $"Failed :{ex.Message}";
                 return res;
             }
+        }
+
+        public async Task<Account> GetAcccountByTokenAsync(ClaimsPrincipal claims)
+        {
+            if (claims == null || claims.Identity.IsAuthenticated == false)
+            {
+                return null;
+                throw new ArgumentNullException("Invalid token");
+
+            }
+            var userId = claims.FindFirst("Id")?.Value;
+            if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
+            {
+                throw new ArgumentException("No user can be found");
+            }
+
+            var user = await _accountRepo.GetByIdAsync(id);
+            if (user == null)
+            {
+                throw new NullReferenceException("No user can be found");
+            }
+            return user;
         }
 
         public async Task<ResFormat<ResAccountCreateDTO>> GetAccountById(int id)

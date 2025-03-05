@@ -57,13 +57,13 @@ public partial class SphssContext : DbContext
             entity.Property(e => e.AccId).HasColumnName("AccID");
             entity.Property(e => e.AccEmail)
                 .HasMaxLength(255)
-                .IsUnicode(false);
+                .IsUnicode(true);
             entity.Property(e => e.AccName)
                 .HasMaxLength(255)
-                .IsUnicode(false);
+                .IsUnicode(true);
             entity.Property(e => e.AccPass)
                 .HasMaxLength(255)
-                .IsUnicode(false);
+                .IsUnicode(true);
             entity.Property(e => e.Dob)
                 .HasColumnType("datetime")
                 .HasColumnName("DOB");
@@ -169,7 +169,8 @@ public partial class SphssContext : DbContext
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
             entity.Property(e => e.QtypeId).HasColumnName("QTypeID");
             entity.Property(e => e.Question1)
-                .HasColumnType("text")
+                .HasMaxLength(255)
+                .IsUnicode(true)
                 .HasColumnName("Question");
 
             entity.HasOne(d => d.Qtype).WithMany(p => p.Questions)
@@ -187,7 +188,7 @@ public partial class SphssContext : DbContext
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
             entity.Property(e => e.Qtype)
                 .HasMaxLength(255)
-                .IsUnicode(false)
+                .IsUnicode(true)
                 .HasColumnName("QType");
         });
 
@@ -233,7 +234,7 @@ public partial class SphssContext : DbContext
 
         modelBuilder.Entity<TestQuestion>(entity =>
         {
-            entity.HasKey(e => new { e.TestId, e.QuestionId }).HasName("PK__TestQues__5C1F37F8F0E96F86");
+            entity.HasKey(e => e.TestQuestionId).HasName("PK__TestQues__5C1F37F8F0E96F86");
 
             entity.ToTable("TestQuestion");
 
@@ -281,18 +282,18 @@ public partial class SphssContext : DbContext
 
         modelBuilder.Entity<TestResultAnswer>(entity =>
         {
-            entity.HasKey(e => new { e.TestResultId, e.QuestionId }).HasName("PK__TestResu__329A3C9F15032BFD");
+            entity.HasKey(e => new { e.TestResultId, e.TestQuestionId }).HasName("PK__TestResu__329A3C9F15032BFD");
 
             entity.ToTable("TestResultAnswer");
 
-            entity.HasIndex(e => e.QuestionId, "IX_TestResultAnswer_QuestionID");
+            entity.HasIndex(e => e.TestQuestionId, "IX_TestResultAnswer_QuestionID");
 
             entity.Property(e => e.TestResultId).HasColumnName("TestResultID");
-            entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
+            entity.Property(e => e.TestQuestionId).HasColumnName("TestQuestionID");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
 
-            entity.HasOne(d => d.Question).WithMany(p => p.TestResultAnswers)
-                .HasForeignKey(d => d.QuestionId)
+            entity.HasOne(d => d.TestQuestion).WithMany(p => p.TestResultAnswers)
+                .HasForeignKey(d => d.TestQuestionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__TestResul__Quest__3A81B327");
 

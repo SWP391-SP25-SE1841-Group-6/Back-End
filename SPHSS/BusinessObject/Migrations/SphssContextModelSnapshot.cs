@@ -34,17 +34,17 @@ namespace BusinessObject.Migrations
                     b.Property<string>("AccEmail")
                         .HasMaxLength(255)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AccName")
                         .HasMaxLength(255)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AccPass")
                         .HasMaxLength(255)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("Dob")
                         .HasColumnType("datetime")
@@ -230,7 +230,7 @@ namespace BusinessObject.Migrations
                         .HasColumnName("QTypeID");
 
                     b.Property<string>("Question1")
-                        .HasColumnType("text")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("Question");
 
                     b.HasKey("QuestionId")
@@ -257,7 +257,7 @@ namespace BusinessObject.Migrations
                     b.Property<string>("Qtype")
                         .HasMaxLength(255)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("QType");
 
                     b.HasKey("QtypeId")
@@ -343,19 +343,27 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.TestQuestion", b =>
                 {
-                    b.Property<int>("TestId")
-                        .HasColumnType("int")
-                        .HasColumnName("TestID");
+                    b.Property<int>("TestQuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestQuestionId"));
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int")
                         .HasColumnName("QuestionID");
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime");
+                    b.Property<int>("TestId")
+                        .HasColumnType("int")
+                        .HasColumnName("TestID");
 
-                    b.HasKey("TestId", "QuestionId")
+                    b.HasKey("TestQuestionId")
                         .HasName("PK__TestQues__5C1F37F8F0E96F86");
+
+                    b.HasIndex("TestId");
 
                     b.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
 
@@ -405,9 +413,9 @@ namespace BusinessObject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TestResultID");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int>("TestQuestionId")
                         .HasColumnType("int")
-                        .HasColumnName("QuestionID");
+                        .HasColumnName("TestQuestionID");
 
                     b.Property<int?>("Answer")
                         .HasColumnType("int");
@@ -419,10 +427,10 @@ namespace BusinessObject.Migrations
                     b.Property<string>("Qtype")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TestResultId", "QuestionId")
+                    b.HasKey("TestResultId", "TestQuestionId")
                         .HasName("PK__TestResu__329A3C9F15032BFD");
 
-                    b.HasIndex(new[] { "QuestionId" }, "IX_TestResultAnswer_QuestionID");
+                    b.HasIndex(new[] { "TestQuestionId" }, "IX_TestResultAnswer_QuestionID");
 
                     b.ToTable("TestResultAnswer", (string)null);
                 });
@@ -578,9 +586,9 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.TestResultAnswer", b =>
                 {
-                    b.HasOne("BusinessObject.Question", "Question")
+                    b.HasOne("BusinessObject.TestQuestion", "TestQuestion")
                         .WithMany("TestResultAnswers")
-                        .HasForeignKey("QuestionId")
+                        .HasForeignKey("TestQuestionId")
                         .IsRequired()
                         .HasConstraintName("FK__TestResul__Quest__3A81B327");
 
@@ -590,7 +598,7 @@ namespace BusinessObject.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__TestResul__TestR__398D8EEE");
 
-                    b.Navigation("Question");
+                    b.Navigation("TestQuestion");
 
                     b.Navigation("TestResult");
                 });
@@ -636,8 +644,6 @@ namespace BusinessObject.Migrations
             modelBuilder.Entity("BusinessObject.Question", b =>
                 {
                     b.Navigation("TestQuestions");
-
-                    b.Navigation("TestResultAnswers");
                 });
 
             modelBuilder.Entity("BusinessObject.QuestionType", b =>
@@ -650,6 +656,11 @@ namespace BusinessObject.Migrations
                     b.Navigation("TestQuestions");
 
                     b.Navigation("TestResults");
+                });
+
+            modelBuilder.Entity("BusinessObject.TestQuestion", b =>
+                {
+                    b.Navigation("TestResultAnswers");
                 });
 
             modelBuilder.Entity("BusinessObject.TestResult", b =>
