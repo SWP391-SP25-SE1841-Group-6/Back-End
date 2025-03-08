@@ -10,5 +10,6 @@ namespace DataAccess.Repo.IRepo
     public interface ITestQuestionRepo: IBaseRepo<TestQuestion>
     {
         Task<IEnumerable<TestQuestion>> GetQuestions();
+        Task<QuestionType> GetQtypeOfTestQuestionByTestQuestionId(int id);
     }
 }

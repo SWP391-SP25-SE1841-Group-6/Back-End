@@ -13,7 +13,7 @@ public partial class TestResult
 
     public DateTime? TestDate { get; set; }
 
-    public int? Score { get; set; }
+    public double? Score { get; set; }
 
     public bool? IsDeleted { get; set; }
 

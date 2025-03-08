@@ -2,6 +2,7 @@
 using BusinessObject;
 using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
+using DataAccess.Repo;
 using DataAccess.Repo.IRepo;
 using DataAccess.Service.IService;
 using System;
@@ -16,11 +17,18 @@ namespace DataAccess.Service
     {
         private readonly ITestResultRepo _testResultRepo;
         private readonly IMapper _mapper;
+        private readonly ITestQuestionRepo _testQuestionRepo;
+        private readonly ITestResultAnswerRepo _testResultAnswerRepo;
 
-        public TestResultService(ITestResultRepo testResultRepo, IMapper mapper)
+        public TestResultService(ITestResultRepo testResultRepo, 
+                                 IMapper mapper, 
+                                 ITestQuestionRepo testQuestionRepo,
+                                 ITestResultAnswerRepo testResultAnswerRepo)
         {
             _testResultRepo = testResultRepo;
             _mapper = mapper;
+            _testQuestionRepo = testQuestionRepo;
+            _testResultAnswerRepo = testResultAnswerRepo;
         }
 
         public async Task<ResFormat<ResTestResultDTO>> GetTestResultByStudentAsync(int studentId, int testId)
@@ -78,7 +86,26 @@ namespace DataAccess.Service
             {
                 var testResult = _mapper.Map<TestResult>(testResultCreateDTO);
                 testResult.TestDate = DateTime.Now;
+                testResult.IsDeleted = false;
                 await _testResultRepo.AddAsync(testResult);
+                var newResult = await _testResultRepo.GetAllAsync();
+                if((newResult.Any(c => c.TestResultId ==testResult.TestResultId)))
+                {
+                    foreach (var answer in testResultCreateDTO.Answers)
+                    {
+                        var existTQ = await _testQuestionRepo.GetQtypeOfTestQuestionByTestQuestionId(answer.TestQuestionId);
+                        var newAnswer = new TestResultAnswer
+                        {
+                            TestResultId=testResult.TestResultId,
+                            TestQuestionId=answer.TestQuestionId,
+                            Answer=answer.Answer,
+                            Qtype=existTQ.Qtype,
+                            IsDeleted=false,
+
+                        };
+                        await _testResultAnswerRepo.AddAsync(newAnswer);
+                    }
+                }
                 res.Success = true;
                 res.Data = true;
                 res.Message = "Test Result Created Successfully";
@@ -87,35 +114,6 @@ namespace DataAccess.Service
             {
                 res.Success = false;
                 res.Message = $"Failed to create Test Result: {ex.Message}";
-            }
-
-            return res;
-        }
-
-        public async Task<ResFormat<bool>> UpdateTestResultAsync(TestResultCreateDTO testResultCreateDTO, int testResultId)
-        {
-            var res = new ResFormat<bool>();
-            try
-            {
-                var testResult = await _testResultRepo.GetByIdAsync(testResultId);
-                if (testResult != null)
-                {
-                    _mapper.Map(testResultCreateDTO, testResult);
-                    _testResultRepo.Update(testResult);
-                    res.Success = true;
-                    res.Data = true;
-                    res.Message = "Test Result Updated Successfully";
-                }
-                else
-                {
-                    res.Success = false;
-                    res.Message = "Test Result Not Found";
-                }
-            }
-            catch (Exception ex)
-            {
-                res.Success = false;
-                res.Message = $"Failed to update Test Result: {ex.Message}";
             }
 
             return res;

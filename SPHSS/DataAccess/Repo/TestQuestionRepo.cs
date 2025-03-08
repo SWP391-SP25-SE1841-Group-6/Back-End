@@ -16,6 +16,12 @@ namespace DataAccess.Repo
         {
             _context = context;
         }
+
+        public async Task<QuestionType> GetQtypeOfTestQuestionByTestQuestionId(int id)
+        {
+            return await _context.QuestionTypes.Include(q => q.Questions).ThenInclude(t => t.TestQuestions).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<TestQuestion>> GetQuestions()
         {
             return await _context.TestQuestions.Include(t=>t.Question).ToListAsync();
