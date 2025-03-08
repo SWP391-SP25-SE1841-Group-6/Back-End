@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SPHSS_Controller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1f2aa24d7555559ba5fced13a21e4e49b8944de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d51a5bb81a3030553174189db4bb050fe7e5b73")]
 [assembly: System.Reflection.AssemblyProductAttribute("SPHSS_Controller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SPHSS_Controller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

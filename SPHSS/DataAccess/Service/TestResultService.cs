@@ -84,13 +84,23 @@ namespace DataAccess.Service
             var res = new ResFormat<bool>();
             try
             {
+                if (testResultCreateDTO.Answers.Any(c=>c.Answer==0||c.Answer==null))
+                {
+                    res.Success = false;
+                    res.Data = false;
+                    res.Message = "There is/are question(s) you did not answer";
+                }
+                else {
                 var testResult = _mapper.Map<TestResult>(testResultCreateDTO);
                 testResult.TestDate = DateTime.Now;
                 testResult.IsDeleted = false;
                 await _testResultRepo.AddAsync(testResult);
-                var newResult = await _testResultRepo.GetAllAsync();
-                if((newResult.Any(c => c.TestResultId ==testResult.TestResultId)))
+                var newResult = await _testResultRepo.GetByIdAsync(testResult.TestResultId);
+                if(newResult!=null)
                 {
+                    int sum = 0;
+                    double avgScore=0;
+                    int numberOfAnswer = 0;
                     foreach (var answer in testResultCreateDTO.Answers)
                     {
                         var existTQ = await _testQuestionRepo.GetQtypeOfTestQuestionByTestQuestionId(answer.TestQuestionId);
@@ -101,14 +111,19 @@ namespace DataAccess.Service
                             Answer=answer.Answer,
                             Qtype=existTQ.Qtype,
                             IsDeleted=false,
-
                         };
                         await _testResultAnswerRepo.AddAsync(newAnswer);
+                        sum+=(int)newAnswer.Answer;
+                        numberOfAnswer++;
                     }
+                    avgScore =(double)sum/numberOfAnswer;
+                    newResult.Score = avgScore;
+                    _testResultRepo.Update(newResult);
                 }
                 res.Success = true;
                 res.Data = true;
                 res.Message = "Test Result Created Successfully";
+                }
             }
             catch (Exception ex)
             {
