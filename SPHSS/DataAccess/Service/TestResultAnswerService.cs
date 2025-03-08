@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Service
 {
-    public class TestResultAnswerService :ITestResultAnswerService
+    public class TestResultAnswerService : ITestResultAnswerService
     {
         private readonly ITestResultAnswerRepo _testResultAnswerRepo;
         private readonly IMapper _mapper;
@@ -26,6 +26,11 @@ namespace DataAccess.Service
             _mapper = mapper;
             _testResultRepo = testResultRepo;
             _questionRepo = questionRepo;
+        }
+
+        public Task<ResFormat<bool>> AddTestResultAnswerAsync(TestResultAnswerCreateDTO testResultAnswerCreateDTO)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ResFormat<IEnumerable<ResTestResultAnswerDTO>>> GetTestResultAnswersByTestResultAsync(int testResultId)
@@ -48,12 +53,12 @@ namespace DataAccess.Service
             return res;
         }
 
-        public async Task<ResFormat<bool>> AddTestResultAnswerAsync(TestResultAnswerCreateDTO testResultAnswerCreateDTO)
+        /*public async Task<ResFormat<bool>> AddTestResultAnswerAsync(TestResultAnswerCreateDTO testResultAnswerCreateDTO)
         {
             var res = new ResFormat<bool>();
             try
             {
-                var existQuestion = await _questionRepo.GetByIdAsync(testResultAnswerCreateDTO.QuestionId);
+                var existQuestion = await _questionRepo.GetByIdAsync(testResultAnswerCreateDTO.TestQuestionId);
                 var existTestResult = await _testResultRepo.GetByIdAsync(testResultAnswerCreateDTO.TestResultId);
                 if (existTestResult==null||existQuestion==null)
                 {
@@ -76,6 +81,6 @@ namespace DataAccess.Service
             }
 
             return res;
-        }
+        }*/
     }
 }

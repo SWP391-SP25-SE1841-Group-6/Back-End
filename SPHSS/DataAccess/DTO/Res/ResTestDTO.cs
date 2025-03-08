@@ -16,6 +16,6 @@ namespace DataAccess.DTO.Res
         public DateTime? DateUpdated { get; set; }
 
         public bool? IsDeleted { get; set; }
-        public IEnumerable<ResQuestionDTO> ListQuestions { get; set; }
+        public IEnumerable<ResTestQuestionDTO> ListQuestions { get; set; }
     }
 }

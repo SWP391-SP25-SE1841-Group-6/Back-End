@@ -23,12 +23,6 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(TestResultCreateDTO testResult, int id)
-        {
-            var result = await _testResultService.UpdateTestResultAsync(testResult, id);
-            return Ok(result);
-        }
 
         [HttpGet("student/{studentId}/test/{testId}")]
         public async Task<IActionResult> GetTestResultByStudent(int studentId, int testId)
