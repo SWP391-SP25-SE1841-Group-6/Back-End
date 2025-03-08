@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using BusinessObject;
 using BusinessObject.Enum;
 using DataAccess.DTO.Req;
@@ -6,6 +7,7 @@ using DataAccess.DTO.Res;
 using DataAccess.Repo;
 using DataAccess.Repo.IRepo;
 using DataAccess.Service.IService;
+using DataAccess.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -204,9 +206,10 @@ namespace DataAccess.Service
             {
 
                 var list = await _accountRepo.GetAllAsync();
-                if (list.Any(a => a.AccEmail == email && a.AccPass == password))
+                var HashPass = HashPassWithSHA256.HashWithSHA256(password);
+                if (list.Any(a => a.AccEmail == email && a.AccPass == HashPass))
                 {
-                    var login = list.FirstOrDefault(a => a.AccEmail == email && a.AccPass == password);
+                    var login = list.FirstOrDefault(a => a.AccEmail == email && a.AccPass == HashPass);
                     var accLogin = _mapper.Map<ResAccountLoginDTO>(login);
                     res.Success = true;
                     res.Data = accLogin;
@@ -244,6 +247,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
                     mapp.IsApproved = false;
