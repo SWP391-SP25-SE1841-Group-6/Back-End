@@ -82,6 +82,19 @@ namespace SPHSS_Controller.Controllers
             return Ok(program);
         }
 
+        [HttpGet("GetProgramByStudentId")]
+        public async Task<IActionResult> GetProgramByStudentId(int studentId)
+        {
+            var program = await _programService.GetProgramByStudentId(studentId);
+
+            if (program == null)
+            {
+                return NotFound(new { message = "Chương trình không tồn tại hoặc đã bị xóa!" });
+            }
+
+            return Ok(program);
+        }
+
         [HttpPost("RegisterProgram")]
         public async Task<IActionResult> RegisterProgram([FromBody] ProgramSignupDTO request)
         {

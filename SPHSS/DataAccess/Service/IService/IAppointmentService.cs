@@ -16,5 +16,6 @@ namespace DataAccess.Service.IService
         Task<ResAppointmentCreateDTO?> GetAppointmentById(int appointmentId);
         Task<bool> DeleteAppointment(int appointmentId);
         Task<ResAppointmentCreateDTO?> UpdateAppointment(int appointmentId, AppointmentUpdateDTO dto);
+        Task<List<ResAppointmentCreateDTO>> GetAppointmentsByStudentId(int studentId);
     }
 }

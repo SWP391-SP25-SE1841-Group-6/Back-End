@@ -16,6 +16,7 @@ public partial class Appointment
     public DateOnly Date { get; set; }
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     public bool IsDeleted { get; set; } = false;
+    public string? GoogleMeetLink { get; set; }
 
     public virtual Account Psychologist { get; set; } = null!;
     public virtual Account Student { get; set; } = null!;

@@ -8,7 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DataAccess.Service
@@ -35,7 +38,27 @@ namespace DataAccess.Service
                     PsychologistId = ap.PsychologistId,
                     SlotId = ap.SlotId,
                     Date = ap.Date.ToString("yyyy-MM-dd"),
-                    DateCreated = ap.DateCreated
+                    DateCreated = ap.DateCreated,
+                    GoogleMeetLink = ap.GoogleMeetLink
+                })
+                .ToListAsync();
+
+            return appointments;
+        }
+
+        public async Task<List<ResAppointmentCreateDTO>> GetAppointmentsByStudentId(int studentId)
+        {
+            var appointments = await _context.Appointments
+                .Where(ap => !ap.IsDeleted && ap.StudentId == studentId)
+                .Select(ap => new ResAppointmentCreateDTO
+                {
+                    AppointmentId = ap.AppointmentId,
+                    StudentId = ap.StudentId,
+                    PsychologistId = ap.PsychologistId,
+                    SlotId = ap.SlotId,
+                    Date = ap.Date.ToString("yyyy-MM-dd"),
+                    DateCreated = ap.DateCreated,
+                    GoogleMeetLink = ap.GoogleMeetLink
                 })
                 .ToListAsync();
 
@@ -53,7 +76,8 @@ namespace DataAccess.Service
                     PsychologistId = ap.PsychologistId,
                     SlotId = ap.SlotId,
                     Date = ap.Date.ToString("yyyy-MM-dd"),
-                    DateCreated = ap.DateCreated
+                    DateCreated = ap.DateCreated,
+                    GoogleMeetLink = ap.GoogleMeetLink
                 })
                 .FirstOrDefaultAsync();
 
@@ -65,6 +89,10 @@ namespace DataAccess.Service
             if (!DateOnly.TryParse(dateString, out DateOnly date))
             {
                 throw new Exception("Ngày không hợp lệ! Định dạng đúng: yyyy-MM-dd");
+            }
+            if (date <= DateOnly.FromDateTime(DateTime.Now))
+            {
+                throw new Exception("Ngày bắt đầu phải từ ngày mai trở đi!");
             }
             // Danh sách psychologist đủ điều kiện (chưa có lịch vào slot và date đó)
             var availablePsychologists = await _context.Accounts
@@ -80,17 +108,92 @@ namespace DataAccess.Service
                 .OrderBy(p => _context.Appointments.Count(ap => ap.PsychologistId == p.AccId))
                 .ThenBy(p => p.AccId)
                 .First();
+            string zoomMeetingLink = await CreateZoomMeeting();
+
             var appointment = new Appointment
             {
                 StudentId = studentId,
                 PsychologistId = selectedPsychologist.AccId,
                 SlotId = slotId,
                 Date = date,
-                DateCreated = DateTime.UtcNow
+                DateCreated = DateTime.UtcNow,
+                GoogleMeetLink = zoomMeetingLink
             };
             _context.Appointments.Add(appointment);
             await _context.SaveChangesAsync();
             return appointment;
+        }
+
+        private async Task<string> CreateZoomMeeting()
+        {
+            string zoomApiUrl = "https://api.zoom.us/v2/users/me/meetings";
+            string accessToken = await GetZoomAccessToken();
+
+            using HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var meetingData = new
+            {             
+                type = 2,
+                start_time = DateTime.UtcNow.AddMinutes(10).ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                duration = 60,
+                timezone = "UTC",
+                settings = new
+                {
+                    host_video = true,
+                    participant_video = true,
+                    join_before_host = false
+                }
+            };
+
+            var response = await client.PostAsJsonAsync(zoomApiUrl, meetingData);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Lỗi khi tạo Zoom Meeting: {await response.Content.ReadAsStringAsync()}");
+            }
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(jsonResponse);
+            return doc.RootElement.GetProperty("join_url").GetString();
+        }
+
+        private async Task<string> GetZoomAccessToken()
+        {
+            string clientId = "QVsE_mlrQ8GCJS_PxVtmcg";
+            string clientSecret = "X90kcFaL64z7GJPhiA8HhMVRPF4Rpbi4";
+            string accountId = "wrcDrlfCRBOQkSDB0VEoVw";
+
+            using HttpClient client = new HttpClient();
+            var authBytes = Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}");
+            string authBase64 = Convert.ToBase64String(authBytes);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authBase64);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var content = new FormUrlEncodedContent(new[]
+            {
+        new KeyValuePair<string, string>("grant_type", "account_credentials"),
+        new KeyValuePair<string, string>("account_id", accountId)
+    });
+
+            Console.WriteLine("🔍 Sending request to Zoom OAuth...");
+            Console.WriteLine($"🔹 Auth Header: Basic {authBase64}");
+            Console.WriteLine($"🔹 Account ID: {accountId}");
+
+            HttpResponseMessage response = await client.PostAsync("https://zoom.us/oauth/token", content);
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"🔍 Response Code: {response.StatusCode}");
+            Console.WriteLine($"🔹 Response Body: {responseContent}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"❌ Lỗi lấy access token: {responseContent}");
+            }
+
+            using var doc = JsonDocument.Parse(responseContent);
+            return doc.RootElement.GetProperty("access_token").GetString();
         }
 
         public async Task<bool> DeleteAppointment(int appointmentId)

@@ -8,6 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text.Json;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace DataAccess.Service
 {
@@ -54,6 +60,8 @@ namespace DataAccess.Service
                 throw new Exception("Slot không tồn tại!");
             }
 
+            string zoomMeetingLink = await CreateZoomMeeting(dto.ProgramName);
+
             var program = new Program
             {
                 ProgramName = dto.ProgramName,
@@ -61,7 +69,8 @@ namespace DataAccess.Service
                 DateEnd = dateEnd,
                 SlotId = dto.SlotId,
                 DateCreated = DateTime.Now,
-                IsDeleted = false
+                IsDeleted = false,
+                GoogleMeetLink = zoomMeetingLink
             };
 
             _context.Programs.Add(program);
@@ -75,7 +84,8 @@ namespace DataAccess.Service
                 DateEnd = program.DateEnd,
                 DateCreated = program.DateCreated,
                 IsDeleted = program.IsDeleted,
-                SlotId = program.SlotId
+                SlotId = program.SlotId,
+                GoogleMeetLink = zoomMeetingLink
             };
         }
 
@@ -91,7 +101,8 @@ namespace DataAccess.Service
                     DateEnd = p.DateEnd,
                     DateCreated = p.DateCreated,
                     IsDeleted = p.IsDeleted,
-                    SlotId = p.SlotId
+                    SlotId = p.SlotId,
+                    GoogleMeetLink = p.GoogleMeetLink
                 })
                 .ToListAsync();
 
@@ -201,6 +212,31 @@ namespace DataAccess.Service
             };
         }
 
+        public async Task<List<ResProgramCreateDTO>> GetProgramByStudentId(int studentId)
+        {
+            var programs = await _context.ProgramSignups
+                .Where(ps => ps.StudentId == studentId)
+                .Join(_context.Programs,
+                    ps => ps.ProgramId,
+                    p => p.ProgramId,
+                    (ps, p) => new { Program = p })
+                .Where(p => p.Program.IsDeleted == false)
+                .Select(p => new ResProgramCreateDTO
+                {
+                    ProgramId = p.Program.ProgramId,
+                    ProgramName = p.Program.ProgramName,
+                    DateStart = p.Program.DateStart,
+                    DateEnd = p.Program.DateEnd,
+                    DateCreated = p.Program.DateCreated,
+                    IsDeleted = p.Program.IsDeleted,
+                    SlotId = p.Program.SlotId
+                })
+                .ToListAsync();
+
+            return programs;
+        }
+
+
         public async Task<ResProgramSignupDTO> RegisterProgram(int studentId, int programId)
         {
             // Kiểm tra xem chương trình có tồn tại và chưa bị xóa không
@@ -213,7 +249,7 @@ namespace DataAccess.Service
             }
 
             // Kiểm tra xem sinh viên có tồn tại không
-            var student = await _context.Accounts.FirstOrDefaultAsync(a => a.AccId == studentId);
+            var student = await _context.Accounts.FirstOrDefaultAsync(a => a.AccId == studentId && a.IsActivated == true && a.IsApproved == true);
             if (student == null)
             {
                 throw new Exception("Sinh viên không tồn tại!");
@@ -248,6 +284,78 @@ namespace DataAccess.Service
             };
         }
 
+        private async Task<string> CreateZoomMeeting(string topic)
+        {
+            string zoomApiUrl = "https://api.zoom.us/v2/users/me/meetings";
+            string accessToken = await GetZoomAccessToken(); 
+
+            using HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var meetingData = new
+            {
+                topic = topic,
+                type = 2,
+                start_time = DateTime.UtcNow.AddMinutes(10).ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                duration = 60,
+                timezone = "UTC",
+                settings = new
+                {
+                    host_video = true,
+                    participant_video = true,
+                    join_before_host = false
+                }
+            };
+
+            var response = await client.PostAsJsonAsync(zoomApiUrl, meetingData);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Lỗi khi tạo Zoom Meeting: {await response.Content.ReadAsStringAsync()}");
+            }
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(jsonResponse);
+            return doc.RootElement.GetProperty("join_url").GetString();
+        }
+
+        private async Task<string> GetZoomAccessToken()
+        {
+            string clientId = "QVsE_mlrQ8GCJS_PxVtmcg";
+            string clientSecret = "X90kcFaL64z7GJPhiA8HhMVRPF4Rpbi4";
+            string accountId = "wrcDrlfCRBOQkSDB0VEoVw";
+
+            using HttpClient client = new HttpClient();
+            var authBytes = Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}");
+            string authBase64 = Convert.ToBase64String(authBytes);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authBase64);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var content = new FormUrlEncodedContent(new[]
+            {
+        new KeyValuePair<string, string>("grant_type", "account_credentials"),
+        new KeyValuePair<string, string>("account_id", accountId)
+    });
+
+            Console.WriteLine("🔍 Sending request to Zoom OAuth...");
+            Console.WriteLine($"🔹 Auth Header: Basic {authBase64}");
+            Console.WriteLine($"🔹 Account ID: {accountId}");
+
+            HttpResponseMessage response = await client.PostAsync("https://zoom.us/oauth/token", content);
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"🔍 Response Code: {response.StatusCode}");
+            Console.WriteLine($"🔹 Response Body: {responseContent}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"❌ Lỗi lấy access token: {responseContent}");
+            }
+
+            using var doc = JsonDocument.Parse(responseContent);
+            return doc.RootElement.GetProperty("access_token").GetString();
+        }
 
     }
 }

@@ -15,6 +15,7 @@ namespace DataAccess.DTO.Res
         public DateTime DateCreated { get; set; }
         public bool? IsDeleted { get; set; }
         public int SlotId { get; set; }
+        public string? GoogleMeetLink { get; set; }
 
     }
 }

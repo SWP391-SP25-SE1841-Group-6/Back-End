@@ -21,6 +21,8 @@ public partial class Program
     public bool? IsDeleted { get; set; }
 
     public int SlotId { get; set; }
+    public string? GoogleMeetLink { get; set; }
+
     public Slot Slot { get; set; } = null!;
 
     public virtual ICollection<ProgramSignup> ProgramSignups { get; set; } = new List<ProgramSignup>();

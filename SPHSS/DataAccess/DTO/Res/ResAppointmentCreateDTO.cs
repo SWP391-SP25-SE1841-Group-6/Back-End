@@ -14,6 +14,6 @@ namespace DataAccess.DTO.Res
         public int SlotId { get; set; }
         public string Date { get; set; } 
         public DateTime DateCreated { get; set; }
-        //public string Message { get; set; } = "Appointment created successfully.";
+        public string? GoogleMeetLink { get; set; }
     }
 }

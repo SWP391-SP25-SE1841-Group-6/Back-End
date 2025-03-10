@@ -51,6 +51,26 @@ namespace SPHSS_Controller.Controllers
             }
         }
 
+        [HttpGet("GetAppointmentByStudentId")]
+        public async Task<IActionResult> GetAppointmentByStudentId(int studentId)
+        {
+            try
+            {
+                var appointment = await _appointmentService.GetAppointmentsByStudentId(studentId);
+
+                if (appointment == null)
+                {
+                    return NotFound(new { message = "Appointment not found!" });
+                }
+
+                return Ok(appointment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [HttpPost("CreateAppointment")]
         public async Task<IActionResult> CreateAppointment([FromBody] AppointmentCreateDTO dto)
         {
@@ -69,7 +89,8 @@ namespace SPHSS_Controller.Controllers
                     PsychologistId = appointment.PsychologistId,
                     SlotId = appointment.SlotId,
                     Date = appointment.Date.ToString("yyyy-MM-dd"),
-                    DateCreated = appointment.DateCreated
+                    DateCreated = appointment.DateCreated,
+                    GoogleMeetLink = appointment.GoogleMeetLink
                 });
             }
             catch (Exception ex)
