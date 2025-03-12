@@ -18,7 +18,7 @@ namespace DataAccess.Repo
         }
         public async Task<IEnumerable<Question>> GetAllQuestionsWithType()
         {
-            return await _context.Questions.Include(qt => qt.Qtype)/*.Where(q =>q.IsDeleted == false)*/.ToListAsync();
+            return await _context.Questions.Include(qt => qt.Qtype).Where(q =>q.IsDeleted == false).ToListAsync();
         }
 
         public async Task<Question> GetQuestionByIdWithType(int id)
