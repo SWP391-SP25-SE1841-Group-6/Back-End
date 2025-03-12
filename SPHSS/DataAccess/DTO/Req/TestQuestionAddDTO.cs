@@ -8,5 +8,8 @@ namespace DataAccess.DTO.Req
 {
     public class TestQuestionAddDTO
     {
+        public int TestId { get; set; } 
+
+        public int QuestionId { get; set; }
     }
 }

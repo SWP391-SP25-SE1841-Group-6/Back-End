@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -51,7 +52,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Cosmetic",
+        Title = "SPHSS",
         Version = "v1"
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -77,6 +78,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowSpecificOrigin",
+        builder =>
+            builder
+                .WithOrigins("http://localhost:5173") // Add your React app's URL
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -88,6 +102,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication(); //
 app.UseAuthorization();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 

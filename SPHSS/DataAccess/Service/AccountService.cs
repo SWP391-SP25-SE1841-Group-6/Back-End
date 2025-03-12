@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using BusinessObject;
 using BusinessObject.Enum;
 using DataAccess.DTO.Req;
@@ -6,9 +7,11 @@ using DataAccess.DTO.Res;
 using DataAccess.Repo;
 using DataAccess.Repo.IRepo;
 using DataAccess.Service.IService;
+using DataAccess.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -122,6 +125,28 @@ namespace DataAccess.Service
             }
         }
 
+        public async Task<Account> GetAcccountByTokenAsync(ClaimsPrincipal claims)
+        {
+            if (claims == null || claims.Identity.IsAuthenticated == false)
+            {
+                return null;
+                throw new ArgumentNullException("Invalid token");
+
+            }
+            var userId = claims.FindFirst("UserId")?.Value;
+            if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
+            {
+                throw new ArgumentException("No user can be found");
+            }
+
+            var user = await _accountRepo.GetByIdAsync(id);
+            if (user == null)
+            {
+                throw new NullReferenceException("No user can be found");
+            }
+            return user;
+        }
+
         public async Task<ResFormat<ResAccountCreateDTO>> GetAccountById(int id)
         {
             var res = new ResFormat<ResAccountCreateDTO>();
@@ -159,12 +184,41 @@ namespace DataAccess.Service
             var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
             try
             {
-                var list = await _accountRepo.GetAllAsync();
-                var resList=_mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
                 res.Success = true;
-                res.Data= resList;
+                res.Data = resList;
                 res.Message = "Retrieved successfully";
                 return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(b => b.IsActivated == true && b.IsApproved == false))
+                {
+                    var newList = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == false);
+                    var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(newList);
+                    res.Success = true;
+                    res.Data = resList;
+                    res.Message = "Retrieved successfully";
+                    return res;
+                }
+                else
+                {
+                    res.Success = false;
+                    res.Message = "There is no unapproved account";
+                    return res;
+                }
             }
             catch (Exception ex)
             {
@@ -181,9 +235,10 @@ namespace DataAccess.Service
             {
 
                 var list = await _accountRepo.GetAllAsync();
-                if (list.Any(a => a.AccEmail == email && a.AccPass == password))
+                var HashPass = HashPassWithSHA256.HashWithSHA256(password);
+                if (list.Any(a => a.AccEmail == email && a.AccPass == HashPass))
                 {
-                    var login = list.FirstOrDefault(a => a.AccEmail == email && a.AccPass == password);
+                    var login = list.FirstOrDefault(a => a.AccEmail == email && a.AccPass == HashPass);
                     var accLogin = _mapper.Map<ResAccountLoginDTO>(login);
                     res.Success = true;
                     res.Data = accLogin;
@@ -221,6 +276,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
                     mapp.IsApproved = false;

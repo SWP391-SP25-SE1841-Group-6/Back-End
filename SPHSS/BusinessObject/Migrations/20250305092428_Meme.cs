@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BusinessObject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Meme : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,9 @@ namespace BusinessObject.Migrations
                 {
                     AccID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccName = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    AccPass = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    AccEmail = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    AccName = table.Column<string>(type: "nvarchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    AccPass = table.Column<string>(type: "nvarchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    AccEmail = table.Column<string>(type: "nvarchar(255)", unicode: false, maxLength: 255, nullable: true),
                     DOB = table.Column<DateTime>(type: "datetime", nullable: true),
                     Gender = table.Column<bool>(type: "bit", nullable: true),
                     ParentID = table.Column<int>(type: "int", nullable: true),
@@ -60,7 +60,7 @@ namespace BusinessObject.Migrations
                 {
                     QTypeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QType = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    QType = table.Column<string>(type: "nvarchar(255)", unicode: false, maxLength: 255, nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
@@ -165,7 +165,7 @@ namespace BusinessObject.Migrations
                     QuestionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QTypeID = table.Column<int>(type: "int", nullable: true),
-                    Question = table.Column<string>(type: "text", nullable: true),
+                    Question = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
@@ -237,13 +237,15 @@ namespace BusinessObject.Migrations
                 name: "TestQuestion",
                 columns: table => new
                 {
+                    TestQuestionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TestID = table.Column<int>(type: "int", nullable: false),
                     QuestionID = table.Column<int>(type: "int", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__TestQues__5C1F37F8F0E96F86", x => new { x.TestID, x.QuestionID });
+                    table.PrimaryKey("PK__TestQues__5C1F37F8F0E96F86", x => x.TestQuestionId);
                     table.ForeignKey(
                         name: "FK__TestQuest__Quest__48CFD27E",
                         column: x => x.QuestionID,
@@ -257,22 +259,45 @@ namespace BusinessObject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TestResultDetail",
+                columns: table => new
+                {
+                    TestResultDetailId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Qtype = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TestResultId = table.Column<int>(type: "int", nullable: false),
+                    ScoreType = table.Column<double>(type: "float", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TestResultDetail", x => x.TestResultDetailId);
+                    table.ForeignKey(
+                        name: "FK_TestResultDetail_TestResult_TestResultId",
+                        column: x => x.TestResultId,
+                        principalTable: "TestResult",
+                        principalColumn: "TestResultID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TestResultAnswer",
                 columns: table => new
                 {
                     TestResultID = table.Column<int>(type: "int", nullable: false),
-                    QuestionID = table.Column<int>(type: "int", nullable: false),
+                    TestQuestionID = table.Column<int>(type: "int", nullable: false),
                     Answer = table.Column<int>(type: "int", nullable: true),
+                    Qtype = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__TestResu__329A3C9F15032BFD", x => new { x.TestResultID, x.QuestionID });
+                    table.PrimaryKey("PK__TestResu__329A3C9F15032BFD", x => new { x.TestResultID, x.TestQuestionID });
                     table.ForeignKey(
                         name: "FK__TestResul__Quest__3A81B327",
-                        column: x => x.QuestionID,
-                        principalTable: "Questions",
-                        principalColumn: "QuestionID");
+                        column: x => x.TestQuestionID,
+                        principalTable: "TestQuestion",
+                        principalColumn: "TestQuestionId");
                     table.ForeignKey(
                         name: "FK__TestResul__TestR__398D8EEE",
                         column: x => x.TestResultID,
@@ -331,6 +356,11 @@ namespace BusinessObject.Migrations
                 column: "QuestionID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TestQuestion_TestID",
+                table: "TestQuestion",
+                column: "TestID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TestResult_StudentID",
                 table: "TestResult",
                 column: "StudentID");
@@ -343,7 +373,12 @@ namespace BusinessObject.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TestResultAnswer_QuestionID",
                 table: "TestResultAnswer",
-                column: "QuestionID");
+                column: "TestQuestionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TestResultDetail_TestResultId",
+                table: "TestResultDetail",
+                column: "TestResultId");
         }
 
         /// <inheritdoc />
@@ -359,10 +394,10 @@ namespace BusinessObject.Migrations
                 name: "Slots");
 
             migrationBuilder.DropTable(
-                name: "TestQuestion");
+                name: "TestResultAnswer");
 
             migrationBuilder.DropTable(
-                name: "TestResultAnswer");
+                name: "TestResultDetail");
 
             migrationBuilder.DropTable(
                 name: "Appointment");
@@ -371,19 +406,22 @@ namespace BusinessObject.Migrations
                 name: "Program");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "TestQuestion");
 
             migrationBuilder.DropTable(
                 name: "TestResult");
 
             migrationBuilder.DropTable(
-                name: "QuestionType");
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Account");
 
             migrationBuilder.DropTable(
                 name: "Test");
+
+            migrationBuilder.DropTable(
+                name: "QuestionType");
         }
     }
 }

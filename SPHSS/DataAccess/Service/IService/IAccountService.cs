@@ -6,6 +6,7 @@ using DataAccess.Repo.IRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace DataAccess.Service.IService
     public interface IAccountService
     {
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllAccount();
+        Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount();
         Task<ResFormat<ResAccountCreateDTO>> GetAccountById(int id);
         Task<ResFormat<ResAccountLoginDTO>> Login(string email, string password);
         Task<ResFormat<bool>> Register(AccountRegisterDTO account);
@@ -21,6 +23,7 @@ namespace DataAccess.Service.IService
         Task<ResFormat<ResAccountCreateDTO>> Update(AccountUpdateDTO account, int id);
         Task<ResFormat<ResAccountCreateDTO>> Create(AccountCreateDTO account);
         Task<ResFormat<bool>> ApproveAccount(int id);
+        Task<Account> GetAcccountByTokenAsync(ClaimsPrincipal claims);
 
 
     }

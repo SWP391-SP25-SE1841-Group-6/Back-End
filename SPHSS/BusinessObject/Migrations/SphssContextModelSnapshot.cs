@@ -33,18 +33,18 @@ namespace BusinessObject.Migrations
 
                     b.Property<string>("AccEmail")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AccName")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AccPass")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)");
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("Dob")
                         .HasColumnType("datetime")
@@ -243,7 +243,9 @@ namespace BusinessObject.Migrations
                         .HasColumnName("QTypeID");
 
                     b.Property<string>("Question1")
-                        .HasColumnType("text")
+                        .HasMaxLength(255)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("Question");
 
                     b.HasKey("QuestionId")
@@ -269,8 +271,8 @@ namespace BusinessObject.Migrations
 
                     b.Property<string>("Qtype")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("QType");
 
                     b.HasKey("QtypeId")
@@ -339,19 +341,27 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.TestQuestion", b =>
                 {
-                    b.Property<int>("TestId")
-                        .HasColumnType("int")
-                        .HasColumnName("TestID");
+                    b.Property<int>("TestQuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestQuestionId"));
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int")
                         .HasColumnName("QuestionID");
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime");
+                    b.Property<int>("TestId")
+                        .HasColumnType("int")
+                        .HasColumnName("TestID");
 
-                    b.HasKey("TestId", "QuestionId")
+                    b.HasKey("TestQuestionId")
                         .HasName("PK__TestQues__5C1F37F8F0E96F86");
+
+                    b.HasIndex("TestId");
 
                     b.HasIndex(new[] { "QuestionId" }, "IX_TestQuestion_QuestionID");
 
@@ -371,8 +381,8 @@ namespace BusinessObject.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
 
-                    b.Property<int?>("Score")
-                        .HasColumnType("int");
+                    b.Property<double?>("Score")
+                        .HasColumnType("float");
 
                     b.Property<int?>("StudentId")
                         .HasColumnType("int")
@@ -401,9 +411,9 @@ namespace BusinessObject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("TestResultID");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int>("TestQuestionId")
                         .HasColumnType("int")
-                        .HasColumnName("QuestionID");
+                        .HasColumnName("TestQuestionID");
 
                     b.Property<int?>("Answer")
                         .HasColumnType("int");
@@ -412,12 +422,42 @@ namespace BusinessObject.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("isDeleted");
 
-                    b.HasKey("TestResultId", "QuestionId")
+                    b.Property<string>("Qtype")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TestResultId", "TestQuestionId")
                         .HasName("PK__TestResu__329A3C9F15032BFD");
 
-                    b.HasIndex(new[] { "QuestionId" }, "IX_TestResultAnswer_QuestionID");
+                    b.HasIndex(new[] { "TestQuestionId" }, "IX_TestResultAnswer_QuestionID");
 
                     b.ToTable("TestResultAnswer", (string)null);
+                });
+
+            modelBuilder.Entity("BusinessObject.TestResultDetail", b =>
+                {
+                    b.Property<int>("TestResultDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestResultDetailId"));
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Qtype")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("ScoreType")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TestResultId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TestResultDetailId");
+
+                    b.HasIndex("TestResultId");
+
+                    b.ToTable("TestResultDetail");
                 });
 
             modelBuilder.Entity("BusinessObject.Account", b =>
@@ -545,9 +585,9 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.TestResultAnswer", b =>
                 {
-                    b.HasOne("BusinessObject.Question", "Question")
+                    b.HasOne("BusinessObject.TestQuestion", "TestQuestion")
                         .WithMany("TestResultAnswers")
-                        .HasForeignKey("QuestionId")
+                        .HasForeignKey("TestQuestionId")
                         .IsRequired()
                         .HasConstraintName("FK__TestResul__Quest__3A81B327");
 
@@ -557,7 +597,18 @@ namespace BusinessObject.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__TestResul__TestR__398D8EEE");
 
-                    b.Navigation("Question");
+                    b.Navigation("TestQuestion");
+
+                    b.Navigation("TestResult");
+                });
+
+            modelBuilder.Entity("BusinessObject.TestResultDetail", b =>
+                {
+                    b.HasOne("BusinessObject.TestResult", "TestResult")
+                        .WithMany("TestResultDetails")
+                        .HasForeignKey("TestResultId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TestResult");
                 });
@@ -585,8 +636,6 @@ namespace BusinessObject.Migrations
             modelBuilder.Entity("BusinessObject.Question", b =>
                 {
                     b.Navigation("TestQuestions");
-
-                    b.Navigation("TestResultAnswers");
                 });
 
             modelBuilder.Entity("BusinessObject.QuestionType", b =>
@@ -608,9 +657,16 @@ namespace BusinessObject.Migrations
                     b.Navigation("TestResults");
                 });
 
+            modelBuilder.Entity("BusinessObject.TestQuestion", b =>
+                {
+                    b.Navigation("TestResultAnswers");
+                });
+
             modelBuilder.Entity("BusinessObject.TestResult", b =>
                 {
                     b.Navigation("TestResultAnswers");
+
+                    b.Navigation("TestResultDetails");
                 });
 #pragma warning restore 612, 618
         }
