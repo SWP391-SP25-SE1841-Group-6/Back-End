@@ -78,7 +78,7 @@ namespace DataAccess.Service
                 var test = await _testRepo.GetByIdAsync(testQuestion.TestId);
                 var question = await _questionRepo.GetByIdAsync(testQuestion.QuestionId);
 
-                if (test == null || question == null)
+                if (test == null || question == null || test.IsDeleted == true || question.IsDeleted == true)
                 {
                     res.Success = false;
                     res.Message = "Test or Question does not exist";
