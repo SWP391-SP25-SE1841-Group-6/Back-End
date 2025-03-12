@@ -24,7 +24,7 @@ namespace DataAccess.Repo
 
         public async Task<QuestionType> GetQuestionTypeAndQuestionsByType(string type)
         {
-            return await _context.QuestionTypes.Include(q=>q.Questions).FirstOrDefaultAsync(q=>q.Qtype.ToLower().Trim().Equals(type.ToLower().Trim()));
+            return await _context.QuestionTypes.Include(q=>q.Questions).FirstOrDefaultAsync(q=>q.Qtype.ToLower().Trim().Equals(type.ToLower().Trim()) && q.IsDeleted == false);
         }
     }
 }

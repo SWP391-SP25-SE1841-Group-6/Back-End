@@ -184,22 +184,12 @@ namespace DataAccess.Service
             var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
             try
             {
-                var list = await _accountRepo.GetAllAsync();
-                if (list.Any(b => b.IsActivated == false || b.IsApproved == false))
-                {
-                    res.Success = false;
-                    res.Message = "There is no available account";
-                    return res;
-                }
-                else
-                {
-                    var newList = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true);
-                    var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
-                    res.Success = true;
-                    res.Data = resList;
-                    res.Message = "Retrieved successfully";
-                    return res;
-                }
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
             }
             catch (Exception ex)
             {
@@ -214,19 +204,19 @@ namespace DataAccess.Service
             try
             {
                 var list = await _accountRepo.GetAllAsync();
-                if (list.Any(b => b.IsActivated == false || b.IsApproved == true))
+                if (list.Any(b => b.IsActivated == true && b.IsApproved == false))
                 {
-                    res.Success = false;
-                    res.Message = "There is no unapproved account";
+                    var newList = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == false);
+                    var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(newList);
+                    res.Success = true;
+                    res.Data = resList;
+                    res.Message = "Retrieved successfully";
                     return res;
                 }
                 else
                 {
-                    var newList = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == false);
-                    var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
-                    res.Success = true;
-                    res.Data = resList;
-                    res.Message = "Retrieved successfully";
+                    res.Success = false;
+                    res.Message = "There is no unapproved account";
                     return res;
                 }
             }
