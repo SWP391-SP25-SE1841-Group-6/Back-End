@@ -29,6 +29,16 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("Unapproved")]
+        public async Task<IActionResult> GetUnapproved()
+        {
+            var result = await _accountService.GetAllUnapprovedAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(AccountRegisterDTO accountRegisterDTO)
         {

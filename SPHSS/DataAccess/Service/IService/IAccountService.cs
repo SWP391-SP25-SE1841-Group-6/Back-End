@@ -15,6 +15,7 @@ namespace DataAccess.Service.IService
     public interface IAccountService
     {
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllAccount();
+        Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount();
         Task<ResFormat<ResAccountCreateDTO>> GetAccountById(int id);
         Task<ResFormat<ResAccountLoginDTO>> Login(string email, string password);
         Task<ResFormat<bool>> Register(AccountRegisterDTO account);
