@@ -19,16 +19,19 @@ namespace DataAccess.Service
         private readonly IMapper _mapper;
         private readonly ITestQuestionRepo _testQuestionRepo;
         private readonly ITestResultAnswerRepo _testResultAnswerRepo;
+        private readonly ITestResultDetailRepo _testResultDetailRepo;
 
         public TestResultService(ITestResultRepo testResultRepo, 
                                  IMapper mapper, 
                                  ITestQuestionRepo testQuestionRepo,
-                                 ITestResultAnswerRepo testResultAnswerRepo)
+                                 ITestResultAnswerRepo testResultAnswerRepo,
+                                 ITestResultDetailRepo testResultDetailRepo)
         {
             _testResultRepo = testResultRepo;
             _mapper = mapper;
             _testQuestionRepo = testQuestionRepo;
             _testResultAnswerRepo = testResultAnswerRepo;
+            _testResultDetailRepo = testResultDetailRepo;
         }
 
         public async Task<ResFormat<ResTestResultDTO>> GetTestResultByStudentAsync(int studentId, int testId)
@@ -88,7 +91,7 @@ namespace DataAccess.Service
                 {
                     res.Success = false;
                     res.Data = false;
-                    res.Message = "There is/are question(s) you did not answer";
+                    res.Message = "There is/are question(s) you did not answer";    
                 }
                 else {
                 var testResult = _mapper.Map<TestResult>(testResultCreateDTO);
@@ -101,25 +104,53 @@ namespace DataAccess.Service
                     int sum = 0;
                     double avgScore=0;
                     int numberOfAnswer = 0;
-                    foreach (var answer in testResultCreateDTO.Answers)
-                    {
-                        var existTQ = await _testQuestionRepo.GetQtypeOfTestQuestionByTestQuestionId(answer.TestQuestionId);
-                        var newAnswer = new TestResultAnswer
+
+                        // Dictionary to store scores by question type
+                        var scoreByType = new Dictionary<string, List<int>>();
+
+                        foreach (var answer in testResultCreateDTO.Answers)
+                            {
+                            var existTQ = await _testQuestionRepo.GetQtypeOfTestQuestionByTestQuestionId(answer.TestQuestionId);
+                            var newAnswer = new TestResultAnswer
+                            {
+                                TestResultId=testResult.TestResultId,
+                                TestQuestionId=answer.TestQuestionId,
+                                Answer=answer.Answer,
+                                Qtype=existTQ.Qtype,
+                                IsDeleted=false,
+                            };
+                            await _testResultAnswerRepo.AddAsync(newAnswer);
+                            sum+=(int)newAnswer.Answer;
+                            numberOfAnswer++;
+
+                            // Store scores by question type
+                            if (!scoreByType.ContainsKey(newAnswer.Qtype))
+                            {
+                                scoreByType[newAnswer.Qtype] = new List<int>();
+                            }
+                            scoreByType[newAnswer.Qtype].Add((int)newAnswer.Answer);
+
+                        }
+                        avgScore =(double)sum/numberOfAnswer;
+                        newResult.Score = avgScore;
+                        _testResultRepo.Update(newResult);
+
+                        // Calculate ScoreType for each Qtype
+                        foreach (var qtype in scoreByType.Keys)
                         {
-                            TestResultId=testResult.TestResultId,
-                            TestQuestionId=answer.TestQuestionId,
-                            Answer=answer.Answer,
-                            Qtype=existTQ.Qtype,
-                            IsDeleted=false,
-                        };
-                        await _testResultAnswerRepo.AddAsync(newAnswer);
-                        sum+=(int)newAnswer.Answer;
-                        numberOfAnswer++;
+                            var scores = scoreByType[qtype];
+                            double scoreTypeAvg = scores.Average(); // Average of 2 questions per Qtype
+
+                            var testResultDetail = new TestResultDetail
+                            {
+                                TestResultId = testResult.TestResultId,
+                                Qtype = qtype,
+                                ScoreType = scoreTypeAvg,
+                                IsDeleted = false
+                            };
+                            await _testResultDetailRepo.AddAsync(testResultDetail);
+                        }
                     }
-                    avgScore =(double)sum/numberOfAnswer;
-                    newResult.Score = avgScore;
-                    _testResultRepo.Update(newResult);
-                }
                 res.Success = true;
                 res.Data = true;
                 res.Message = "Test Result Created Successfully";

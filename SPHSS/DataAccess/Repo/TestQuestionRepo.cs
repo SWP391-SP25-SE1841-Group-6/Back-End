@@ -19,7 +19,11 @@ namespace DataAccess.Repo
 
         public async Task<QuestionType> GetQtypeOfTestQuestionByTestQuestionId(int id)
         {
-            return await _context.QuestionTypes.Include(q => q.Questions).ThenInclude(t => t.TestQuestions).FirstOrDefaultAsync();
+            /*return await _context.QuestionTypes.Include(q => q.Questions).ThenInclude(t => t.TestQuestions).FirstOrDefaultAsync();*/
+            return await _context.QuestionTypes
+            .Include(q => q.Questions)
+            .ThenInclude(t => t.TestQuestions)
+            .FirstOrDefaultAsync(q => q.Questions.Any(question => question.TestQuestions.Any(tq => tq.TestQuestionId == id)));
         }
 
         public async Task<IEnumerable<TestQuestion>> GetQuestions()
