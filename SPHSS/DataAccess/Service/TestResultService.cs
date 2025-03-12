@@ -82,7 +82,7 @@ namespace DataAccess.Service
             return res;
         }
 
-        public async Task<ResFormat<bool>> AddTestResultAsync(TestResultCreateDTO testResultCreateDTO)
+        public async Task<ResFormat<bool>> AddTestResultAsync(TestResultCreateDTO testResultCreateDTO, int userId)
         {
             var res = new ResFormat<bool>();
             try
@@ -95,10 +95,12 @@ namespace DataAccess.Service
                 }
                 else {
                 var testResult = _mapper.Map<TestResult>(testResultCreateDTO);
+                testResult.StudentId = userId;
                 testResult.TestDate = DateTime.Now;
                 testResult.IsDeleted = false;
                 await _testResultRepo.AddAsync(testResult);
                 var newResult = await _testResultRepo.GetByIdAsync(testResult.TestResultId);
+
                 if(newResult!=null)
                 {
                     int sum = 0;

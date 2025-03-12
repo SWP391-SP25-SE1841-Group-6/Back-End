@@ -12,9 +12,11 @@ namespace SPHSS_Controller.Controllers
     public class BlogController : ControllerBase
     {
         private readonly IBlogService _blogService;
-        public BlogController(IBlogService blogService)
+        private readonly IAccountService _accountService;
+        public BlogController(IBlogService blogService, IAccountService accountService)
         {
             _blogService = blogService;
+            _accountService = accountService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -41,7 +43,13 @@ namespace SPHSS_Controller.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBlog([FromBody] BlogCreateDTO dto)
         {
-            var result = await _blogService.CreateBlog(dto);
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _blogService.CreateBlog(dto,user.AccId);
 
             if (!result.Success)
                 return BadRequest(new { success = false, message = result.Message });
@@ -63,6 +71,11 @@ namespace SPHSS_Controller.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(BlogUpdateDTO blog, int id)
         {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var result = await _blogService.Update(blog, id);
             if (result == null)
             {

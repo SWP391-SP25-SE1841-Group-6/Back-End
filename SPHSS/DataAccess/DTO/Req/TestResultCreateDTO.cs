@@ -8,7 +8,7 @@ namespace DataAccess.DTO.Req
 {
     public class TestResultCreateDTO
     {
-        public int StudentId { get; set; }
+        //public int StudentId { get; set; }
         public int TestId { get; set; }
         public IEnumerable<TestResultAnswerCreateDTO>  Answers { get; set; }
     }

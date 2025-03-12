@@ -21,13 +21,13 @@ namespace SPHSS_Controller.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]TestResultCreateDTO testResult)
         {
-            /*var user = await _accountService.GetAcccountByTokenAsync(User);
+            var user = await _accountService.GetAcccountByTokenAsync(User);
             if (user == null)
             {
                 return Unauthorized();
-            }*/
+            }
 
-            var result = await _testResultService.AddTestResultAsync(testResult);
+            var result = await _testResultService.AddTestResultAsync(testResult, user.AccId);
             if (result == null)
             {
                 return NotFound();

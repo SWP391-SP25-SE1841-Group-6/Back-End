@@ -133,7 +133,7 @@ namespace DataAccess.Service
                 throw new ArgumentNullException("Invalid token");
 
             }
-            var userId = claims.FindFirst("Id")?.Value;
+            var userId = claims.FindFirst("UserId")?.Value;
             if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
             {
                 throw new ArgumentException("No user can be found");

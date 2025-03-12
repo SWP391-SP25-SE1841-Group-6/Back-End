@@ -99,12 +99,13 @@ namespace DataAccess.Service
             return res;
         }
 
-        public async Task<ResFormat<ResBlogCreateDTO>> CreateBlog(BlogCreateDTO dto)
+        public async Task<ResFormat<ResBlogCreateDTO>> CreateBlog(BlogCreateDTO dto, int id)
         {
             var res = new ResFormat<ResBlogCreateDTO>();
             try
             {
                 var blog = _mapper.Map<Blog>(dto);
+                blog.CreatorId = id;
                 blog.IsApproved = false; //Đảm bảo chưa được approved
                 blog.IsDeleted = false; // Đảm bảo blog mới không bị ẩn
                 blog.DateCreated = DateTime.Now;
