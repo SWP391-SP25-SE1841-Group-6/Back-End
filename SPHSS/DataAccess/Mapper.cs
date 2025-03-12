@@ -63,7 +63,10 @@ namespace DataAccess
             #endregion
 
             #region TestResult
-            CreateMap<TestResult, ResTestResultDTO>().ReverseMap();
+            /*CreateMap<TestResult, ResTestResultDTO>().ReverseMap();*/
+            CreateMap<TestResult, ResTestResultDTO>()
+            .ForMember(dest => dest.resTestResultDetailDTO, opt => opt.MapFrom(src => src.TestResultDetails))
+            .ReverseMap();
             CreateMap<TestResult, TestResultCreateDTO>().ReverseMap();
             #endregion
 

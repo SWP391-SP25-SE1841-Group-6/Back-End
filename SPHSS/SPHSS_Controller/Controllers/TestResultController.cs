@@ -36,17 +36,27 @@ namespace SPHSS_Controller.Controllers
         }
 
 
-        [HttpGet("student/{studentId}/test/{testId}")]
-        public async Task<IActionResult> GetTestResultByStudent(int studentId, int testId)
+        [HttpGet("test/{testId}")]
+        public async Task<IActionResult> GetTestResultByStudent(int testId)
         {
-            var result = await _testResultService.GetTestResultByStudentAsync(studentId, testId);
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            var result = await _testResultService.GetTestResultByStudentAsync(user.AccId, testId);
             return Ok(result);
         }
 
-        [HttpGet("student/{studentId}")]
-        public async Task<IActionResult> GetTestResultsByStudent(int studentId)
+        [HttpGet]
+        public async Task<IActionResult> GetTestResultsByStudent()
         {
-            var result = await _testResultService.GetTestResultsByStudentAsync(studentId);
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            var result = await _testResultService.GetTestResultsByStudentAsync(user.AccId);
             return Ok(result);
         }
     }

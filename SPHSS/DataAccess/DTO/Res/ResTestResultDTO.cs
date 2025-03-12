@@ -13,7 +13,7 @@ namespace DataAccess.DTO.Res
         public int StudentId { get; set; }
         public int TestId { get; set; }
         public DateTime TestDate { get; set; }
-        public int Score { get; set; }
-        public IEnumerable<TestResultAnswerCreateDTO> testResultAnswerCreateDTOs { get; set; }
+        public double Score { get; set; }
+        public IEnumerable<ResTestResultDetailDTO> resTestResultDetailDTO { get; set; }
     }
 }
