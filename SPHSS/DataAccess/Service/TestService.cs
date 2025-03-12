@@ -92,7 +92,7 @@ namespace DataAccess.Service
             var res = new ResFormat<IEnumerable<ResTestDTO>>();
             try
             {
-                var list = await _testRepo.GetAllAsync();
+                var list = await _testRepo.FindAsync(b => b.IsDeleted == false);
                 var resList = _mapper.Map<IEnumerable<ResTestDTO>>(list);
                 res.Success = true;
                 res.Data = resList;
