@@ -18,7 +18,7 @@ namespace SPHSS_Controller.Controllers
             _blogService = blogService;
             _accountService = accountService;
         }
-        [HttpGet]
+        [HttpGet("GetAllBlog")]
         public async Task<IActionResult> Get()
         {
             var result = await _blogService.GetAllBlog();
@@ -29,7 +29,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteBlog")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
             var result = await _blogService.DeleteBlog(id);
@@ -40,7 +40,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(new { success = true, message = result.Message });
         }
 
-        [HttpPost]
+        [HttpPost("CreateBlog")]
         public async Task<IActionResult> CreateBlog([FromBody] BlogCreateDTO dto)
         {
             var user = await _accountService.GetAcccountByTokenAsync(User);
@@ -57,7 +57,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(new { success = true, data = result.Data, message = result.Message });
         }
 
-        [HttpGet("id")]
+        [HttpGet("GetBlogById")]
         public async Task<IActionResult> GetBlogById(int id)
         {
             var result = await _blogService.GetBlogById(id);
@@ -68,7 +68,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("UpdateBlog")]
         public async Task<IActionResult> Update(BlogUpdateDTO blog, int id)
         {
             var user = await _accountService.GetAcccountByTokenAsync(User);
@@ -84,7 +84,7 @@ namespace SPHSS_Controller.Controllers
             return Ok(result);
         }
 
-        [HttpPut("Approve")]
+        [HttpPut("ApproveBlog")]
         public async Task<IActionResult> Approve(int id)
         {
             var result = await _blogService.ApproveBlog(id);
@@ -94,25 +94,6 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
-
-        //[Authorize]
-        //[HttpPost]
-        //public async Task<IActionResult> CreateBlog([FromBody] BlogCreateDTO dto)
-        //{
-        //    // Lấy CreatorId từ JWT Token
-        //    var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-        //    if (userIdClaim == null)
-        //        return Unauthorized(new { success = false, message = "User not authenticated" });
-
-        //    int creatorId = int.Parse(userIdClaim.Value); // Chuyển về số nguyên
-
-        //    var result = await _blogService.CreateBlog(dto, creatorId);
-
-        //    if (!result.Success)
-        //        return BadRequest(new { success = false, message = result.Message });
-
-        //    return Ok(new { success = true, data = result.Data, message = result.Message });
-        //}
 
     }
 }

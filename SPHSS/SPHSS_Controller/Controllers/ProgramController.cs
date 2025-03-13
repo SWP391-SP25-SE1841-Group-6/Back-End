@@ -1,4 +1,5 @@
 ﻿using DataAccess.DTO.Req;
+using DataAccess.Service;
 using DataAccess.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace SPHSS_Controller.Controllers
     public class ProgramController : Controller
     {
         private readonly IProgramService _programService;
+        private readonly IAccountService _accountService;
 
-        public ProgramController(IProgramService programService)
+        public ProgramController(IProgramService programService, IAccountService accountService)
         {
             _programService = programService;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -98,9 +101,14 @@ namespace SPHSS_Controller.Controllers
         [HttpPost("RegisterProgram")]
         public async Task<IActionResult> RegisterProgram([FromBody] ProgramSignupDTO request)
         {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             try
             {
-                var result = await _programService.RegisterProgram(request.StudentId, request.ProgramId);
+                var result = await _programService.RegisterProgram(user.AccId, request.ProgramId);
                 return Ok(result);
             }
             catch (Exception ex)
