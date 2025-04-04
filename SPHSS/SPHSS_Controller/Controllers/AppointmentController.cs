@@ -1,4 +1,5 @@
-﻿using DataAccess.DTO.Req;
+﻿using BusinessObject;
+using DataAccess.DTO.Req;
 using DataAccess.DTO.Res;
 using DataAccess.Repo;
 using DataAccess.Service.IService;
@@ -56,15 +57,19 @@ namespace SPHSS_Controller.Controllers
         [HttpGet("GetAppointmentByStudentId")]
         public async Task<IActionResult> GetAppointmentByStudentId(int studentId)
         {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
             try
             {
-                var appointment = await _appointmentService.GetAppointmentsByStudentId(studentId);
-
-                if (appointment == null)
+                var appointment = await _appointmentService.GetAppointmentsByStudentId(user.AccId);
+                if (!appointment.Any())
                 {
                     return NotFound(new { message = "Appointment not found!" });
                 }
-
                 return Ok(appointment);
             }
             catch (Exception ex)

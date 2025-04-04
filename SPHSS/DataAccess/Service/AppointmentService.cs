@@ -14,6 +14,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DataAccess.Service
 {
@@ -211,8 +212,9 @@ namespace DataAccess.Service
             }
             var availablePsychologist = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
-                .Where(a => !_context.Appointments
-                    .Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == newDate))
+            .Where(a => 
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == newDate) && 
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == dto.SlotId && pr.Date == newDate)) 
                 .OrderBy(a => _context.Appointments.Count(ap => ap.PsychologistId == a.AccId))
                 .ThenBy(a => a.AccId) 
                 .FirstOrDefaultAsync();
@@ -231,7 +233,8 @@ namespace DataAccess.Service
                 PsychologistId = appointment.PsychologistId,
                 SlotId = appointment.SlotId,
                 Date = appointment.Date.ToString("yyyy-MM-dd"),
-                DateCreated = appointment.DateCreated
+                DateCreated = appointment.DateCreated,
+                GoogleMeetLink = appointment.GoogleMeetLink
             };
         }
     }
