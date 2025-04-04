@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DTO.Req
 {
-    public class AccountRegisterDTO
+    public class AccountRegisterStudentByParentDTO
     {
         public string? AccName { get; set; }
 
@@ -18,8 +18,5 @@ namespace DataAccess.DTO.Req
         public DateTime? Dob { get; set; }
 
         public bool? Gender { get; set; }
-        public RoleEnum Role { get; set; }
-        public int? ParentId { get; set; }
-
     }
 }

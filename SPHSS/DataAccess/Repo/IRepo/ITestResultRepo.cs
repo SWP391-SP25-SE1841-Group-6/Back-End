@@ -11,5 +11,6 @@ namespace DataAccess.Repo.IRepo
     {
         Task<TestResult?> GetTestResultByStudentAsync(int studentId, int testId);
         Task<IEnumerable<TestResult>> GetTestResultsByStudentAsync(int studentId);
+        Task<Test?> GetNewestTestAsync();
     }
 }

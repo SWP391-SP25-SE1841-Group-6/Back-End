@@ -47,6 +47,16 @@ namespace SPHSS_Controller.Controllers
             var result = await _testResultService.GetTestResultByStudentAsync(user.AccId, testId);
             return Ok(result);
         }
+        [HttpGet("student/{studentId}")]
+        public async Task<IActionResult> GetTestResultsByStudentId(int studentId)
+        {
+            var result = await _testResultService.GetTestResultsByStudentIdAsync(studentId);
+            if (result == null || !result.Success)
+            {
+                return NotFound(result?.Message ?? "Failed to retrieve test results.");
+            }
+            return Ok(result);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetTestResultsByStudent()
@@ -57,6 +67,22 @@ namespace SPHSS_Controller.Controllers
                 return Unauthorized();
             }
             var result = await _testResultService.GetTestResultsByStudentAsync(user.AccId);
+            return Ok(result);
+        }
+        [HttpGet("check-newest-test")]
+        public async Task<IActionResult> CheckIfStudentHasDoneNewestTest()
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _testResultService.CheckIfStudentHasDoneNewestTestAsync(user.AccId);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to check test status.");
+            }
             return Ok(result);
         }
     }

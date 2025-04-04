@@ -40,5 +40,12 @@ namespace DataAccess.Repo
                 .Where(tr => tr.StudentId == studentId && !(bool)tr.IsDeleted)
                 .ToListAsync();
         }
+        public async Task<Test?> GetNewestTestAsync()
+        {
+            return await _context.Tests
+                .Where(t => !(bool)t.IsDeleted)
+                .OrderByDescending(t => t.DateCreated)
+                .FirstOrDefaultAsync();
+        }
     }
 }

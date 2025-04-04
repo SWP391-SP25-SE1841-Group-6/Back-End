@@ -75,6 +75,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     mapp.IsActivated = true;
                     mapp.IsApproved = true;
                     await _accountRepo.AddAsync(mapp);
@@ -198,6 +199,89 @@ namespace DataAccess.Service
                 return res;
             }
         }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllParentAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Parent);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllPsychologistAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Psychologist);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Student);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentsAccountByParent(int parentId)
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                // Find all student accounts with the same ParentId as the provided parentId
+                var studentAccounts = await _accountRepo.FindAsync(a => a.IsActivated == true && a.IsApproved == true && a.ParentId == parentId && a.Role == RoleEnum.Student);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(studentAccounts);
+
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed to retrieve student accounts: {ex.Message}";
+                return res;
+            }
+        }
+
         public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount()
         {
             var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
@@ -279,11 +363,80 @@ namespace DataAccess.Service
                     mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
-                    mapp.IsApproved = false;
+                    mapp.IsApproved = true;
                     await _accountRepo.AddAsync(mapp);
                     res.Success = true;
                     res.Data = true;
                     res.Message = "Register successfully";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Register failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<bool>> RegisterParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(a => a.AccName == accountRegisterDTO.AccName || a.AccEmail == accountRegisterDTO.AccEmail))
+                {
+                    res.Success = false;
+                    res.Message = "Duplicate value";
+                    return res;
+                }
+                else
+                {
+                    var mapp = _mapper.Map<Account>(accountRegisterDTO);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
+                    mapp.Role = RoleEnum.Parent;
+                    mapp.IsActivated = true;
+                    mapp.IsApproved = true;
+                    await _accountRepo.AddAsync(mapp);
+                    res.Success = true;
+                    res.Message = "Parent registered successfully";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Register failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<bool>> RegisterStudentByParent(AccountRegisterStudentByParentDTO accountRegisterDTO, int parentId)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(a => a.AccName == accountRegisterDTO.AccName || a.AccEmail == accountRegisterDTO.AccEmail))
+                {
+                    res.Success = false;
+                    res.Message = "Duplicate value";
+                    return res;
+                }
+                else
+                {
+                    var mapp = _mapper.Map<Account>(accountRegisterDTO);
+                    mapp.ParentId = parentId;
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
+                    mapp.Role = RoleEnum.Student;
+                    mapp.IsActivated = true;
+                    mapp.IsApproved = true;
+                    await _accountRepo.AddAsync(mapp);
+                    /*var result = _mapper.Map<ResAccountCreateDTO>(mapp);*/
+                    res.Success = true;
+                    res.Data = true;
+                    res.Message = "Student registered successfully";
                     return res;
                 }
             }
