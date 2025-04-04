@@ -5,6 +5,7 @@ using DataAccess.DTO.Res;
 using DataAccess.Repo.IRepo;
 using DataAccess.Service.IService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,13 @@ namespace DataAccess.Service
     {
         private readonly IAppointmentRepo _appointmentRepo;
         private readonly SphssContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AppointmentService(IAppointmentRepo appointmentRepo, SphssContext context)
+        public AppointmentService(IAppointmentRepo appointmentRepo, SphssContext context, IConfiguration configuration)
         {
             _appointmentRepo = appointmentRepo;
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<List<ResAppointmentCreateDTO>> GetAllAppointments()
@@ -42,7 +45,6 @@ namespace DataAccess.Service
                     GoogleMeetLink = ap.GoogleMeetLink
                 })
                 .ToListAsync();
-
             return appointments;
         }
 
@@ -61,7 +63,6 @@ namespace DataAccess.Service
                     GoogleMeetLink = ap.GoogleMeetLink
                 })
                 .ToListAsync();
-
             return appointments;
         }
 
@@ -80,7 +81,6 @@ namespace DataAccess.Service
                     GoogleMeetLink = ap.GoogleMeetLink
                 })
                 .FirstOrDefaultAsync();
-
             return appointment;
         }
 
@@ -94,22 +94,19 @@ namespace DataAccess.Service
             {
                 throw new Exception("Ngày bắt đầu phải từ ngày mai trở đi!");
             }
-            // Danh sách psychologist đủ điều kiện (chưa có lịch vào slot và date đó)
             var availablePsychologists = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
-                .Where(a => !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == slotId && ap.Date == date)) // Chặn psychologist đã có lịch
+                .Where(a => !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == slotId && ap.Date == date)) 
                 .ToListAsync();
             if (!availablePsychologists.Any())
             {
                 throw new Exception("Không còn psychologist trống trong slot này!");
             }
-            // Sắp xếp theo số cuộc hẹn ít nhất
             var selectedPsychologist = availablePsychologists
                 .OrderBy(p => _context.Appointments.Count(ap => ap.PsychologistId == p.AccId))
                 .ThenBy(p => p.AccId)
                 .First();
             string zoomMeetingLink = await CreateZoomMeeting();
-
             var appointment = new Appointment
             {
                 StudentId = studentId,
@@ -128,10 +125,8 @@ namespace DataAccess.Service
         {
             string zoomApiUrl = "https://api.zoom.us/v2/users/me/meetings";
             string accessToken = await GetZoomAccessToken();
-
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
             var meetingData = new
             {             
                 type = 2,
@@ -145,14 +140,11 @@ namespace DataAccess.Service
                     join_before_host = false
                 }
             };
-
             var response = await client.PostAsJsonAsync(zoomApiUrl, meetingData);
-
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Lỗi khi tạo Zoom Meeting: {await response.Content.ReadAsStringAsync()}");
             }
-
             var jsonResponse = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(jsonResponse);
             return doc.RootElement.GetProperty("join_url").GetString();
@@ -160,9 +152,9 @@ namespace DataAccess.Service
 
         private async Task<string> GetZoomAccessToken()
         {
-            string clientId = "QVsE_mlrQ8GCJS_PxVtmcg";
-            string clientSecret = "X90kcFaL64z7GJPhiA8HhMVRPF4Rpbi4";
-            string accountId = "wrcDrlfCRBOQkSDB0VEoVw";
+            string clientId = _configuration["ZoomService:ClientId"];
+            string clientSecret = _configuration["ZoomService:ClientSecret"];
+            string accountId = _configuration["ZoomService:AccountId"];
 
             using HttpClient client = new HttpClient();
             var authBytes = Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}");
@@ -170,28 +162,22 @@ namespace DataAccess.Service
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authBase64);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             var content = new FormUrlEncodedContent(new[]
             {
-        new KeyValuePair<string, string>("grant_type", "account_credentials"),
-        new KeyValuePair<string, string>("account_id", accountId)
-    });
-
+                new KeyValuePair<string, string>("grant_type", "account_credentials"),
+                new KeyValuePair<string, string>("account_id", accountId)
+            });
             Console.WriteLine("🔍 Sending request to Zoom OAuth...");
             Console.WriteLine($"🔹 Auth Header: Basic {authBase64}");
             Console.WriteLine($"🔹 Account ID: {accountId}");
-
             HttpResponseMessage response = await client.PostAsync("https://zoom.us/oauth/token", content);
             string responseContent = await response.Content.ReadAsStringAsync();
-
             Console.WriteLine($"🔍 Response Code: {response.StatusCode}");
             Console.WriteLine($"🔹 Response Body: {responseContent}");
-
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"❌ Lỗi lấy access token: {responseContent}");
             }
-
             using var doc = JsonDocument.Parse(responseContent);
             return doc.RootElement.GetProperty("access_token").GetString();
         }
@@ -199,10 +185,8 @@ namespace DataAccess.Service
         public async Task<bool> DeleteAppointment(int appointmentId)
         {
             var appointment = await _context.Appointments.FirstOrDefaultAsync(ap => ap.AppointmentId == appointmentId);
-
             if (appointment == null)
                 return false;
-
             appointment.IsDeleted = true;
             await _context.SaveChangesAsync();
             return true;
@@ -214,37 +198,28 @@ namespace DataAccess.Service
             {
                 throw new Exception("Ngày không hợp lệ! Định dạng đúng: yyyy-MM-dd");
             }
-
             var appointment = await _context.Appointments
                 .Where(ap => ap.AppointmentId == appointmentId && ap.IsDeleted == false)
                 .FirstOrDefaultAsync();
-
             if (appointment == null)
             {
                 throw new Exception("Appointment không tồn tại!");
             }
-
-            // Tìm psychologist phù hợp (không có lịch hẹn trùng ngày & slot)
             var availablePsychologist = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
                 .Where(a => !_context.Appointments
                     .Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == newDate))
-                .OrderBy(a => _context.Appointments.Count(ap => ap.PsychologistId == a.AccId)) // Ưu tiên psychologist ít lịch hẹn nhất
-                .ThenBy(a => a.AccId) // Nếu bằng nhau, chọn ID nhỏ nhất
+                .OrderBy(a => _context.Appointments.Count(ap => ap.PsychologistId == a.AccId))
+                .ThenBy(a => a.AccId) 
                 .FirstOrDefaultAsync();
-
             if (availablePsychologist == null)
             {
                 throw new Exception("Không có psychologist trống trong ngày và slot này!");
             }
-
-            // Cập nhật Appointment
             appointment.Date = newDate;
             appointment.SlotId = dto.SlotId;
             appointment.PsychologistId = availablePsychologist.AccId;
-
             await _context.SaveChangesAsync();
-
             return new ResAppointmentCreateDTO
             {
                 AppointmentId = appointment.AppointmentId,
@@ -255,6 +230,5 @@ namespace DataAccess.Service
                 DateCreated = appointment.DateCreated
             };
         }
-
     }
 }
