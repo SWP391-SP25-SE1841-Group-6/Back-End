@@ -29,6 +29,38 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("Parents")]
+        public async Task<IActionResult> GetAllParentAccounts()
+        {
+            var result = await _accountService.GetAllParentAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("Psychologists")]
+        public async Task<IActionResult> GetAllPsychologistAccounts()
+        {
+            var result = await _accountService.GetAllPsychologistAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("Students")]
+        public async Task<IActionResult> GetAllStudentAccounts()
+        {
+            var result = await _accountService.GetAllStudentAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
         [HttpGet("Unapproved")]
         public async Task<IActionResult> GetUnapproved()
         {

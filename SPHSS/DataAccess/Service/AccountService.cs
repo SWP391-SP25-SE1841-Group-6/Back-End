@@ -198,6 +198,67 @@ namespace DataAccess.Service
                 return res;
             }
         }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllParentAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Parent);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllPsychologistAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Psychologist);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentAccount()
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                var list = await _accountRepo.FindAsync(b => b.IsActivated == true && b.IsApproved == true && b.Role == RoleEnum.Student);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(list);
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Retrieved failed: {ex.Message}";
+                return res;
+            }
+        }
+
         public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount()
         {
             var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
