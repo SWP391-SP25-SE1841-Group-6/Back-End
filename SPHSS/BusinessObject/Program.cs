@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,8 +29,10 @@ public partial class Program
 
     public virtual Account Psychologist { get; set; } = null!;
 
+    public TypeEnum Type { get; set; }
+
     public int Capacity { get; set; }
 
-    public int? CurrentNumber { get; set; }
+    public int CurrentNumber { get; set; }
 
 }

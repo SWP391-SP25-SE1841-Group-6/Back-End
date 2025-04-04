@@ -17,6 +17,7 @@ namespace DataAccess.DTO.Res
         public string? GoogleMeetLink { get; set; }
         public int PsychologistId { get; set; }
         public int Capacity { get; set; }
+        public int CurrentNumber { get; set; }
 
     }
 }

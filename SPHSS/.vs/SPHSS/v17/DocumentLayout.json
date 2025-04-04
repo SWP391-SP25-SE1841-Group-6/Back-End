@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|d:\\desktop\\swp391\\back-end\\sphss\\sphss_controller\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\iservice\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|d:\\desktop\\swp391\\back-end\\sphss\\dataaccess\\service\\programservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\programservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\migrations\\20250404153808_addtypetoprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\migrations\\20250404153808_addtypetoprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|d:\\desktop\\swp391\\back-end\\sphss\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 322,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,53 +59,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IAccountService.cs",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IAccountService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IAccountService.cs",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IAccountService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\IService\\IAccountService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T13:31:52.766Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\appsettings.json",
-              "RelativeDocumentMoniker": "SPHSS_Controller\\appsettings.json",
-              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\SPHSS_Controller\\appsettings.json",
-              "RelativeToolTip": "SPHSS_Controller\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAB4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-04T13:31:21.377Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "ProgramService.cs",
               "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\ProgramService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\ProgramService.cs",
               "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\DataAccess\\Service\\ProgramService.cs",
               "RelativeToolTip": "DataAccess\\Service\\ProgramService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAAFgAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADIBAAAAAAAAAAAkwAYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T12:59:19.153Z",
+              "WhenOpened": "2025-04-04T15:40:25.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20250404153808_AddTypeToProgram.cs",
+              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Migrations\\20250404153808_AddTypeToProgram.cs",
+              "RelativeDocumentMoniker": "BusinessObject\\Migrations\\20250404153808_AddTypeToProgram.cs",
+              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Migrations\\20250404153808_AddTypeToProgram.cs",
+              "RelativeToolTip": "BusinessObject\\Migrations\\20250404153808_AddTypeToProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:38:09.386Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Account.cs",
+              "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Account.cs",
+              "RelativeDocumentMoniker": "BusinessObject\\Account.cs",
+              "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Account.cs",
+              "RelativeToolTip": "BusinessObject\\Account.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:35:48.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Program.cs",
               "RelativeDocumentMoniker": "BusinessObject\\Program.cs",
               "ToolTip": "D:\\Desktop\\SWP391\\Back-End\\SPHSS\\BusinessObject\\Program.cs",
               "RelativeToolTip": "BusinessObject\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAmwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T12:41:24.657Z"
+              "WhenOpened": "2025-04-04T15:35:07.748Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BusinessObject.Enum
 {
-    internal class TypeEnum
+    public enum TypeEnum
     {
+        Deprssion,
+        Anxiety,
+        AntiSocial,
+        PostTraumaticStress
     }
 }

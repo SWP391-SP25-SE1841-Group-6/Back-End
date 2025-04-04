@@ -59,7 +59,7 @@ namespace DataAccess.Service
                 GoogleMeetLink = zoomMeetingLink,
                 Capacity = dto.Capacity,
                 CurrentNumber = 0,
-                PsychologistId = 2
+                PsychologistId = 2 //them code o day
             };
             _context.Programs.Add(program);
             await _context.SaveChangesAsync();
@@ -74,7 +74,8 @@ namespace DataAccess.Service
                 SlotId = program.SlotId,
                 GoogleMeetLink = zoomMeetingLink,
                 Capacity = program.Capacity,
-                PsychologistId = program.PsychologistId
+                PsychologistId = program.PsychologistId,
+                CurrentNumber = program.CurrentNumber
             };
         }
 
@@ -92,7 +93,8 @@ namespace DataAccess.Service
                     SlotId = p.SlotId,
                     GoogleMeetLink = p.GoogleMeetLink,
                     PsychologistId = p.PsychologistId,
-                    Capacity = p.Capacity
+                    Capacity = p.Capacity,
+                    CurrentNumber = p.CurrentNumber
                 })
                 .ToListAsync();
 
@@ -105,12 +107,10 @@ namespace DataAccess.Service
 
             if (program == null)
             {
-                return false; // Không tìm thấy chương trình
+                return false; 
             }
-
-            program.IsDeleted = true; // Chuyển trạng thái thành đã xóa
+            program.IsDeleted = true; 
             await _context.SaveChangesAsync();
-
             return true;
         }
 
@@ -158,7 +158,8 @@ namespace DataAccess.Service
                 SlotId = program.SlotId,
                 Capacity = program.Capacity,
                 PsychologistId = program.PsychologistId,
-                GoogleMeetLink = program.GoogleMeetLink
+                GoogleMeetLink = program.GoogleMeetLink,
+                CurrentNumber = program.CurrentNumber
             };
         }
 
@@ -170,7 +171,7 @@ namespace DataAccess.Service
 
             if (program == null)
             {
-                return null; // Không tìm thấy hoặc đã bị xóa
+                return null; 
             }
 
             return new ResProgramCreateDTO
@@ -182,7 +183,9 @@ namespace DataAccess.Service
                 IsDeleted = program.IsDeleted,
                 SlotId = program.SlotId,
                 Capacity = program.Capacity,
-                PsychologistId = program.PsychologistId
+                GoogleMeetLink = program.GoogleMeetLink,
+                PsychologistId = program.PsychologistId,
+                CurrentNumber = program.CurrentNumber
             };
         }
 
@@ -203,7 +206,8 @@ namespace DataAccess.Service
                     DateCreated = p.Program.DateCreated,
                     IsDeleted = p.Program.IsDeleted,
                     SlotId = p.Program.SlotId,
-                    PsychologistId = p.Program.PsychologistId
+                    PsychologistId = p.Program.PsychologistId,
+                    GoogleMeetLink = p.Program.GoogleMeetLink
                 })
                 .ToListAsync();
 
@@ -255,7 +259,6 @@ namespace DataAccess.Service
 
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
             var meetingData = new
             {
                 topic = topic,
@@ -270,14 +273,12 @@ namespace DataAccess.Service
                     join_before_host = false
                 }
             };
-
             var response = await client.PostAsJsonAsync(zoomApiUrl, meetingData);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Lỗi khi tạo Zoom Meeting: {await response.Content.ReadAsStringAsync()}");
             }
-
             var jsonResponse = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(jsonResponse);
             return doc.RootElement.GetProperty("join_url").GetString();
@@ -288,35 +289,27 @@ namespace DataAccess.Service
             string clientId = _configuration["ZoomService:ClientId"];
             string clientSecret = _configuration["ZoomService:ClientSecret"];
             string accountId = _configuration["ZoomService:AccountId"];
-
             using HttpClient client = new HttpClient();
             var authBytes = Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}");
             string authBase64 = Convert.ToBase64String(authBytes);
-
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authBase64);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             var content = new FormUrlEncodedContent(new[]
             {
-        new KeyValuePair<string, string>("grant_type", "account_credentials"),
-        new KeyValuePair<string, string>("account_id", accountId)
-    });
-
+                new KeyValuePair<string, string>("grant_type", "account_credentials"),
+                new KeyValuePair<string, string>("account_id", accountId)
+            });
             Console.WriteLine("🔍 Sending request to Zoom OAuth...");
             Console.WriteLine($"🔹 Auth Header: Basic {authBase64}");
             Console.WriteLine($"🔹 Account ID: {accountId}");
-
             HttpResponseMessage response = await client.PostAsync("https://zoom.us/oauth/token", content);
             string responseContent = await response.Content.ReadAsStringAsync();
-
             Console.WriteLine($"🔍 Response Code: {response.StatusCode}");
             Console.WriteLine($"🔹 Response Body: {responseContent}");
-
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"❌ Lỗi lấy access token: {responseContent}");
+                throw new Exception($"Lỗi lấy access token: {responseContent}");
             }
-
             using var doc = JsonDocument.Parse(responseContent);
             return doc.RootElement.GetProperty("access_token").GetString();
         }
