@@ -9,8 +9,8 @@ namespace DataAccess.DTO.Req
     public class ProgramUpdateDTO
     {
         public string ProgramName { get; set; } = null!;
-        public String DateStart { get; set; }
-        public String? DateEnd { get; set; }
+        public String Date { get; set; }
         public int SlotId { get; set; }
+        public int Capacity { get; set; }
     }
 }

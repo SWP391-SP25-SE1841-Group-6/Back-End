@@ -10,12 +10,13 @@ namespace DataAccess.DTO.Res
     {
         public int ProgramId { get; set; }
         public string ProgramName { get; set; } = null!;
-        public DateOnly DateStart { get; set; }
-        public DateOnly? DateEnd { get; set; }
+        public DateOnly Date { get; set; }
         public DateTime DateCreated { get; set; }
         public bool? IsDeleted { get; set; }
         public int SlotId { get; set; }
         public string? GoogleMeetLink { get; set; }
+        public int PsychologistId { get; set; }
+        public int Capacity { get; set; }
 
     }
 }

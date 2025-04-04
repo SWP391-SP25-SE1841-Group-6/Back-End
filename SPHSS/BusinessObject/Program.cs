@@ -10,13 +10,10 @@ public partial class Program
 
     public string ProgramName { get; set; } = null!;
 
-    public DateTime DateCreated { get; set; }
+    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
     [Column(TypeName = "date")]
-    public DateOnly DateStart { get; set; }
-
-    [Column(TypeName = "date")]
-    public DateOnly? DateEnd { get; set; }
+    public DateOnly Date { get; set; }
 
     public bool? IsDeleted { get; set; }
 
@@ -26,5 +23,13 @@ public partial class Program
     public Slot Slot { get; set; } = null!;
 
     public virtual ICollection<ProgramSignup> ProgramSignups { get; set; } = new List<ProgramSignup>();
+
+    public int PsychologistId { get; set; }
+
+    public virtual Account Psychologist { get; set; } = null!;
+
+    public int Capacity { get; set; }
+
+    public int? CurrentNumber { get; set; }
 
 }

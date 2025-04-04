@@ -167,14 +167,17 @@ namespace BusinessObject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgramId"));
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CurrentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateOnly?>("DateEnd")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly>("DateStart")
-                        .HasColumnType("date");
 
                     b.Property<string>("GoogleMeetLink")
                         .HasColumnType("nvarchar(max)");
@@ -191,11 +194,16 @@ namespace BusinessObject.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Program_Name");
 
+                    b.Property<int>("PsychologistId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SlotId")
                         .HasColumnType("int");
 
                     b.HasKey("ProgramId")
                         .HasName("PK__Program__86CD63DA64465F33");
+
+                    b.HasIndex("PsychologistId");
 
                     b.HasIndex("SlotId");
 
@@ -509,11 +517,19 @@ namespace BusinessObject.Migrations
 
             modelBuilder.Entity("BusinessObject.Program", b =>
                 {
+                    b.HasOne("BusinessObject.Account", "Psychologist")
+                        .WithMany()
+                        .HasForeignKey("PsychologistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BusinessObject.Slot", "Slot")
                         .WithMany("Programs")
                         .HasForeignKey("SlotId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Psychologist");
 
                     b.Navigation("Slot");
                 });
