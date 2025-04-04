@@ -18,6 +18,7 @@ namespace DataAccess.Service.IService
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentAccount();
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllPsychologistAccount();
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllParentAccount();
+        Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentsAccountByParent(int parentId);
         Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount();
         Task<ResFormat<ResAccountCreateDTO>> GetAccountById(int id);
         Task<ResFormat<ResAccountLoginDTO>> Login(string email, string password);

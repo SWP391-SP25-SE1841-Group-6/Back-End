@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,20 +11,36 @@
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\iservice\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\testresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\testresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\testresultservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\testresultservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\service\\testresultservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\service\\testresultservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\mapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\di.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{856E71BE-54B7-4D2D-933C-544A771D29FE}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{62E1A98A-41C7-42DE-BC3D-083653A8EAEC}|DataAccess\\DataAccess.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\dataaccess\\dto\\req\\accountregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -73,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|c:\\users\\admin\\desktop\\fpt\\extra_learn_swp\\project\\back-end\\sphss\\sphss_controller\\controllers\\testresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44343A11-DE21-4FA7-AFA0-831FE98411C7}|SPHSS_Controller\\SPHSS_Controller.csproj|solutionrelative:sphss_controller\\controllers\\testresultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -107,51 +107,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Mapper.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Mapper.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
-              "RelativeToolTip": "DataAccess\\Mapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T07:17:09.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DI.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
-              "RelativeDocumentMoniker": "DataAccess\\DI.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
-              "RelativeToolTip": "DataAccess\\DI.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T07:17:03.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "AccountService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\AccountService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\AccountService.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\AccountService.cs",
               "RelativeToolTip": "DataAccess\\Service\\AccountService.cs",
-              "ViewState": "AQIAANsAAAAAAAAAAAAqwAMBAAAJAAAA",
+              "ViewState": "AQIAAAABAAAAAAAAAAASwBkBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T06:12:08.396Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "IAccountService.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IAccountService.cs",
               "RelativeDocumentMoniker": "DataAccess\\Service\\IService\\IAccountService.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\IService\\IAccountService.cs",
               "RelativeToolTip": "DataAccess\\Service\\IService\\IAccountService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABQAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAnwBQAAABmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T07:05:41.624Z",
               "EditorCaption": ""
@@ -164,14 +138,66 @@
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\AccountController.cs",
               "RelativeToolTip": "SPHSS_Controller\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAA8wD4AAAAJAAAA",
+              "ViewState": "AQIAADQAAAAAAAAAAAAkwE4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T06:10:28.639Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestResultController.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestResultController.cs",
+              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\TestResultController.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestResultController.cs",
+              "RelativeToolTip": "SPHSS_Controller\\Controllers\\TestResultController.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAQwDMAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T06:10:23.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TestResultService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\TestResultService.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Service\\TestResultService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\TestResultService.cs",
+              "RelativeToolTip": "DataAccess\\Service\\TestResultService.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAkwCkAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T06:12:05.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "BlogService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Service\\BlogService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
+              "RelativeToolTip": "DataAccess\\Service\\BlogService.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T06:50:20.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Mapper.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Mapper.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Mapper.cs",
+              "RelativeToolTip": "DataAccess\\Mapper.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAkwBcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T07:17:09.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Account.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\BusinessObject\\Account.cs",
               "RelativeDocumentMoniker": "BusinessObject\\Account.cs",
@@ -179,50 +205,23 @@
               "RelativeToolTip": "BusinessObject\\Account.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T07:05:15.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T07:05:15.298Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "BlogService.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\BlogService.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\BlogService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\BlogService.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAkwAAAAAAAAAAA",
+              "Title": "DI.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
+              "RelativeDocumentMoniker": "DataAccess\\DI.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DI.cs",
+              "RelativeToolTip": "DataAccess\\DI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T06:50:20.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T07:17:03.252Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "TestResultController.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestResultController.cs",
-              "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\TestResultController.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestResultController.cs",
-              "RelativeToolTip": "SPHSS_Controller\\Controllers\\TestResultController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T06:10:23.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TestResultService.cs",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\TestResultService.cs",
-              "RelativeDocumentMoniker": "DataAccess\\Service\\TestResultService.cs",
-              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\Service\\TestResultService.cs",
-              "RelativeToolTip": "DataAccess\\Service\\TestResultService.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T06:12:05.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "BlogController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\BlogController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\BlogController.cs",
@@ -230,12 +229,11 @@
               "RelativeToolTip": "SPHSS_Controller\\Controllers\\BlogController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T06:10:48.193Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T06:10:48.193Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "AccountRegisterDTO.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\DataAccess\\DTO\\Req\\AccountRegisterDTO.cs",
               "RelativeDocumentMoniker": "DataAccess\\DTO\\Req\\AccountRegisterDTO.cs",
@@ -247,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\appsettings.json",
               "RelativeDocumentMoniker": "SPHSS_Controller\\appsettings.json",
@@ -259,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\WeatherForecastController.cs",
@@ -271,7 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "QuestionTypeController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionTypeController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\QuestionTypeController.cs",
@@ -283,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "QuestionController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\QuestionController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\QuestionController.cs",
@@ -295,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "ProgramController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\ProgramController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\ProgramController.cs",
@@ -307,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AppointmentController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\AppointmentController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\AppointmentController.cs",
@@ -319,7 +317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "TestController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\TestController.cs",
@@ -331,7 +329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "TestQuestionController.cs",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\FPT\\EXTRA_LEARN_SWP\\PROJECT\\Back-End\\SPHSS\\SPHSS_Controller\\Controllers\\TestQuestionController.cs",
               "RelativeDocumentMoniker": "SPHSS_Controller\\Controllers\\TestQuestionController.cs",

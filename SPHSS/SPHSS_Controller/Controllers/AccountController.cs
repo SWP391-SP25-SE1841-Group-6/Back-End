@@ -61,6 +61,22 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("StudentsByParent")]
+        public async Task<IActionResult> GetAllStudentsAccountByParent()
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _accountService.GetAllStudentsAccountByParent(user.AccId);
+            if (result == null || !result.Success)
+            {
+                return NotFound(result?.Message ?? "Failed to retrieve student accounts.");
+            }
+            return Ok(result);
+        }
         [HttpGet("Unapproved")]
         public async Task<IActionResult> GetUnapproved()
         {

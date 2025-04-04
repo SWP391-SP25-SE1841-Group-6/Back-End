@@ -259,6 +259,28 @@ namespace DataAccess.Service
             }
         }
 
+        public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllStudentsAccountByParent(int parentId)
+        {
+            var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
+            try
+            {
+                // Find all student accounts with the same ParentId as the provided parentId
+                var studentAccounts = await _accountRepo.FindAsync(a => a.IsActivated == true && a.IsApproved == true && a.ParentId == parentId && a.Role == RoleEnum.Student);
+                var resList = _mapper.Map<IEnumerable<ResAccountCreateDTO>>(studentAccounts);
+
+                res.Success = true;
+                res.Data = resList;
+                res.Message = "Retrieved successfully";
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed to retrieve student accounts: {ex.Message}";
+                return res;
+            }
+        }
+
         public async Task<ResFormat<IEnumerable<ResAccountCreateDTO>>> GetAllUnapprovedAccount()
         {
             var res = new ResFormat<IEnumerable<ResAccountCreateDTO>>();
