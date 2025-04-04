@@ -81,6 +81,25 @@ namespace DataAccess.Service
 
             return res;
         }
+        public async Task<ResFormat<IEnumerable<ResTestResultDTO>>> GetTestResultsByStudentIdAsync(int studentId)
+        {
+            var res = new ResFormat<IEnumerable<ResTestResultDTO>>();
+            try
+            {
+                var testResults = await _testResultRepo.GetTestResultsByStudentAsync(studentId);
+                var resultDTOs = _mapper.Map<IEnumerable<ResTestResultDTO>>(testResults);
+                res.Success = true;
+                res.Data = resultDTOs;
+                res.Message = "Test Results Retrieved Successfully";
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed to retrieve Test Results: {ex.Message}";
+            }
+
+            return res;
+        }
 
         public async Task<ResFormat<bool>> AddTestResultAsync(TestResultCreateDTO testResultCreateDTO, int userId)
         {

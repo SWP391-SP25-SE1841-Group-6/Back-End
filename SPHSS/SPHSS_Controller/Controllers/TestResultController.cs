@@ -47,6 +47,16 @@ namespace SPHSS_Controller.Controllers
             var result = await _testResultService.GetTestResultByStudentAsync(user.AccId, testId);
             return Ok(result);
         }
+        [HttpGet("student/{studentId}")]
+        public async Task<IActionResult> GetTestResultsByStudentId(int studentId)
+        {
+            var result = await _testResultService.GetTestResultsByStudentIdAsync(studentId);
+            if (result == null || !result.Success)
+            {
+                return NotFound(result?.Message ?? "Failed to retrieve test results.");
+            }
+            return Ok(result);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetTestResultsByStudent()
