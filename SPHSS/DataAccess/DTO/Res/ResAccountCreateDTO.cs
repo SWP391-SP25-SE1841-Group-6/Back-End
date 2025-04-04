@@ -21,6 +21,8 @@ namespace DataAccess.DTO.Res
         public bool? Gender { get; set; }
 
         public RoleEnum Role { get; set; }
+        public int? ParentId { get; set; }
+
 
         public bool? IsActivated { get; set; }
 
