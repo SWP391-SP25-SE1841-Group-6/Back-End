@@ -11,7 +11,7 @@ namespace DataAccess.Service.IService
 {
     public interface IAppointmentService
     {
-        Task<Appointment> CreateAppointment(int studentId, int slotId, String date);
+        Task<Appointment> CreateAppointment(int studentId, int slotId, string date);
         Task<List<ResAppointmentCreateDTO>> GetAllAppointments();
         Task<ResAppointmentCreateDTO?> GetAppointmentById(int appointmentId);
         Task<bool> DeleteAppointment(int appointmentId);

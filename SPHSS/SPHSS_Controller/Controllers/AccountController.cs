@@ -29,6 +29,54 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("Parents")]
+        public async Task<IActionResult> GetAllParentAccounts()
+        {
+            var result = await _accountService.GetAllParentAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("Psychologists")]
+        public async Task<IActionResult> GetAllPsychologistAccounts()
+        {
+            var result = await _accountService.GetAllPsychologistAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("Students")]
+        public async Task<IActionResult> GetAllStudentAccounts()
+        {
+            var result = await _accountService.GetAllStudentAccount();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpGet("StudentsByParent")]
+        public async Task<IActionResult> GetAllStudentsAccountByParent()
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _accountService.GetAllStudentsAccountByParent(user.AccId);
+            if (result == null || !result.Success)
+            {
+                return NotFound(result?.Message ?? "Failed to retrieve student accounts.");
+            }
+            return Ok(result);
+        }
         [HttpGet("Unapproved")]
         public async Task<IActionResult> GetUnapproved()
         {
@@ -46,6 +94,32 @@ namespace SPHSS_Controller.Controllers
             if (result == null)
             {
                 return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpPost("RegisterParent")]
+        public async Task<IActionResult> RegisterParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var result = await _accountService.RegisterParent(accountRegisterDTO);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to register parent account.");
+            }
+            return Ok(result);
+        }
+        [HttpPost("RegisterStudentByParent")]
+        public async Task<IActionResult> RegisterStudentByParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _accountService.RegisterStudentByParent(accountRegisterDTO, user.AccId);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to register student account.");
             }
             return Ok(result);
         }

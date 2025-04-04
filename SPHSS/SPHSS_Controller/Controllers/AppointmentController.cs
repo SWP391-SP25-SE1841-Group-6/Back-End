@@ -11,10 +11,12 @@ namespace SPHSS_Controller.Controllers
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly IAccountService _accountService;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService, IAccountService accountService)
         {
             _appointmentService = appointmentService;
+            _accountService = accountService;
         }
 
         [HttpGet("GetAll")]
@@ -74,13 +76,18 @@ namespace SPHSS_Controller.Controllers
         [HttpPost("CreateAppointment")]
         public async Task<IActionResult> CreateAppointment([FromBody] AppointmentCreateDTO dto)
         {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             try
             {
                 if (dto == null)
                 {
                     return BadRequest(new { Message = "Dữ liệu không hợp lệ!" });
                 }
-                var appointment = await _appointmentService.CreateAppointment(dto.StudentID, dto.SlotID, dto.Date);
+                var appointment = await _appointmentService.CreateAppointment(user.AccId, dto.SlotID, dto.Date);
                 return Ok(new
                 {
                     Message = "Đặt lịch thành công!",

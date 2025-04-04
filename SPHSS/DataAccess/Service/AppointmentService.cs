@@ -116,7 +116,7 @@ namespace DataAccess.Service
                 PsychologistId = selectedPsychologist.AccId,
                 SlotId = slotId,
                 Date = date,
-                DateCreated = DateTime.UtcNow,
+                DateCreated = DateTime.Now,
                 GoogleMeetLink = zoomMeetingLink
             };
             _context.Appointments.Add(appointment);

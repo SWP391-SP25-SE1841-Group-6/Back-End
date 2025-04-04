@@ -81,6 +81,25 @@ namespace DataAccess.Service
 
             return res;
         }
+        public async Task<ResFormat<IEnumerable<ResTestResultDTO>>> GetTestResultsByStudentIdAsync(int studentId)
+        {
+            var res = new ResFormat<IEnumerable<ResTestResultDTO>>();
+            try
+            {
+                var testResults = await _testResultRepo.GetTestResultsByStudentAsync(studentId);
+                var resultDTOs = _mapper.Map<IEnumerable<ResTestResultDTO>>(testResults);
+                res.Success = true;
+                res.Data = resultDTOs;
+                res.Message = "Test Results Retrieved Successfully";
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed to retrieve Test Results: {ex.Message}";
+            }
+
+            return res;
+        }
 
         public async Task<ResFormat<bool>> AddTestResultAsync(TestResultCreateDTO testResultCreateDTO, int userId)
         {
@@ -162,6 +181,44 @@ namespace DataAccess.Service
             {
                 res.Success = false;
                 res.Message = $"Failed to create Test Result: {ex.Message}";
+            }
+
+            return res;
+        }
+
+        public async Task<ResFormat<bool>> CheckIfStudentHasDoneNewestTestAsync(int studentId)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                // Get the newest created test that is not deleted
+                var newestTest = await _testResultRepo.GetNewestTestAsync();
+                if (newestTest == null)
+                {
+                    res.Success = false;
+                    res.Message = "No tests available.";
+                    return res;
+                }
+
+                // Check if the student has done the newest test
+                var testResult = await _testResultRepo.GetTestResultByStudentAsync(studentId, newestTest.TestId);
+                if (testResult != null)
+                {
+                    res.Success = true;
+                    res.Data = true; // Student has done the newest test
+                    res.Message = "Student has already done the newest test.";
+                }
+                else
+                {
+                    res.Success = true;
+                    res.Data = false; // Student has not done the newest test
+                    res.Message = "Student has not done the newest test. Please complete the newest test.";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Failed to check test status: {ex.Message}";
             }
 
             return res;

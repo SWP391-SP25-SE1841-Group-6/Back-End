@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinessObject.Migrations
 {
     [DbContext(typeof(SphssContext))]
-    [Migration("20250308082704_DoubleScore")]
-    partial class DoubleScore
+    [Migration("20250313041038_dtb")]
+    partial class dtb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,16 +86,16 @@ namespace BusinessObject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
 
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateEnd")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("GoogleMeetLink")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
@@ -105,12 +105,17 @@ namespace BusinessObject.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PsychologistID");
 
+                    b.Property<int>("SlotId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StudentId")
                         .HasColumnType("int")
                         .HasColumnName("StudentID");
 
                     b.HasKey("AppointmentId")
                         .HasName("PK__Appointm__8ECDFCA2A827AF28");
+
+                    b.HasIndex("SlotId");
 
                     b.HasIndex(new[] { "PsychologistId" }, "IX_Appointment_PsychologistID");
 
@@ -168,11 +173,14 @@ namespace BusinessObject.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateEnd")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("DateEnd")
+                        .HasColumnType("date");
 
-                    b.Property<DateTime>("DateStart")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("DateStart")
+                        .HasColumnType("date");
+
+                    b.Property<string>("GoogleMeetLink")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -186,8 +194,13 @@ namespace BusinessObject.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Program_Name");
 
+                    b.Property<int>("SlotId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProgramId")
                         .HasName("PK__Program__86CD63DA64465F33");
+
+                    b.HasIndex("SlotId");
 
                     b.ToTable("Program", (string)null);
                 });
@@ -280,24 +293,11 @@ namespace BusinessObject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SlotId"));
 
-                    b.Property<int?>("AppointmentId")
-                        .HasColumnType("int")
-                        .HasColumnName("AppointmentID");
-
-                    b.Property<string>("DayOfWeek")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
                         .HasColumnName("isDeleted");
-
-                    b.Property<int>("ProgramId")
-                        .HasColumnType("int")
-                        .HasColumnName("ProgramID");
 
                     b.Property<TimeOnly>("TimeEnd")
                         .HasColumnType("time");
@@ -307,10 +307,6 @@ namespace BusinessObject.Migrations
 
                     b.HasKey("SlotId")
                         .HasName("PK__Slots__0A124A4F583FCF37");
-
-                    b.HasIndex(new[] { "AppointmentId" }, "IX_Slots_AppointmentID");
-
-                    b.HasIndex(new[] { "ProgramId" }, "IX_Slots_ProgramID");
 
                     b.ToTable("Slots");
                 });
@@ -485,6 +481,12 @@ namespace BusinessObject.Migrations
                         .IsRequired()
                         .HasConstraintName("FK__Appointme__Psych__412EB0B6");
 
+                    b.HasOne("BusinessObject.Slot", "Slot")
+                        .WithMany("Appointments")
+                        .HasForeignKey("SlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BusinessObject.Account", "Student")
                         .WithMany("AppointmentStudents")
                         .HasForeignKey("StudentId")
@@ -492,6 +494,8 @@ namespace BusinessObject.Migrations
                         .HasConstraintName("FK__Appointme__Stude__4222D4EF");
 
                     b.Navigation("Psychologist");
+
+                    b.Navigation("Slot");
 
                     b.Navigation("Student");
                 });
@@ -504,6 +508,17 @@ namespace BusinessObject.Migrations
                         .HasConstraintName("FK_Blog_Account");
 
                     b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("BusinessObject.Program", b =>
+                {
+                    b.HasOne("BusinessObject.Slot", "Slot")
+                        .WithMany("Programs")
+                        .HasForeignKey("SlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Slot");
                 });
 
             modelBuilder.Entity("BusinessObject.ProgramSignup", b =>
@@ -533,24 +548,6 @@ namespace BusinessObject.Migrations
                         .HasConstraintName("FK__Questions__QType__45F365D3");
 
                     b.Navigation("Qtype");
-                });
-
-            modelBuilder.Entity("BusinessObject.Slot", b =>
-                {
-                    b.HasOne("BusinessObject.Appointment", "Appointment")
-                        .WithMany("Slots")
-                        .HasForeignKey("AppointmentId")
-                        .HasConstraintName("FK_Slots_Appointment");
-
-                    b.HasOne("BusinessObject.Program", "Program")
-                        .WithMany("Slots")
-                        .HasForeignKey("ProgramId")
-                        .IsRequired()
-                        .HasConstraintName("FK__Slots__ProgramID__46E78A0C");
-
-                    b.Navigation("Appointment");
-
-                    b.Navigation("Program");
                 });
 
             modelBuilder.Entity("BusinessObject.TestQuestion", b =>
@@ -634,16 +631,9 @@ namespace BusinessObject.Migrations
                     b.Navigation("TestResults");
                 });
 
-            modelBuilder.Entity("BusinessObject.Appointment", b =>
-                {
-                    b.Navigation("Slots");
-                });
-
             modelBuilder.Entity("BusinessObject.Program", b =>
                 {
                     b.Navigation("ProgramSignups");
-
-                    b.Navigation("Slots");
                 });
 
             modelBuilder.Entity("BusinessObject.Question", b =>
@@ -654,6 +644,13 @@ namespace BusinessObject.Migrations
             modelBuilder.Entity("BusinessObject.QuestionType", b =>
                 {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("BusinessObject.Slot", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("Programs");
                 });
 
             modelBuilder.Entity("BusinessObject.Test", b =>
