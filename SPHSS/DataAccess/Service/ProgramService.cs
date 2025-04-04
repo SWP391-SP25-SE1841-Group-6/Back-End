@@ -244,6 +244,10 @@ namespace DataAccess.Service
             {
                 throw new Exception("Chương trình không tồn tại hoặc đã bị xóa!");
             }
+            if (program.CurrentNumber >= program.Capacity) // Kiểm tra nếu đủ số người
+            {
+                throw new Exception("Chương trình này đã đủ số người!");
+            }
             var student = await _context.Accounts.FirstOrDefaultAsync(a => a.AccId == studentId && a.IsActivated == true && a.IsApproved == true);
             if (student == null)
             {
@@ -262,6 +266,10 @@ namespace DataAccess.Service
                 DateAdded = DateTime.Now
             };
             _context.ProgramSignups.Add(programSignup);
+
+            program.CurrentNumber += 1;
+            _context.Programs.Update(program);
+
             await _context.SaveChangesAsync();
 
             return new ResProgramSignupDTO
