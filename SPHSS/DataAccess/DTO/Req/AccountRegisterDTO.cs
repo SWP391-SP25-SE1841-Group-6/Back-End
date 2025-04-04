@@ -19,6 +19,7 @@ namespace DataAccess.DTO.Req
 
         public bool? Gender { get; set; }
         public RoleEnum Role { get; set; }
+        public int? ParentId { get; set; }
 
     }
 }
