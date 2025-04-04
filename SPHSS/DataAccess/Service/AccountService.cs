@@ -279,7 +279,7 @@ namespace DataAccess.Service
                     mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     /*mapp.Role = Enum.RoleEnum;*/
                     mapp.IsActivated = true;
-                    mapp.IsApproved = false;
+                    mapp.IsApproved = true;
                     await _accountRepo.AddAsync(mapp);
                     res.Success = true;
                     res.Data = true;
