@@ -92,11 +92,14 @@ namespace DataAccess.Service
             }
             if (date <= DateOnly.FromDateTime(DateTime.Now))
             {
-                throw new Exception("Ngày bắt đầu phải từ ngày mai trở đi!");
+                throw new Exception("Ngày phải từ ngày mai trở đi!");
             }
+
             var availablePsychologists = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
-                .Where(a => !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == slotId && ap.Date == date)) 
+                .Where(a => 
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == slotId && ap.Date == date) && 
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == slotId && pr.Date == date)) 
                 .ToListAsync();
             if (!availablePsychologists.Any())
             {
@@ -106,6 +109,7 @@ namespace DataAccess.Service
                 .OrderBy(p => _context.Appointments.Count(ap => ap.PsychologistId == p.AccId))
                 .ThenBy(p => p.AccId)
                 .First();
+
             string zoomMeetingLink = await CreateZoomMeeting();
             var appointment = new Appointment
             {

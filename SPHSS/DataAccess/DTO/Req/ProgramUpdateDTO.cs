@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace DataAccess.DTO.Req
         public String Date { get; set; }
         public int SlotId { get; set; }
         public int Capacity { get; set; }
+        public TypeEnum Type { get; set; }
     }
 }

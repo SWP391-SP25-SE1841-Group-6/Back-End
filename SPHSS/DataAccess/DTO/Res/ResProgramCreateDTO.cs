@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObject.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace DataAccess.DTO.Res
         public int SlotId { get; set; }
         public string? GoogleMeetLink { get; set; }
         public int PsychologistId { get; set; }
+        public TypeEnum Type { get; set; }
         public int Capacity { get; set; }
         public int CurrentNumber { get; set; }
 

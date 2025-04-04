@@ -88,11 +88,17 @@ namespace SPHSS_Controller.Controllers
         [HttpGet("GetProgramByStudentId")]
         public async Task<IActionResult> GetProgramByStudentId(int studentId)
         {
-            var program = await _programService.GetProgramByStudentId(studentId);
-
-            if (program == null)
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
             {
-                return NotFound(new { message = "Chương trình không tồn tại hoặc đã bị xóa!" });
+                return Unauthorized();
+            }
+
+            var program = await _programService.GetProgramByStudentId(user.AccId);
+
+            if (!program.Any())
+            {
+                return NotFound(new { message = "Bạn chưa tham gia chương trình nào cả!" });
             }
 
             return Ok(program);

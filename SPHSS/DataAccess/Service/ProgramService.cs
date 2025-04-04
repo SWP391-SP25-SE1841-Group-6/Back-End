@@ -15,6 +15,7 @@ using System.Text.Json;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
+using BusinessObject.Enum;
 
 namespace DataAccess.Service
 {
@@ -35,17 +36,30 @@ namespace DataAccess.Service
             {
                 throw new Exception("Ngày bắt đầu không hợp lệ! Định dạng đúng: yyyy-MM-dd");
             }
-
-            // Kiểm tra ngày bắt đầu phải từ hôm nay trở đi
             if (date < DateOnly.FromDateTime(DateTime.Now))
             {
-                throw new Exception("Ngày bắt đầu phải từ hôm nay trở đi!");
+                throw new Exception("Ngày phải từ hôm nay trở đi!");
             }
             var slotExists = await _context.Slots.AnyAsync(s => s.SlotId == dto.SlotId);
             if (!slotExists)
             {
                 throw new Exception("Slot không tồn tại!");
             }
+
+            var availablePsychologists = await _context.Accounts
+                .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
+                .Where(a =>
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == date) &&
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == dto.SlotId && pr.Date == date))
+                .ToListAsync();
+            if (!availablePsychologists.Any())
+            {
+                throw new Exception("Không còn psychologist trống trong slot này!");
+            }
+            var selectedPsychologist = availablePsychologists
+                .OrderBy(p => _context.Appointments.Count(ap => ap.PsychologistId == p.AccId))
+                .ThenBy(p => p.AccId)
+                .First();
 
             string zoomMeetingLink = await CreateZoomMeeting(dto.ProgramName);
 
@@ -58,8 +72,9 @@ namespace DataAccess.Service
                 SlotId = dto.SlotId,            
                 GoogleMeetLink = zoomMeetingLink,
                 Capacity = dto.Capacity,
+                Type = dto.Type,
                 CurrentNumber = 0,
-                PsychologistId = 2 //them code o day
+                PsychologistId = selectedPsychologist.AccId
             };
             _context.Programs.Add(program);
             await _context.SaveChangesAsync();
@@ -75,6 +90,7 @@ namespace DataAccess.Service
                 GoogleMeetLink = zoomMeetingLink,
                 Capacity = program.Capacity,
                 PsychologistId = program.PsychologistId,
+                Type = program.Type,
                 CurrentNumber = program.CurrentNumber
             };
         }
@@ -93,6 +109,7 @@ namespace DataAccess.Service
                     SlotId = p.SlotId,
                     GoogleMeetLink = p.GoogleMeetLink,
                     PsychologistId = p.PsychologistId,
+                    Type = p.Type,
                     Capacity = p.Capacity,
                     CurrentNumber = p.CurrentNumber
                 })
@@ -144,8 +161,8 @@ namespace DataAccess.Service
             program.SlotId = dto.SlotId;
             program.Capacity = dto.Capacity;
             program.PsychologistId = program.PsychologistId;
+            program.Type = dto.Type;
             program.GoogleMeetLink = program.GoogleMeetLink;
-
             await _context.SaveChangesAsync();
 
             return new ResProgramCreateDTO
@@ -158,6 +175,7 @@ namespace DataAccess.Service
                 SlotId = program.SlotId,
                 Capacity = program.Capacity,
                 PsychologistId = program.PsychologistId,
+                Type = program.Type,
                 GoogleMeetLink = program.GoogleMeetLink,
                 CurrentNumber = program.CurrentNumber
             };
@@ -185,6 +203,7 @@ namespace DataAccess.Service
                 Capacity = program.Capacity,
                 GoogleMeetLink = program.GoogleMeetLink,
                 PsychologistId = program.PsychologistId,
+                Type = program.Type,
                 CurrentNumber = program.CurrentNumber
             };
         }
@@ -207,7 +226,9 @@ namespace DataAccess.Service
                     IsDeleted = p.Program.IsDeleted,
                     SlotId = p.Program.SlotId,
                     PsychologistId = p.Program.PsychologistId,
-                    GoogleMeetLink = p.Program.GoogleMeetLink
+                    GoogleMeetLink = p.Program.GoogleMeetLink,
+                    Capacity = p.Program.Capacity,
+                    CurrentNumber = p.Program.CurrentNumber
                 })
                 .ToListAsync();
 
