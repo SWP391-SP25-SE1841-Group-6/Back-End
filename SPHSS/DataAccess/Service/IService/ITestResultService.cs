@@ -15,5 +15,6 @@ namespace DataAccess.Service.IService
         Task<ResFormat<IEnumerable<ResTestResultDTO>>> GetTestResultsByStudentAsync(int studentId);
         Task<ResFormat<bool>> AddTestResultAsync(TestResultCreateDTO testResultCreateDTO, int userId);
         Task<ResFormat<IEnumerable<ResTestResultDTO>>> GetTestResultsByStudentIdAsync(int studentId);
+        Task<ResFormat<bool>> CheckIfStudentHasDoneNewestTestAsync(int studentId);
     }
 }

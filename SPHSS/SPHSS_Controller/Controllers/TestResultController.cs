@@ -69,5 +69,21 @@ namespace SPHSS_Controller.Controllers
             var result = await _testResultService.GetTestResultsByStudentAsync(user.AccId);
             return Ok(result);
         }
+        [HttpGet("check-newest-test")]
+        public async Task<IActionResult> CheckIfStudentHasDoneNewestTest()
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _testResultService.CheckIfStudentHasDoneNewestTestAsync(user.AccId);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to check test status.");
+            }
+            return Ok(result);
+        }
     }
 }
