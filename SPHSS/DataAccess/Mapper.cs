@@ -20,6 +20,7 @@ namespace DataAccess
             CreateMap<Account, AccountCreateDTO>().ReverseMap();
             CreateMap<Account, ResAccountCreateDTO>().ReverseMap();
             CreateMap<Account, AccountUpdateDTO>().ReverseMap();
+            CreateMap<Account, AccountRegisterStudentByParentDTO>().ReverseMap();
             #endregion
 
             #region Blog

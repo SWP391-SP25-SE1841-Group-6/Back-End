@@ -75,6 +75,7 @@ namespace DataAccess.Service
                 else
                 {
                     var mapp = _mapper.Map<Account>(account);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
                     mapp.IsActivated = true;
                     mapp.IsApproved = true;
                     await _accountRepo.AddAsync(mapp);
@@ -367,6 +368,75 @@ namespace DataAccess.Service
                     res.Success = true;
                     res.Data = true;
                     res.Message = "Register successfully";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Register failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<bool>> RegisterParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(a => a.AccName == accountRegisterDTO.AccName || a.AccEmail == accountRegisterDTO.AccEmail))
+                {
+                    res.Success = false;
+                    res.Message = "Duplicate value";
+                    return res;
+                }
+                else
+                {
+                    var mapp = _mapper.Map<Account>(accountRegisterDTO);
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
+                    mapp.Role = RoleEnum.Parent;
+                    mapp.IsActivated = true;
+                    mapp.IsApproved = true;
+                    await _accountRepo.AddAsync(mapp);
+                    res.Success = true;
+                    res.Message = "Parent registered successfully";
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Success = false;
+                res.Message = $"Register failed: {ex.Message}";
+                return res;
+            }
+        }
+
+        public async Task<ResFormat<bool>> RegisterStudentByParent(AccountRegisterStudentByParentDTO accountRegisterDTO, int parentId)
+        {
+            var res = new ResFormat<bool>();
+            try
+            {
+                var list = await _accountRepo.GetAllAsync();
+                if (list.Any(a => a.AccName == accountRegisterDTO.AccName || a.AccEmail == accountRegisterDTO.AccEmail))
+                {
+                    res.Success = false;
+                    res.Message = "Duplicate value";
+                    return res;
+                }
+                else
+                {
+                    var mapp = _mapper.Map<Account>(accountRegisterDTO);
+                    mapp.ParentId = parentId;
+                    mapp.AccPass = HashPassWithSHA256.HashWithSHA256(mapp.AccPass);
+                    mapp.Role = RoleEnum.Student;
+                    mapp.IsActivated = true;
+                    mapp.IsApproved = true;
+                    await _accountRepo.AddAsync(mapp);
+                    /*var result = _mapper.Map<ResAccountCreateDTO>(mapp);*/
+                    res.Success = true;
+                    res.Data = true;
+                    res.Message = "Student registered successfully";
                     return res;
                 }
             }

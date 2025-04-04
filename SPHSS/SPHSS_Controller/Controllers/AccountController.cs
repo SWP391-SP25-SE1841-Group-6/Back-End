@@ -97,6 +97,32 @@ namespace SPHSS_Controller.Controllers
             }
             return Ok(result);
         }
+        [HttpPost("RegisterParent")]
+        public async Task<IActionResult> RegisterParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var result = await _accountService.RegisterParent(accountRegisterDTO);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to register parent account.");
+            }
+            return Ok(result);
+        }
+        [HttpPost("RegisterStudentByParent")]
+        public async Task<IActionResult> RegisterStudentByParent(AccountRegisterStudentByParentDTO accountRegisterDTO)
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _accountService.RegisterStudentByParent(accountRegisterDTO, user.AccId);
+            if (result == null || !result.Success)
+            {
+                return BadRequest(result?.Message ?? "Failed to register student account.");
+            }
+            return Ok(result);
+        }
         [HttpPost("Login")]
         public async Task<IActionResult> Login(string email, string password)
         {
