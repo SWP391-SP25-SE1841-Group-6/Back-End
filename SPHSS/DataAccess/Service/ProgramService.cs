@@ -16,6 +16,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using BusinessObject.Enum;
+using System.Net.Mail;
+using System.Net;
 
 namespace DataAccess.Service
 {
@@ -128,7 +130,65 @@ namespace DataAccess.Service
             }
             program.IsDeleted = true; 
             await _context.SaveChangesAsync();
+            await SendEmailsToRegisteredStudents(programId, program.ProgramName);
             return true;
+        }
+
+        public async Task SendEmailsToRegisteredStudents(int programId, string programName)
+        {
+            string adminEmail = _configuration["SendMailService:AdminEmail"];
+            string appPassword = _configuration["SendMailService:AppPassword"];
+
+            var students = await _context.ProgramSignups
+                .Where(ps => ps.ProgramId == programId)
+                .Select(ps => ps.StudentId)
+                .Distinct()
+                .ToListAsync();
+
+            var studentEmails = await _context.Accounts
+                .Where(a => students.Contains(a.AccId))
+                .Select(a => a.AccEmail)
+                .ToListAsync();
+
+            using (var smtpClient = new SmtpClient("smtp.gmail.com"))
+            {
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential(adminEmail, appPassword);
+                smtpClient.EnableSsl = true;
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("your_email@example.com"),
+                    Subject = "Thông báo hủy chương trình!",
+                    Body = $"Chương trình \"{programName}\" đã bị hủy. Vui lòng kiểm tra lại lịch trình của bạn.",
+                    IsBodyHtml = false
+                };
+
+                foreach (var email in studentEmails)
+                {
+                    if (!string.IsNullOrWhiteSpace(email) && IsValidEmail(email))
+                    {
+                        mailMessage.To.Add(email);
+                    }
+                }
+
+                if (mailMessage.To.Count > 0)
+                {
+                    await smtpClient.SendMailAsync(mailMessage);
+                }
+            }
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<ResProgramCreateDTO?> UpdateProgram(int programId, ProgramUpdateDTO dto)
@@ -142,12 +202,26 @@ namespace DataAccess.Service
 
             if (!DateOnly.TryParse(dto.Date, out DateOnly date))
             {
-                throw new Exception("Ngày bắt đầu không hợp lệ! Định dạng đúng: yyyy-MM-dd");
+                throw new Exception("Ngày không hợp lệ! Định dạng đúng: yyyy-MM-dd");
             }
 
             if (date < DateOnly.FromDateTime(DateTime.UtcNow))
             {
                 throw new Exception("Ngày bắt đầu phải từ hôm nay trở đi!");
+            }
+
+            var availablePsychologist = await _context.Accounts
+                .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
+            .Where(a =>
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == date) &&
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == dto.SlotId && pr.Date == date))
+                .OrderBy(a => _context.Programs.Count(ap => ap.PsychologistId == a.AccId))
+                .ThenBy(a => a.AccId)
+                .FirstOrDefaultAsync();
+
+            if (availablePsychologist == null)
+            {
+                throw new Exception("Không có psychologist trống trong ngày và slot này!");
             }
 
             var slotExists = await _context.Slots.AnyAsync(s => s.SlotId == dto.SlotId);
@@ -160,7 +234,7 @@ namespace DataAccess.Service
             program.Date = date;
             program.SlotId = dto.SlotId;
             program.Capacity = dto.Capacity;
-            program.PsychologistId = program.PsychologistId;
+            program.PsychologistId = availablePsychologist.AccId;
             program.Type = dto.Type;
             program.GoogleMeetLink = program.GoogleMeetLink;
             await _context.SaveChangesAsync();
