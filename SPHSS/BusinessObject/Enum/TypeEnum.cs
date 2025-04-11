@@ -8,9 +8,10 @@ namespace BusinessObject.Enum
 {
     public enum TypeEnum
     {
-        Deprssion,
+        Depression,
         Anxiety,
-        AntiSocial,
-        PostTraumaticStress
+        PTSD,
+        AntiSocial
+        
     }
 }

@@ -322,6 +322,7 @@ namespace DataAccess.Service
                     IsDeleted = p.IsDeleted,
                     SlotId = p.SlotId,
                     PsychologistId = p.PsychologistId,
+                    Type = p.Type,
                     GoogleMeetLink = p.GoogleMeetLink,
                     Capacity = p.Capacity,
                     CurrentNumber = p.CurrentNumber
