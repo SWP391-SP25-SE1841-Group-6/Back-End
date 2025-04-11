@@ -18,6 +18,7 @@ namespace DataAccess.Service.IService
         Task<ResProgramCreateDTO?> GetProgramById(int programId);
         Task<ResProgramSignupDTO> RegisterProgram(int studentId, int programId);
         Task<List<ResProgramCreateDTO>> GetProgramByStudentId(int studentId);
+        Task<List<ResProgramCreateDTO>> GetProgramByPsychologistId(int psychologistId);
 
     }
 }

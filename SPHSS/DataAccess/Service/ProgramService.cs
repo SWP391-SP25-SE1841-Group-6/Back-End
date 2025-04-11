@@ -309,6 +309,29 @@ namespace DataAccess.Service
             return programs;
         }
 
+        public async Task<List<ResProgramCreateDTO>> GetProgramByPsychologistId(int psychologistId)
+        {
+            var programs = await _context.Programs
+                .Where(p => p.PsychologistId == psychologistId && p.IsDeleted == false)
+                .Select(p => new ResProgramCreateDTO
+                {
+                    ProgramId = p.ProgramId,
+                    ProgramName = p.ProgramName,
+                    Date = p.Date,
+                    DateCreated = p.DateCreated,
+                    IsDeleted = p.IsDeleted,
+                    SlotId = p.SlotId,
+                    PsychologistId = p.PsychologistId,
+                    GoogleMeetLink = p.GoogleMeetLink,
+                    Capacity = p.Capacity,
+                    CurrentNumber = p.CurrentNumber
+                })
+                .ToListAsync();
+
+            return programs;
+        }
+
+
 
         public async Task<ResProgramSignupDTO> RegisterProgram(int studentId, int programId)
         {

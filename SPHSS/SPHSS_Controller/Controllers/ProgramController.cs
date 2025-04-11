@@ -104,6 +104,25 @@ namespace SPHSS_Controller.Controllers
             return Ok(program);
         }
 
+        [HttpGet("GetProgramByPsychologistId")]
+        public async Task<IActionResult> GetProgramByPsychologistId(int psychologistId)
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var program = await _programService.GetProgramByPsychologistId(user.AccId);
+
+            if (!program.Any())
+            {
+                return NotFound(new { message = "Bạn chưa tham gia chương trình nào cả!" });
+            }
+
+            return Ok(program);
+        }
+
         [HttpPost("RegisterProgram")]
         public async Task<IActionResult> RegisterProgram([FromBody] ProgramSignupDTO request)
         {
