@@ -29,6 +29,10 @@ namespace DataAccess
             //<Blog, BlogUpdateDTO>().ReverseMap();
             #endregion
 
+            #region Slot
+            CreateMap<Slot, ResSlotDTO>().ReverseMap();
+            #endregion
+
             #region Appointment
             CreateMap<Appointment, AppointmentCreateDTO>().ReverseMap();
             //CreateMap<Appointment, ResAppointmentDTO>().ReverseMap();

@@ -17,6 +17,7 @@ public static class DI
         services.AddScoped<IAppointmentService, AppointmentService>();
         services.AddScoped<IAppointmentRepo, AppointmentRepo>();
         services.AddScoped<IProgramService, ProgramService>();
+        services.AddScoped<ISlotService, SlotService>();
 
 
         #region Question/QuestionType
