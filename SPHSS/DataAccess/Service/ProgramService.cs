@@ -51,8 +51,8 @@ namespace DataAccess.Service
             var availablePsychologists = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
                 .Where(a =>
-                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.IsDeleted == true && ap.SlotId == dto.SlotId && ap.Date == date) &&
-                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.IsDeleted == true && pr.SlotId == dto.SlotId && pr.Date == date))
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.IsDeleted == false && ap.SlotId == dto.SlotId && ap.Date == date) &&
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.IsDeleted == false && pr.SlotId == dto.SlotId && pr.Date == date))
                 .ToListAsync();
             if (!availablePsychologists.Any())
             {
