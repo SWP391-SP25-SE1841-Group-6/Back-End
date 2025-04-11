@@ -78,6 +78,30 @@ namespace SPHSS_Controller.Controllers
             }
         }
 
+        [HttpGet("GetAppointmentByPsychologistId")]
+        public async Task<IActionResult> GetAppointmentByPsychologistId(int psychologistId)
+        {
+            var user = await _accountService.GetAcccountByTokenAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            try
+            {
+                var appointment = await _appointmentService.GetAppointmentsByPsychologistId(user.AccId);
+                if (!appointment.Any())
+                {
+                    return NotFound(new { message = "Appointment not found!" });
+                }
+                return Ok(appointment);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [HttpPost("CreateAppointment")]
         public async Task<IActionResult> CreateAppointment([FromBody] AppointmentCreateDTO dto)
         {

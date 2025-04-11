@@ -67,6 +67,24 @@ namespace DataAccess.Service
             return appointments;
         }
 
+        public async Task<List<ResAppointmentCreateDTO>> GetAppointmentsByPsychologistId(int psychologistId)
+        {
+            var appointments = await _context.Appointments
+                .Where(ap => !ap.IsDeleted && ap.PsychologistId == psychologistId)
+                .Select(ap => new ResAppointmentCreateDTO
+                {
+                    AppointmentId = ap.AppointmentId,
+                    StudentId = ap.StudentId,
+                    PsychologistId = ap.PsychologistId,
+                    SlotId = ap.SlotId,
+                    Date = ap.Date.ToString("yyyy-MM-dd"),
+                    DateCreated = ap.DateCreated,
+                    GoogleMeetLink = ap.GoogleMeetLink
+                })
+                .ToListAsync();
+            return appointments;
+        }
+
         public async Task<ResAppointmentCreateDTO?> GetAppointmentById(int appointmentId)
         {
             var appointment = await _context.Appointments
@@ -99,8 +117,8 @@ namespace DataAccess.Service
             var availablePsychologists = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
                 .Where(a => 
-                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == slotId && ap.Date == date) && 
-                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == slotId && pr.Date == date)) 
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.IsDeleted == true && ap.SlotId == slotId && ap.Date == date) && 
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.IsDeleted == true && pr.SlotId == slotId && pr.Date == date)) 
                 .ToListAsync();
             if (!availablePsychologists.Any())
             {

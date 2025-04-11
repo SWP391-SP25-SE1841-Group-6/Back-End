@@ -38,7 +38,7 @@ namespace DataAccess.Service
             {
                 throw new Exception("Ngày bắt đầu không hợp lệ! Định dạng đúng: yyyy-MM-dd");
             }
-            if (date < DateOnly.FromDateTime(DateTime.Now))
+            if (date <= DateOnly.FromDateTime(DateTime.Now))
             {
                 throw new Exception("Ngày phải từ hôm nay trở đi!");
             }
@@ -51,8 +51,8 @@ namespace DataAccess.Service
             var availablePsychologists = await _context.Accounts
                 .Where(a => a.Role == RoleEnum.Psychologist && a.IsActivated == true && a.IsApproved == true)
                 .Where(a =>
-                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.SlotId == dto.SlotId && ap.Date == date) &&
-                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.SlotId == dto.SlotId && pr.Date == date))
+                !_context.Appointments.Any(ap => ap.PsychologistId == a.AccId && ap.IsDeleted == true && ap.SlotId == dto.SlotId && ap.Date == date) &&
+                !_context.Programs.Any(pr => pr.PsychologistId == a.AccId && pr.IsDeleted == true && pr.SlotId == dto.SlotId && pr.Date == date))
                 .ToListAsync();
             if (!availablePsychologists.Any())
             {
@@ -300,6 +300,7 @@ namespace DataAccess.Service
                     IsDeleted = p.Program.IsDeleted,
                     SlotId = p.Program.SlotId,
                     PsychologistId = p.Program.PsychologistId,
+                    Type = p.Program.Type,
                     GoogleMeetLink = p.Program.GoogleMeetLink,
                     Capacity = p.Program.Capacity,
                     CurrentNumber = p.Program.CurrentNumber
